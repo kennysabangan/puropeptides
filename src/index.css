@@ -19,11 +19,16 @@ html {
   scroll-behavior: smooth;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
 /* Apple-style frosted glass navbar */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: saturate(200%) blur(25px);
+  -webkit-backdrop-filter: saturate(200%) blur(25px);
+  box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.08);
 }
 
 /* Apple card shadow */
@@ -124,9 +129,9 @@ html {
 
 /* Gradient wash for hero */
 .hero-gradient {
-  background: linear-gradient(135deg, 
-    rgba(255, 200, 220, 0.3) 0%, 
-    rgba(220, 200, 255, 0.3) 33%, 
-    rgba(200, 220, 255, 0.3) 66%, 
-    rgba(200, 255, 220, 0.2) 100%);
+  background: linear-gradient(145deg, 
+    #F5F5F7 0%, 
+    #F0EDF5 30%, 
+    #EDF0F5 60%, 
+    #F5F5F7 100%);
 }

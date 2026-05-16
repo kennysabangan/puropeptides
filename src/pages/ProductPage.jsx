@@ -14,9 +14,14 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl font-poppins font-bold text-[#0B0B0B] mb-4">Product not found</h2>
-        <Link to="/store" className="text-sm text-[#555555] hover:underline">← Back to store</Link>
+      <div className="max-w-[1200px] mx-auto px-6 py-24 text-center">
+        <h2 className="text-2xl font-bold text-[#1D1D1F] mb-4">Product not found</h2>
+        <Link to="/store" className="text-[14px] text-[#86868B] hover:text-[#1D1D1F] transition flex items-center gap-1 justify-center">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back to store
+        </Link>
       </div>
     )
   }
@@ -28,68 +33,68 @@ export default function ProductPage() {
   ]
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-8 md:py-14">
       {/* Breadcrumb */}
-      <nav className="mb-6 text-sm text-[#555555]">
-        <Link to="/store" className="hover:underline">Store</Link>
-        <span className="mx-2">/</span>
-        <span className="text-[#0B0B0B] font-medium">{product.name}</span>
+      <nav className="mb-8 text-[13px] text-[#86868B] flex items-center gap-2">
+        <Link to="/store" className="hover:text-[#1D1D1F] transition">Store</Link>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
+        <span className="text-[#1D1D1F] font-medium">{product.name}</span>
       </nav>
 
-      <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+      <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Image Panel */}
-        <div className="bg-[#F8F8F8] rounded-3xl p-10 md:p-16 flex items-center justify-center min-h-[350px] md:min-h-[500px]">
+        <div className="bg-[#F5F5F7] rounded-[24px] p-12 md:p-20 flex items-center justify-center min-h-[380px] md:min-h-[520px]">
           <svg viewBox="0 0 80 160" className="w-28 h-56" fill="none">
-            <rect x="28" y="0" width="24" height="16" rx="3" fill="#0B0B0B" opacity="0.15" />
-            <rect x="22" y="16" width="36" height="8" rx="2" fill="#0B0B0B" opacity="0.2" />
-            <rect x="20" y="24" width="40" height="120" rx="8" fill="white" stroke="#0B0B0B" strokeWidth="2" opacity="0.9" />
-            <rect x="28" y="50" width="24" height="3" rx="1.5" fill="#0B0B0B" opacity="0.15" />
-            <rect x="28" y="58" width="18" height="3" rx="1.5" fill="#0B0B0B" opacity="0.1" />
-            <text x="40" y="85" textAnchor="middle" fill="#0B0B0B" fontSize="7" fontFamily="Poppins" fontWeight="600">{product.name}</text>
+            <rect x="28" y="0" width="24" height="16" rx="3" fill="#0B0B0B" opacity="0.1" />
+            <rect x="22" y="16" width="36" height="8" rx="2" fill="#0B0B0B" opacity="0.12" />
+            <rect x="20" y="24" width="40" height="120" rx="10" fill="white" stroke="#0B0B0B" strokeWidth="1.5" opacity="0.85" />
+            <rect x="28" y="50" width="24" height="3" rx="1.5" fill="#0B0B0B" opacity="0.1" />
+            <rect x="28" y="58" width="18" height="3" rx="1.5" fill="#0B0B0B" opacity="0.06" />
+            <text x="40" y="85" textAnchor="middle" fill="#0B0B0B" fontSize="7" fontFamily="Inter" fontWeight="600">{product.name}</text>
           </svg>
         </div>
 
         {/* Details Panel */}
-        <div>
-          {detail && <p className="text-sm text-[#5A5A5A] mb-1">{detail.subtitle}</p>}
-          <h1 className="font-poppins text-4xl md:text-5xl font-bold text-[#0B0B0B] mb-3">{product.name}</h1>
+        <div className="py-2">
+          {detail && <p className="text-[13px] text-[#86868B] mb-1">{detail.subtitle}</p>}
+          <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-4">{product.name}</h1>
 
           {/* Aliases */}
           {detail && (
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-5">
               {detail.aliases.map(a => (
-                <span key={a} className="px-3 py-1 rounded-full border border-[#E4E4E7] text-xs text-[#555555]">{a}</span>
+                <span key={a} className="px-3 py-1.5 rounded-full bg-[#F5F5F7] text-[11px] text-[#86868B] font-medium">{a}</span>
               ))}
             </div>
           )}
 
           {/* Description */}
           {detail && (
-            <p className="text-[#555555] text-sm leading-relaxed mb-6">{detail.description}</p>
+            <p className="text-[#86868B] text-[14px] leading-relaxed mb-7">{detail.description}</p>
           )}
 
           {/* Dosage Selector */}
           <div className="mb-5">
-            <label className="text-xs font-medium text-[#555555] mb-2 block">Dosage</label>
-            <div className="inline-flex items-center bg-[#0B0B0B] text-white text-sm font-medium px-5 py-2 rounded-full">
+            <label className="text-[12px] font-medium text-[#86868B] uppercase tracking-wider mb-2 block">Dosage</label>
+            <span className="inline-flex items-center bg-[#1D1D1F] text-white text-[13px] font-medium px-5 py-2.5 rounded-full">
               10MG
-            </div>
+            </span>
           </div>
 
           {/* Quantity */}
-          <div className="mb-6">
-            <label className="text-xs font-medium text-[#555555] mb-2 block">Quantity</label>
-            <div className="inline-flex items-center border border-[#E4E4E7] rounded-full">
+          <div className="mb-7">
+            <label className="text-[12px] font-medium text-[#86868B] uppercase tracking-wider mb-2 block">Quantity</label>
+            <div className="inline-flex items-center border border-[#E8E8ED] rounded-full">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-10 flex items-center justify-center text-[#0B0B0B] hover:bg-gray-50 rounded-l-full transition"
+                className="w-11 h-11 flex items-center justify-center text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-l-full transition"
               >
                 −
               </button>
-              <span className="w-12 text-center text-sm font-medium text-[#0B0B0B]">{quantity}</span>
+              <span className="w-12 text-center text-[14px] font-medium text-[#1D1D1F]">{quantity}</span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="w-10 h-10 flex items-center justify-center text-[#0B0B0B] hover:bg-gray-50 rounded-r-full transition"
+                className="w-11 h-11 flex items-center justify-center text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-r-full transition"
               >
                 +
               </button>
@@ -97,33 +102,33 @@ export default function ProductPage() {
           </div>
 
           {/* Price */}
-          <div className="mb-6">
-            <span className="font-poppins text-3xl font-bold text-[#0B0B0B]">${(product.price * quantity).toFixed(2)}</span>
+          <div className="mb-7">
+            <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1D1D1F]">${(product.price * quantity).toFixed(2)}</span>
           </div>
 
           {/* Bundle & Save */}
-          <div className="mb-6">
-            <h3 className="text-sm font-medium text-[#0B0B0B] mb-3">Bundle & Save</h3>
+          <div className="mb-7">
+            <h3 className="text-[13px] font-semibold text-[#1D1D1F] mb-3">Bundle & Save</h3>
             <div className="space-y-2">
               {bundleOptions.map(b => (
                 <button
                   key={b.qty}
                   onClick={() => setSelectedBundle(b.qty)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition text-left ${
-                    selectedBundle === b.qty ? 'border-[#0B0B0B] bg-[#FAFAFA]' : 'border-[#E4E4E7] hover:border-gray-300'
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-[14px] border transition text-left ${
+                    selectedBundle === b.qty ? 'border-[#1D1D1F] bg-[#F5F5F7]' : 'border-[#E8E8ED] hover:border-[#D1D1D6]'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedBundle === b.qty ? 'border-[#0B0B0B]' : 'border-gray-300'}`}>
-                      {selectedBundle === b.qty && <div className="w-2 h-2 rounded-full bg-[#0B0B0B]" />}
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedBundle === b.qty ? 'border-[#1D1D1F]' : 'border-[#D1D1D6]'}`}>
+                      {selectedBundle === b.qty && <div className="w-2 h-2 rounded-full bg-[#1D1D1F]" />}
                     </div>
-                    <span className="text-sm text-[#0B0B0B] font-medium">{b.label}</span>
+                    <span className="text-[14px] text-[#1D1D1F] font-medium">{b.label}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    {b.discount && <span className="text-xs text-[#555555]">{b.discount}</span>}
+                    {b.discount && <span className="text-[12px] text-[#86868B]">{b.discount}</span>}
                     {b.badge && (
-                      <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${
-                        b.color === 'teal' ? 'bg-teal-600 text-white' : 'bg-amber-500 text-white'
+                      <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full ${
+                        b.color === 'teal' ? 'bg-[#30D5C8] text-white' : 'bg-[#FFB800] text-white'
                       }`}>
                         {b.badge}
                       </span>
@@ -138,11 +143,11 @@ export default function ProductPage() {
           <div className="flex gap-3 mb-8">
             <button
               onClick={() => setShowCoa(!showCoa)}
-              className="px-6 py-3 rounded-full border border-[#0B0B0B] text-[#0B0B0B] text-sm font-medium hover:bg-gray-50 transition"
+              className="px-6 py-3.5 rounded-full border border-[#1D1D1F] text-[#1D1D1F] text-[14px] font-medium hover:bg-[#F5F5F7] transition"
             >
               View CoA
             </button>
-            <button className="flex-1 bg-[#0B0B0B] text-white text-sm font-medium py-3 rounded-full hover:bg-[#131315] transition">
+            <button className="btn-apple flex-1 bg-[#1D1D1F] text-white text-[14px] font-medium py-3.5 rounded-full">
               Add to Cart
             </button>
           </div>
@@ -154,10 +159,10 @@ export default function ProductPage() {
               { icon: '🛡️', title: 'Protection', sub: 'Damage covered' },
               { icon: '🔒', title: 'Secure', sub: '256-bit SSL' },
             ].map(t => (
-              <div key={t.title} className="text-center p-3 rounded-xl bg-[#FAFAFA]">
+              <div key={t.title} className="text-center p-3.5 rounded-[14px] bg-[#F5F5F7]">
                 <div className="text-lg mb-1">{t.icon}</div>
-                <p className="text-xs font-medium text-[#0B0B0B]">{t.title}</p>
-                <p className="text-[10px] text-[#555555]">{t.sub}</p>
+                <p className="text-[11px] font-semibold text-[#1D1D1F]">{t.title}</p>
+                <p className="text-[10px] text-[#86868B]">{t.sub}</p>
               </div>
             ))}
           </div>
@@ -166,28 +171,28 @@ export default function ProductPage() {
 
       {/* CoA Section */}
       {showCoa && detail && (
-        <div className="mt-10 bg-[#FAFAFA] rounded-2xl p-6 md:p-8">
-          <h3 className="font-poppins font-bold text-xl text-[#0B0B0B] mb-2">Certificate of Analysis</h3>
-          <p className="text-sm text-[#555555] mb-6">Independent lab-verified testing results</p>
+        <div className="mt-12 bg-[#FBFBFD] rounded-[20px] p-7 md:p-9">
+          <h3 className="font-bold text-xl text-[#1D1D1F] mb-2">Certificate of Analysis</h3>
+          <p className="text-[14px] text-[#86868B] mb-6">Independent lab-verified testing results</p>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-[14px]">
               <thead>
-                <tr className="border-b border-[#E4E4E7]">
-                  <th className="text-left py-3 font-medium text-[#555555]">Lot #</th>
-                  <th className="text-left py-3 font-medium text-[#555555]">Purity</th>
-                  <th className="text-left py-3 font-medium text-[#555555]">Labeled</th>
-                  <th className="text-left py-3 font-medium text-[#555555]">Actual</th>
-                  <th className="text-left py-3 font-medium text-[#555555]">Tested</th>
+                <tr className="border-b border-[#E8E8ED]">
+                  <th className="text-left py-3 font-medium text-[#86868B] text-[12px] uppercase tracking-wider">Lot #</th>
+                  <th className="text-left py-3 font-medium text-[#86868B] text-[12px] uppercase tracking-wider">Purity</th>
+                  <th className="text-left py-3 font-medium text-[#86868B] text-[12px] uppercase tracking-wider">Labeled</th>
+                  <th className="text-left py-3 font-medium text-[#86868B] text-[12px] uppercase tracking-wider">Actual</th>
+                  <th className="text-left py-3 font-medium text-[#86868B] text-[12px] uppercase tracking-wider">Tested</th>
                 </tr>
               </thead>
               <tbody>
                 {detail.coa.map(row => (
-                  <tr key={row.lot} className="border-b border-[#E8E8E8]">
-                    <td className="py-3 font-medium text-[#0B0B0B]">{row.lot}</td>
-                    <td className="py-3 text-[#16A34A] font-semibold">{row.purity}%</td>
-                    <td className="py-3 text-[#555555]">{row.labeled}</td>
-                    <td className="py-3 text-[#0B0B0B] font-medium">{row.actual}</td>
-                    <td className="py-3 text-[#555555]">{row.tested}</td>
+                  <tr key={row.lot} className="border-b border-[#E8E8ED]/60">
+                    <td className="py-3.5 font-medium text-[#1D1D1F]">{row.lot}</td>
+                    <td className="py-3.5 text-[#34C759] font-semibold">{row.purity}%</td>
+                    <td className="py-3.5 text-[#86868B]">{row.labeled}</td>
+                    <td className="py-3.5 text-[#1D1D1F] font-medium">{row.actual}</td>
+                    <td className="py-3.5 text-[#86868B]">{row.tested}</td>
                   </tr>
                 ))}
               </tbody>
@@ -198,28 +203,28 @@ export default function ProductPage() {
 
       {/* Compound Info */}
       {detail && (
-        <div className="mt-10 grid md:grid-cols-2 gap-6">
-          <div className="bg-[#FAFAFA] rounded-2xl p-6">
-            <h3 className="font-poppins font-semibold text-[#0B0B0B] mb-4">Compound Information</h3>
-            <div className="space-y-2.5">
+        <div className="mt-8 grid md:grid-cols-2 gap-5">
+          <div className="bg-[#FBFBFD] rounded-[20px] p-7">
+            <h3 className="font-semibold text-[15px] text-[#1D1D1F] mb-5">Compound Information</h3>
+            <div className="space-y-3">
               {Object.entries(detail.compoundInfo).map(([key, val]) => (
-                <div key={key} className="flex justify-between text-sm">
-                  <span className="text-[#555555] capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                  <span className="text-[#0B0B0B] font-medium">{val}</span>
+                <div key={key} className="flex justify-between text-[14px]">
+                  <span className="text-[#86868B] capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                  <span className="text-[#1D1D1F] font-medium">{val}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="bg-[#FAFAFA] rounded-2xl p-6">
-            <h3 className="font-poppins font-semibold text-[#0B0B0B] mb-4">Storage</h3>
-            <div className="space-y-3">
+          <div className="bg-[#FBFBFD] rounded-[20px] p-7">
+            <h3 className="font-semibold text-[15px] text-[#1D1D1F] mb-5">Storage</h3>
+            <div className="space-y-4">
               <div>
-                <p className="text-sm text-[#555555]">Lyophilized</p>
-                <p className="text-sm font-medium text-[#0B0B0B]">{detail.storage.lyophilized}</p>
+                <p className="text-[13px] text-[#86868B]">Lyophilized</p>
+                <p className="text-[14px] font-medium text-[#1D1D1F]">{detail.storage.lyophilized}</p>
               </div>
               <div>
-                <p className="text-sm text-[#555555]">Reconstituted</p>
-                <p className="text-sm font-medium text-[#0B0B0B]">{detail.storage.reconstituted}</p>
+                <p className="text-[13px] text-[#86868B]">Reconstituted</p>
+                <p className="text-[14px] font-medium text-[#1D1D1F]">{detail.storage.reconstituted}</p>
               </div>
             </div>
           </div>
