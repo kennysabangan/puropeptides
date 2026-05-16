@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from 'react'
 
 const CartContext = createContext()
 
-const CART_STORAGE_KEY = 'puro-peptides-cart'
+const CART_STORAGE_KEY = 'amino-select-cart'
 
 function loadCart() {
   try {

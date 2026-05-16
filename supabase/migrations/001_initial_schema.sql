@@ -1,4 +1,4 @@
--- Puro Peptides Database Schema
+-- Amino Select Database Schema
 
 -- Products table
 CREATE TABLE products (

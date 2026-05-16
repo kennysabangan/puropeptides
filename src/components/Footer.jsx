@@ -13,7 +13,7 @@ export default function Footer() {
                 <circle cx="14" cy="14" r="13" stroke="white" strokeWidth="1.5" />
                 <path d="M10 8v12M18 8v12M10 14h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
-              <span className="font-semibold text-[15px]">Puro Peptides</span>
+              <span className="font-semibold text-[15px]">Amino Select</span>
             </Link>
             <p className="text-[13px] text-[#86868B] mb-8 max-w-xs leading-relaxed">
               Premium research-grade peptides for optimal controlled studies. Third-party tested with Certificate of Analysis.
@@ -95,7 +95,7 @@ export default function Footer() {
               <img src="/images/homepage/payment-discover.png" alt="Discover" className="h-6 object-contain opacity-50" />
               <img src="/images/homepage/payment-applepay.png" alt="Apple Pay" className="h-6 object-contain opacity-50" />
             </div>
-            <p className="text-[11px] text-[#86868B]/50">© 2026 Puro Peptides. All rights reserved.</p>
+            <p className="text-[11px] text-[#86868B]/50">© 2026 Amino Select. All rights reserved.</p>
             <div className="flex items-center gap-5">
               {['SSL Secured', '99%+ Purity', 'Shipment Protection'].map(b => (
                 <span key={b} className="text-[10px] text-[#86868B]/40">{b}</span>

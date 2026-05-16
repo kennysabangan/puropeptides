@@ -63,7 +63,7 @@ function FadeSection({ children, className = '', style = {}, delay = 0 }) {
 const bottleBgColors = ['#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8', '#F5D5E8', '#F5F5D5']
 
 const faqItems = [
-  { q: 'What purity level are your peptides and how is it verified?', a: 'All Puro Peptides products are guaranteed 99%+ pure. Each batch is independently tested by accredited U.S. laboratories using HPLC and Mass Spectrometry. We provide a Certificate of Analysis (CoA) with every order.' },
+  { q: 'What purity level are your peptides and how is it verified?', a: 'All Amino Select products are guaranteed 99%+ pure. Each batch is independently tested by accredited U.S. laboratories using HPLC and Mass Spectrometry. We provide a Certificate of Analysis (CoA) with every order.' },
   { q: 'What is a Certificate of Analysis (CoA)?', a: 'A CoA is an official lab document verifying your peptide\'s quality. Key sections include Purity (99%+), Identity (confirmed via mass spec), and Endotoxin levels. Each CoA is batch-specific and available on product pages.' },
   { q: 'How should I store the lyophilized product?', a: 'Lyophilized peptides are very stable. For short-term (under 3 months), store at room temperature in a cool, dark place. For long-term, refrigerate at 2-8°C or freeze at -20°C. Avoid repeated freeze-thaw cycles.' },
   { q: 'How fast do you ship?', a: 'Orders are processed within 0-2 business days. Standard shipping takes 3-5 business days. Every order includes free shipment protection. Lyophilized peptides don\'t require cold shipping.' },
@@ -177,7 +177,7 @@ export default function HomePage() {
             </div>
             <div>
               <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1D1D1F] leading-tight tracking-[-0.02em] mb-4">
-                The Puro Peptides Guarantee
+                The Amino Select Guarantee
               </h2>
               <p className="text-[#86868B] text-[16px] leading-relaxed">
                 Documented quality for research and laboratory use. Every batch meets our internal purity standards.
@@ -390,7 +390,7 @@ export default function HomePage() {
       <FadeSection className="py-20 md:py-28" style={{ backgroundColor: '#F5F5F7' }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1D1D1F] text-center tracking-[-0.02em] mb-14">
-            Why choose Puro Peptides?
+            Why choose Amino Select?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChooseCards.map((card) => (
@@ -453,7 +453,7 @@ export default function HomePage() {
       {/* ─── Newsletter ─── */}
       <FadeSection className="py-20" style={{ backgroundColor: '#F5F0FF' }}>
         <div className="max-w-[500px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-[#1D1D1F] mb-3">Research updates from Puro Peptides</h2>
+          <h2 className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-[#1D1D1F] mb-3">Research updates from Amino Select</h2>
           <p className="text-[14px] text-[#86868B] mb-7">Subscribe for catalog updates, new compounds, and quality documentation</p>
           {subscribed ? (
             <p className="text-[14px] text-[#34C759] font-medium">✓ Thanks for subscribing!</p>
