@@ -14,7 +14,7 @@ export default function Header() {
               <circle cx="14" cy="14" r="13" stroke="#0B0B0B" strokeWidth="2" />
               <path d="M10 8v12M18 8v12M10 14h8" stroke="#0B0B0B" strokeWidth="2" strokeLinecap="round" />
             </svg>
-            <span className="font-poppins font-bold text-lg tracking-tight">amino club</span>
+            <span className="font-poppins font-bold text-lg tracking-tight">Puro Peptides</span>
           </Link>
 
           {/* Center Nav */}

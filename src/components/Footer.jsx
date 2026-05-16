@@ -13,7 +13,7 @@ export default function Footer() {
                 <circle cx="14" cy="14" r="13" stroke="white" strokeWidth="2" />
                 <path d="M10 8v12M18 8v12M10 14h8" stroke="white" strokeWidth="2" strokeLinecap="round" />
               </svg>
-              <span className="font-poppins font-bold text-lg">amino club</span>
+              <span className="font-poppins font-bold text-lg">Puro Peptides</span>
             </Link>
             <p className="text-sm text-gray-400 mb-6 max-w-xs">
               Premium research-grade peptides for optimal controlled studies and performance. Third-party tested with Certificate of Analysis.
@@ -99,7 +99,7 @@ export default function Footer() {
                 <span className="text-[10px] font-bold text-gray-500 bg-gray-800 px-2 py-1 rounded">Apple Pay</span>
               </div>
             </div>
-            <p className="text-xs text-gray-500">© 2026 Amino Club. All rights reserved.</p>
+            <p className="text-xs text-gray-500">© 2026 Puro Peptides. All rights reserved.</p>
             <div className="flex items-center gap-4">
               {['SSL Secured', '99%+ Purity', 'Shipment Protection'].map(b => (
                 <span key={b} className="text-[10px] text-gray-500">🔒 {b}</span>
