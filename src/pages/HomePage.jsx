@@ -70,12 +70,6 @@ const ChevronRight = ({ size = 16 }) => (
   </svg>
 )
 
-const LockIcon = ({ size = 13 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
-  </svg>
-)
-
 const VerifiedBadge = ({ size = 22 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <path d="M12 2l2.4 1.8 3 .2.8 2.9 2.4 1.8-1 2.8 1 2.8-2.4 1.8-.8 2.9-3 .2L12 22l-2.4-1.8-3-.2-.8-2.9L3.4 15.3l1-2.8-1-2.8L5.8 7.9l.8-2.9 3-.2z" fill="#34C759"/>
@@ -455,32 +449,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sign in CTA */}
-      <section className="bg-[#E6E8EA] py-20 lg:py-28">
-        <div className="max-w-[820px] mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur rounded-full px-4 py-1.5 mb-6 border border-black/5">
-            <LockIcon />
-            <span className="text-[12px] text-[#1D1D1F]/70">Verified Researchers Only</span>
-          </div>
-          <h2 className="text-[40px] sm:text-[52px] font-bold text-[#1D1D1F] tracking-[-0.025em] leading-[1.1] mb-5">
-            Sign in to access the research catalog
-          </h2>
-          <p className="text-[15px] text-[#1D1D1F]/65 leading-relaxed mb-10 max-w-[600px] mx-auto">
-            Create an account or sign in to view our complete research peptide catalog.
-            Available to verified researchers and labs for laboratory and research use only.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button className="bg-[#1D1D1F] text-white rounded-full px-7 py-3.5 text-[14px] font-medium inline-flex items-center gap-3 hover:opacity-90 transition">
-              Create Account
-              <Arrow />
-            </button>
-            <button className="border border-[#1D1D1F]/30 rounded-full px-7 py-3.5 text-[14px] font-medium text-[#1D1D1F] hover:bg-[#1D1D1F] hover:text-white transition">
-              Sign In
-            </button>
           </div>
         </div>
       </section>
