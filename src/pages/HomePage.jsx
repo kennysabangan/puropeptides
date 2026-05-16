@@ -1,5 +1,39 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+
+/* ─── Quality tabs ─── */
+const qualityTabs = [
+  { key: 'potency',     label: 'Potency',     title: 'Verified Potency',     method: 'HPLC Analysis',           desc: 'Every vial is tested to confirm it contains exactly what the label says — down to the microgram.', why: 'No guessing games. You get the exact concentration you paid for, every single time.' },
+  { key: 'purity',      label: 'Purity',      title: 'Verified Purity',      method: 'Mass Spectrometry',       desc: 'Each batch is tested to confirm 99%+ purity with no contaminants or adulterants.',                why: 'Guaranteed purity means your research results won\'t be compromised.' },
+  { key: 'stability',   label: 'Stability',   title: 'Verified Stability',   method: 'Accelerated Stability',   desc: 'Peptides are tested for degradation over time under various storage conditions.',                 why: 'Know exactly how long your compound will remain viable.' },
+  { key: 'safety',      label: 'Safety',      title: 'Verified Safety',      method: 'LAL & ICP-MS Testing',    desc: 'Every batch is screened for endotoxins, heavy metals, and microbial contamination.',              why: 'Safety-tested compounds protect both researchers and research integrity.' },
+  { key: 'consistency', label: 'Consistency', title: 'Verified Consistency', method: 'Multi-Batch Comparison',  desc: 'Batch-to-batch uniformity ensures reproducible results across your entire research project.',     why: 'Consistent compounds mean consistent, reproducible outcomes.' },
+]
+
+/* ─── Why-choose cards ─── */
+const whyChooseCards = [
+  { title: 'Always in Stock',          body: 'Top research peptides like BPC-157, TB-500, and Ipamorelin ready to ship. No backorders, no waiting.',         tint: '#E8DDF5', accent: '#9B6BD4', icon: 'box' },
+  { title: 'Volume Pricing',           body: 'Bulk pricing available for larger research orders. Lower per-vial cost at higher volumes.',                     tint: '#DDF0DD', accent: '#34C759', icon: 'percent' },
+  { title: 'Safe & Protected Shipping',body: 'Cold-pack shipping keeps peptides stable. Discreet packaging with full tracking on every USA order.',          tint: '#F5EBC5', accent: '#D4A946', icon: 'truck' },
+  { title: 'Researcher Community',     body: 'Connect with fellow researchers. Share peer insights and discuss peptide research applications.',               tint: '#F5DDDD', accent: '#E07A7A', icon: 'globe' },
+  { title: '99%+ Purity Guaranteed',   body: 'Every batch tested by US labs via HPLC and Mass Spec. Full Certificate of Analysis included free.',             tint: '#E0DDF5', accent: '#7C6BD4', icon: 'medal' },
+  { title: 'Shipment Protection',      body: 'Every order includes free shipment protection. Lost, damaged, or stolen packages are reshipped at no cost.',    tint: '#DDF0E8', accent: '#5BC9A0', icon: 'bolt' },
+]
+
+/* ─── FAQ items ─── */
+const faqItems = [
+  { q: 'What purity level are your peptides and how is it verified?',          a: 'All Amino Select products are guaranteed 99%+ pure. Each batch is independently tested by accredited U.S. laboratories using HPLC and Mass Spectrometry. We provide a Certificate of Analysis (CoA) with every order.' },
+  { q: 'What is a Certificate of Analysis (CoA) and how do I read it?',        a: 'A CoA is an official lab document verifying your peptide\'s quality. Key sections include Purity (99%+), Identity (confirmed via mass spec), and Endotoxin levels. Each CoA is batch-specific and available on every product page.' },
+  { q: 'What is Amino H2O?',                                                   a: 'Amino H2O is our pre-tested bacteriostatic water for reconstitution, USP-grade with 0.9% benzyl alcohol added. Sold for research use only.' },
+  { q: 'How should I store the lyophilized product?',                          a: 'Lyophilized peptides are stable at room temperature short-term. For long-term storage, keep at -20°C. Avoid repeated freeze-thaw cycles. Once reconstituted, refrigerate at 2-8°C and use within 30 days.' },
+  { q: 'How long is the lyophilized product stable?',                          a: 'Lyophilized peptides remain stable for 24+ months when stored at -20°C, and several months at room temperature. See each product\'s storage notes for specifics.' },
+  { q: 'How fast do you ship and is cold shipping required?',                  a: 'Orders ship within 0-2 business days. Standard shipping arrives in 3-5 business days. Lyophilized peptides do not require cold shipping; we cold-pack only where necessary.' },
+  { q: 'Do you ship internationally?',                                         a: 'We currently ship to all 50 U.S. states. Contact support for international order availability.' },
+  { q: 'What is Amino Select and why should I trust you?',                     a: 'Amino Select is a U.S.-based research peptide supplier focused on documented quality. Every batch is third-party tested with a published Certificate of Analysis you can verify yourself.' },
+  { q: 'Are these peptides for human use?',                                    a: 'No. All products are sold strictly for research, laboratory, and educational purposes only. They are not approved for human consumption or therapeutic application.' },
+  { q: 'What is your return and refund policy?',                               a: 'Unopened products in original packaging can be returned within 30 days for a full refund. Damaged or defective items are replaced at no cost — just contact support with your order number.' },
+  { q: 'How can I contact Amino Select support?',                              a: 'Reach our team via the contact form on the site or email support directly. We typically respond within one business day.' },
+]
 
 /* ─── Featured product config ─── */
 const featuredProducts = [
@@ -171,9 +205,94 @@ const ShieldCheck = ({ size = 80 }) => (
   </svg>
 )
 
+/* ─── Why-choose card icons ─── */
+const whyIcons = {
+  box: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
+    </svg>
+  ),
+  percent: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="19" y1="5" x2="5" y2="19" /><circle cx="6.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="17.5" r="2.5" />
+    </svg>
+  ),
+  truck: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="6" width="14" height="10" rx="1.5" /><path d="M15 9h4l3 3v4h-7" /><circle cx="6" cy="18" r="2" /><circle cx="18" cy="18" r="2" />
+      <path d="M9 10l1.5 1.5L13 9" stroke="currentColor" strokeWidth="1.6" fill="none" />
+    </svg>
+  ),
+  globe: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" /><line x1="3" y1="12" x2="21" y2="12" /><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+    </svg>
+  ),
+  medal: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="14" r="6" /><polygon points="8 14 12 11 16 14 12 17 8 14" />
+      <path d="M8.5 8L7 3h10l-1.5 5" />
+    </svg>
+  ),
+  bolt: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  ),
+}
+
+/* ─── Quality stat block ─── */
+function StatBlock({ value, label1, label2 }) {
+  return (
+    <div className="flex items-baseline gap-3">
+      <div className="text-[34px] sm:text-[40px] font-bold text-[#1D1D1F] tracking-tight leading-none">{value}</div>
+      <div className="text-[12px] text-[#86868B] leading-tight">
+        <div>{label1}</div>
+        {label2 && <div>{label2}</div>}
+      </div>
+    </div>
+  )
+}
+
+/* ─── Why-choose card ─── */
+function WhyChooseCard({ card }) {
+  return (
+    <div className="bg-white rounded-3xl p-7 border border-black/[0.06] relative overflow-hidden" style={{ boxShadow: `0 0 0 1px ${card.accent}15` }}>
+      <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style={{ background: card.tint, color: card.accent }}>
+        {whyIcons[card.icon]}
+      </div>
+      <h3 className="text-[17px] font-bold text-[#1D1D1F] mb-2.5 tracking-tight">{card.title}</h3>
+      <p className="text-[13px] text-[#86868B] leading-relaxed">{card.body}</p>
+    </div>
+  )
+}
+
+/* ─── FAQ row ─── */
+function FaqRow({ item, open, onToggle }) {
+  return (
+    <div className="border-b border-black/10">
+      <button onClick={onToggle} className="w-full flex items-center justify-between py-5 text-left">
+        <span className="text-[15px] font-semibold text-[#1D1D1F] pr-4">{item.q}</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`text-[#1D1D1F]/60 transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`}>
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      <div className={`grid transition-[grid-template-rows] duration-300 ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+        <div className="overflow-hidden">
+          <p className="text-[14px] text-[#86868B] leading-relaxed pb-5 max-w-[800px]">{item.a}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Page ─── */
 export default function HomePage() {
   const carouselRef = useRef(null)
+  const [qualityTab, setQualityTab] = useState('potency')
+  const [openFaq, setOpenFaq] = useState(null)
+  const activeTab = qualityTabs.find(t => t.key === qualityTab)
 
   const scrollCarousel = (dir) => {
     const el = carouselRef.current
@@ -419,6 +538,163 @@ export default function HomePage() {
               illustration={<ShieldCheck />}
             />
           </div>
+        </div>
+      </section>
+
+      {/* Quality you can verify */}
+      <section className="bg-[#E6E8EA] py-20 lg:py-24">
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left */}
+          <div>
+            <h2 className="text-[34px] sm:text-[44px] font-bold text-[#1D1D1F] tracking-[-0.025em] leading-[1.1] mb-5">
+              Quality you can verify, not just trust
+            </h2>
+            <p className="text-[15px] text-[#1D1D1F]/65 leading-relaxed mb-9 max-w-[520px]">
+              Every batch is independently tested by accredited U.S. laboratories.
+              We don't ask you to take our word for it — we give you the proof.
+            </p>
+
+            <div className="flex flex-wrap gap-x-10 gap-y-4 mb-10">
+              <StatBlock value="99%+" label1="Purity"      label2="Guaranteed" />
+              <StatBlock value="5"    label1="Quality"     label2="Checks" />
+              <StatBlock value="100%" label1="U.S. Verified" />
+            </div>
+
+            {/* Tabs */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {qualityTabs.map(t => {
+                const active = t.key === qualityTab
+                return (
+                  <button
+                    key={t.key}
+                    onClick={() => setQualityTab(t.key)}
+                    className={`px-4 py-2 rounded-full text-[13px] font-medium transition flex items-center gap-1.5 ${
+                      active ? 'bg-[#1D1D1F] text-white' : 'border border-black/15 text-[#1D1D1F] hover:bg-black/5'
+                    }`}
+                  >
+                    {active ? (
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+                    ) : (
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                    )}
+                    {t.label}
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Active tab content */}
+            <div className="bg-white rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-3 flex-wrap">
+                <h3 className="text-[18px] font-bold text-[#1D1D1F]">{activeTab.title}</h3>
+                <span className="inline-flex items-center gap-1.5 bg-[#34C759]/10 text-[#1A8A3F] rounded-full px-2.5 py-1 text-[11px] font-semibold">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  {activeTab.method}
+                </span>
+              </div>
+              <p className="text-[13px] text-[#86868B] leading-relaxed mb-4">{activeTab.desc}</p>
+              <div className="border-l-2 border-[#34C759] pl-4 py-1">
+                <p className="text-[13px] text-[#1D1D1F]/80 leading-relaxed">
+                  <span className="font-semibold text-[#1D1D1F]">Why it matters: </span>{activeTab.why}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <Link to="/store" className="bg-[#1D1D1F] text-white rounded-full px-6 py-3 text-[14px] font-medium inline-flex items-center gap-3 hover:opacity-90 transition">
+                Shop Now <Arrow />
+              </Link>
+              <span className="inline-flex items-center gap-2 text-[13px] text-[#1D1D1F]/70">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="8 12 11 15 16 9" /></svg>
+                Free COA included with every order
+              </span>
+            </div>
+          </div>
+
+          {/* Right — vial showcase */}
+          <div className="relative rounded-3xl overflow-hidden min-h-[520px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #DDE5F0 0%, #E0DAEE 100%)' }}>
+            <img src="/images/products/tb-500/00.png" alt="TB-500" className="w-[60%] max-w-[320px] drop-shadow-2xl" style={{ transform: 'rotate(-6deg)' }} />
+
+            {/* Purity badge */}
+            <div className="absolute top-6 right-6 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md">
+              <div className="w-9 h-9 rounded-full bg-[#34C759]/15 flex items-center justify-center text-[#34C759]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div>
+                <div className="text-[13px] font-bold text-[#1D1D1F] leading-tight">99%+ Purity</div>
+                <div className="text-[11px] text-[#86868B] leading-tight">Verified by HPLC</div>
+              </div>
+            </div>
+
+            {/* See the proof */}
+            <a href="#" className="absolute bottom-6 left-6 right-6 bg-white/85 backdrop-blur rounded-2xl px-4 py-3 flex items-center gap-3 hover:bg-white transition">
+              <div className="w-9 h-9 rounded-lg bg-[#1D1D1F]/5 flex items-center justify-center text-[#1D1D1F]/70">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="13" x2="15" y2="13" /><line x1="9" y1="17" x2="13" y2="17" /></svg>
+              </div>
+              <div className="flex-1">
+                <div className="text-[13px] font-semibold text-[#1D1D1F] leading-tight">See the Proof</div>
+                <div className="text-[11px] text-[#86868B] leading-tight">View our quality procedures</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Why choose Amino Select */}
+      <section className="bg-[#E6E8EA] pb-20 lg:pb-24">
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+          <h2 className="text-[34px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-tight text-center mb-14">
+            Why choose Amino Select?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {whyChooseCards.map(card => <WhyChooseCard key={card.title} card={card} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-[#E6E8EA] pb-20 lg:pb-24">
+        <div className="max-w-[920px] mx-auto px-6 lg:px-10">
+          <h2 className="text-[34px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-tight text-center mb-3">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-[14px] text-[#86868B] text-center mb-12">
+            Everything you need to know about peptide research
+          </p>
+          <div>
+            {faqItems.map((item, i) => (
+              <FaqRow
+                key={i}
+                item={item}
+                open={openFaq === i}
+                onToggle={() => setOpenFaq(openFaq === i ? null : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(105deg, #E0DDEE 0%, #E4E8D2 55%, #DCEED8 100%)' }}>
+        <img
+          src="/images/products/dsip/00.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute select-none hidden md:block"
+          style={{ left: '-5%', top: '20%', width: '280px', transform: 'rotate(-18deg)' }}
+        />
+        <div className="relative max-w-[920px] mx-auto px-6 py-24 lg:py-32 text-center">
+          <h2 className="text-[32px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-[-0.02em] leading-[1.2] mb-9 max-w-[760px] mx-auto">
+            All the research peptides you need, with the{' '}
+            <span className="relative inline-block">
+              <span className="absolute inset-x-0 bottom-1 h-3 bg-[#9FE5A8]/70 -z-0" />
+              <span className="relative">peace of mind</span>
+            </span>{' '}
+            and research community at your fingertips.
+          </h2>
+          <Link to="/store" className="bg-[#1D1D1F] text-white rounded-full px-7 py-3.5 text-[14px] font-medium inline-flex items-center gap-3 hover:opacity-90 transition">
+            Shop Now <Arrow />
+          </Link>
         </div>
       </section>
     </>
