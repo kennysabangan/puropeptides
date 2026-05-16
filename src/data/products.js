@@ -1,0 +1,58 @@
+export const products = [
+  { id: 'glp-3', name: 'GLP-3', price: 69.99, category: 'Circadian' },
+  { id: 'bpc-157', name: 'BPC-157', price: 39.99, category: 'Tissue Repair' },
+  { id: 'ghk-cu', name: 'GHK-Cu', price: 29.99, category: 'Dermal' },
+  { id: 'tesamorlin', name: 'Tesamorlin', price: 69.99, category: 'Cellular' },
+  { id: 'tb-500', name: 'TB-500', price: 39.99, category: 'Tissue Repair' },
+  { id: 'melanotan-ii', name: 'Melanotan II', price: 29.99, category: 'Dermal' },
+  { id: 'nad-plus', name: 'NAD+', price: 69.99, category: 'Cellular' },
+  { id: 'aod-9604', name: 'AOD-9604', price: 49.99, category: 'Cellular' },
+  { id: 'mots-c', name: 'MOTS-C', price: 39.99, category: 'Cellular' },
+  { id: 'cjc-1295-ipamorelin', name: 'CJC-1295/Ipamorelin', price: 59.99, category: 'Cellular' },
+  { id: 'wolverine-stack', name: 'Wolverine Stack', price: 109.99, category: 'Tissue Repair' },
+  { id: 'glow', name: 'GLOW', price: 114.99, category: 'Dermal' },
+  { id: 'dsip', name: 'DSIP', price: 29.99, category: 'Circadian' },
+  { id: 'semax', name: 'SEMAX', price: 29.99, category: 'Neuro' },
+  { id: 'selank', name: 'SELANK', price: 29.99, category: 'Neuro' },
+  { id: 'klow', name: 'KLOW', price: 129.99, category: 'Dermal' },
+  { id: 'kpv', name: 'KPV', price: 39.99, category: 'Tissue Repair' },
+  { id: 'pt-141', name: 'PT-141', price: 29.99, category: 'Dermal' },
+  { id: 'glutathione', name: 'Glutathione', price: 59.99, category: 'Cellular' },
+  { id: 'ipamorelin', name: 'Ipamorelin', price: 49.99, category: 'Cellular' },
+  { id: 'igf-1-lr3', name: 'IGF-1 LR3', price: 69.99, category: 'Cellular' },
+  { id: 'amino-h2o', name: 'Amino H2O', price: 16.99, category: 'Cellular' },
+  { id: 'cagrilintide', name: 'Cagrilintide', price: 69.99, category: 'Circadian' },
+  { id: 'epithalon', name: 'Epithalon', price: 29.99, category: 'Circadian' },
+  { id: '5-amino-1mq', name: '5-Amino-1MQ', price: 49.99, category: 'Cellular' },
+  { id: 'melanotan-i', name: 'Melanotan I', price: 29.99, category: 'Dermal' },
+  { id: 'thymosin-alpha-1', name: 'Thymosin Alpha-1', price: 39.99, category: 'Cellular' },
+  { id: 'snap-8', name: 'SNAP-8', price: 29.99, category: 'Dermal' },
+]
+
+export const categories = ['Tissue Repair', 'Dermal', 'Cellular', 'Neuro', 'Circadian']
+
+export const bpc157Detail = {
+  id: 'bpc-157',
+  name: 'BPC-157',
+  subtitle: 'Cellular Peptide',
+  price: 39.99,
+  category: 'Tissue Repair',
+  aliases: ['Body Protection Compound-157', 'PL-14736', 'PLD-116', 'Bepecin'],
+  description: 'A 15-amino acid peptide derived from human gastric juice that demonstrates protection and regenerative effects in animal cell models. Premium Research Peptide.',
+  compoundInfo: {
+    type: 'Synthetic pentadecapeptide',
+    cas: '137525-51-0',
+    mw: '1419.5 g/mol',
+    aminoAcids: '15 Amino Acids',
+    sequence: 'GEPPPGKPADDAGLV',
+    formula: 'C62H98N16O22',
+  },
+  storage: {
+    lyophilized: 'Lyophilized -20°C stable',
+    reconstituted: 'Reconstituted 2-8°C 30 days',
+  },
+  coa: [
+    { lot: 'BP0001', purity: 99.876, labeled: '10mg', actual: '11.18mg', tested: 'May 1, 2026' },
+    { lot: 'P0142', purity: 99.105, labeled: '10mg', actual: '11.65mg', tested: 'Feb 4, 2026' },
+  ],
+}
