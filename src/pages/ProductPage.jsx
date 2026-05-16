@@ -81,14 +81,7 @@ export default function ProductPage() {
         {/* Image Panel */}
         <div className="bg-[#F5F5F7] rounded-[24px] p-8 md:p-12 flex flex-col items-center justify-center min-h-[380px] md:min-h-[520px]">
           <img src={`/images/products/${product.id}/${product.id}-vial.png`} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
-          {/* Thumbnail gallery for products with multiple images (e.g. BPC-157) */}
-          <div className="flex gap-2 mt-6">
-            {[0,1,2,3,4].map(n => {
-              const padded = String(n).padStart(2, '0')
-              const src = `/images/products/${product.id}/${padded}.png`
-              return <img key={n} src={src} alt={`${product.name} view ${n+1}`} className="w-10 h-10 object-contain rounded-lg bg-white/60 cursor-pointer hover:ring-2 hover:ring-[#1D1D1F]/20 transition" loading="lazy" onError={(e) => e.target.style.display='none'} />
-            })}
-          </div>
+
         </div>
 
         {/* Details Panel */}
