@@ -70,12 +70,6 @@ const ChevronRight = ({ size = 16 }) => (
   </svg>
 )
 
-const CardIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" />
-  </svg>
-)
-
 const LockIcon = ({ size = 13 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
@@ -302,16 +296,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Announcement bar */}
-      <div className="bg-[#1FA84D] text-white">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-2.5 flex items-center justify-center gap-2.5">
-          <CardIcon size={17} />
-          <p className="text-[13px] font-medium">
-            Sorry for the downtime — payments are back and live.
-          </p>
-        </div>
-      </div>
-
       {/* Hero */}
       <section className="bg-[#E6E8EA] relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[560px]">
