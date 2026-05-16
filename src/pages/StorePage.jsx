@@ -61,7 +61,7 @@ export default function StorePage() {
   if (error) {
     return (
       <div className="max-w-[1200px] mx-auto px-6 py-24 text-center">
-        <p className="text-[#FF3B30] mb-2">Failed to load products</p>
+        <p className="text-[#94555A] mb-2">Failed to load products</p>
         <p className="text-[#86868B] text-[14px]">{error}</p>
       </div>
     )

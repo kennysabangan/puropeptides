@@ -59,7 +59,7 @@ export default function CartPage() {
                     >+</button>
                   </div>
                   <p className="font-semibold text-[14px] text-[#1D1D1F] w-20 text-right">${(unitPrice * item.quantity).toFixed(2)}</p>
-                  <button onClick={() => removeFromCart(i)} className="text-[#86868B] hover:text-[#FF3B30] transition p-1">
+                  <button onClick={() => removeFromCart(i)} className="text-[#86868B] hover:text-[#94555A] transition p-1">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                       <path d="M18 6L6 18M6 6l12 12" />
                     </svg>

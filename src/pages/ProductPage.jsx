@@ -161,7 +161,7 @@ export default function ProductPage() {
                     {b.discount && <span className="text-[12px] text-[#86868B]">{b.discount}</span>}
                     {b.badge && (
                       <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full ${
-                        b.color === 'teal' ? 'bg-[#30D5C8] text-white' : 'bg-[#FFB800] text-white'
+                        b.color === 'teal' ? 'bg-[#6B9E78] text-white' : 'bg-[#C9A057] text-white'
                       }`}>
                         {b.badge}
                       </span>
@@ -182,7 +182,7 @@ export default function ProductPage() {
             </button>
             <button
               onClick={handleAddToCart}
-              className={`btn-apple flex-1 text-[14px] font-medium py-3.5 rounded-full transition-all ${added ? 'bg-[#34C759] text-white' : 'bg-[#1D1D1F] text-white'}`}
+              className={`btn-apple flex-1 text-[14px] font-medium py-3.5 rounded-full transition-all ${added ? 'bg-[#6B9E78] text-white' : 'bg-[#1D1D1F] text-white'}`}
             >
               {added ? '✓ Added!' : 'Add to Cart'}
             </button>
@@ -225,7 +225,7 @@ export default function ProductPage() {
                 {certificates.map(row => (
                   <tr key={row.lot_number} className="border-b border-[#E8E8ED]/60">
                     <td className="py-3.5 font-medium text-[#1D1D1F]">{row.lot_number}</td>
-                    <td className="py-3.5 text-[#34C759] font-semibold">{row.purity}%</td>
+                    <td className="py-3.5 text-[#3F6849] font-semibold">{row.purity}%</td>
                     <td className="py-3.5 text-[#86868B]">{row.labeled_amount}</td>
                     <td className="py-3.5 text-[#1D1D1F] font-medium">{row.actual_amount}</td>
                     <td className="py-3.5 text-[#86868B]">{row.tested_date}</td>

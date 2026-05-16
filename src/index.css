@@ -5,8 +5,27 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --color-apple-black: #1D1D1F;
   --color-apple-gray: #86868B;
-  --color-apple-green: #34C759;
   --color-apple-bg: #FBFBFD;
+
+  /* Brand palette — extracted from product vial labels.
+     Each tone has a soft (label tint) and a deep (AA-contrast text/icon) variant. */
+  --color-brand-sage: #6B9E78;
+  --color-brand-sage-soft: #DDEAD8;
+  --color-brand-sage-ink: #3F6849;
+
+  --color-brand-sky: #7A95B0;
+  --color-brand-sky-soft: #DCE5EE;
+
+  --color-brand-sand: #C9A057;
+  --color-brand-sand-soft: #F0E5C9;
+  --color-brand-sand-ink: #8A6A2E;
+
+  --color-brand-blush: #C99595;
+  --color-brand-blush-soft: #F2DCDA;
+  --color-brand-blush-ink: #94555A;
+
+  --color-brand-lavender: #9D8FB8;
+  --color-brand-lavender-soft: #E3DCEC;
 }
 
 * {

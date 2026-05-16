@@ -75,16 +75,16 @@ export default function Footer() {
         </div>
 
         {/* FDA Disclaimer — yellow-bordered callout */}
-        <div className="mt-12 rounded-2xl border border-[#F5C842]/40 bg-[#F5C842]/[0.04] p-5 flex gap-4">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5C842" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 mt-0.5">
+        <div className="mt-12 rounded-2xl border border-[#D9B36B]/40 bg-[#D9B36B]/[0.04] p-5 flex gap-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9B36B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 mt-0.5">
             <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
             <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
           </svg>
           <div>
-            <h5 className="text-[12px] font-bold tracking-wider uppercase text-[#F5C842] mb-2">FDA Disclaimer</h5>
+            <h5 className="text-[12px] font-bold tracking-wider uppercase text-[#D9B36B] mb-2">FDA Disclaimer</h5>
             <p className="text-[12px] text-white/65 leading-relaxed">
               Statements made regarding our products have <strong className="text-white/90">not been evaluated by the U.S. Food and Drug Administration</strong>. The efficacy of these products has not been confirmed by FDA-approved research. Products are <strong className="text-white/90">not intended to diagnose, treat, cure, or prevent any disease</strong>. Information presented on this website is not a substitute for, or alternative to, information from a qualified health care practitioner. Please consult a licensed health care professional regarding any potential interactions or complications before using any product. This notice is required under the Federal Food, Drug, and Cosmetic Act.{' '}
-              <a href="#" className="text-[#F5C842] font-semibold hover:underline">Read the full disclaimer →</a>
+              <a href="#" className="text-[#D9B36B] font-semibold hover:underline">Read the full disclaimer →</a>
             </p>
           </div>
         </div>

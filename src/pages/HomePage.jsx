@@ -12,12 +12,12 @@ const qualityTabs = [
 
 /* ─── Why-choose cards ─── */
 const whyChooseCards = [
-  { title: 'Always in Stock',          body: 'Top research peptides like BPC-157, TB-500, and Ipamorelin ready to ship. No backorders, no waiting.',         tint: '#E8DDF5', accent: '#9B6BD4', icon: 'box' },
-  { title: 'Volume Pricing',           body: 'Bulk pricing available for larger research orders. Lower per-vial cost at higher volumes.',                     tint: '#DDF0DD', accent: '#34C759', icon: 'percent' },
-  { title: 'Safe & Protected Shipping',body: 'Cold-pack shipping keeps peptides stable. Discreet packaging with full tracking on every USA order.',          tint: '#F5EBC5', accent: '#D4A946', icon: 'truck' },
-  { title: 'Researcher Community',     body: 'Connect with fellow researchers. Share peer insights and discuss peptide research applications.',               tint: '#F5DDDD', accent: '#E07A7A', icon: 'globe' },
-  { title: '99%+ Purity Guaranteed',   body: 'Every batch tested by US labs via HPLC and Mass Spec. Full Certificate of Analysis included free.',             tint: '#E0DDF5', accent: '#7C6BD4', icon: 'medal' },
-  { title: 'Shipment Protection',      body: 'Every order includes free shipment protection. Lost, damaged, or stolen packages are reshipped at no cost.',    tint: '#DDF0E8', accent: '#5BC9A0', icon: 'bolt' },
+  { title: 'Always in Stock',          body: 'Top research peptides like BPC-157, TB-500, and Ipamorelin ready to ship. No backorders, no waiting.',         tint: '#E3DCEC', accent: '#9D8FB8', icon: 'box' },
+  { title: 'Volume Pricing',           body: 'Bulk pricing available for larger research orders. Lower per-vial cost at higher volumes.',                     tint: '#DDEAD8', accent: '#6B9E78', icon: 'percent' },
+  { title: 'Safe & Protected Shipping',body: 'Cold-pack shipping keeps peptides stable. Discreet packaging with full tracking on every USA order.',          tint: '#F0E5C9', accent: '#C9A057', icon: 'truck' },
+  { title: 'Researcher Community',     body: 'Connect with fellow researchers. Share peer insights and discuss peptide research applications.',               tint: '#F2DCDA', accent: '#C99595', icon: 'globe' },
+  { title: '99%+ Purity Guaranteed',   body: 'Every batch tested by US labs via HPLC and Mass Spec. Full Certificate of Analysis included free.',             tint: '#DCE5EE', accent: '#7A95B0', icon: 'medal' },
+  { title: 'Shipment Protection',      body: 'Every order includes free shipment protection. Lost, damaged, or stolen packages are reshipped at no cost.',    tint: '#DDEAD8', accent: '#6B9E78', icon: 'bolt' },
 ]
 
 /* ─── FAQ items ─── */
@@ -72,19 +72,19 @@ const ChevronRight = ({ size = 16 }) => (
 
 const VerifiedBadge = ({ size = 22 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <path d="M12 2l2.4 1.8 3 .2.8 2.9 2.4 1.8-1 2.8 1 2.8-2.4 1.8-.8 2.9-3 .2L12 22l-2.4-1.8-3-.2-.8-2.9L3.4 15.3l1-2.8-1-2.8L5.8 7.9l.8-2.9 3-.2z" fill="#34C759"/>
+    <path d="M12 2l2.4 1.8 3 .2.8 2.9 2.4 1.8-1 2.8 1 2.8-2.4 1.8-.8 2.9-3 .2L12 22l-2.4-1.8-3-.2-.8-2.9L3.4 15.3l1-2.8-1-2.8L5.8 7.9l.8-2.9 3-.2z" fill="#6B9E78"/>
     <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
   </svg>
 )
 
 const TruckIcon = ({ size = 22 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#007AFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#7A95B0" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <rect x="1" y="6" width="14" height="10" rx="1.5" /><path d="M15 9h4l3 3v4h-7" /><circle cx="6" cy="18" r="2" /><circle cx="18" cy="18" r="2" />
   </svg>
 )
 
 const FlaskIcon = ({ size = 22 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#B8860B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#C9A057" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" /><line x1="8" y1="15" x2="16" y2="15" />
   </svg>
 )
@@ -362,8 +362,8 @@ export default function HomePage() {
 
             <div className="flex flex-col gap-3 max-w-[560px]">
               {/* 99% Purity */}
-              <div className="flex items-center gap-4 bg-white rounded-2xl pl-4 pr-5 py-4 border-l-4 border-[#34C759]">
-                <div className="w-11 h-11 rounded-full bg-[#34C759]/10 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-4 bg-white rounded-2xl pl-4 pr-5 py-4 border-l-4 border-[#6B9E78]">
+                <div className="w-11 h-11 rounded-full bg-[#6B9E78]/12 flex items-center justify-center flex-shrink-0">
                   <VerifiedBadge />
                 </div>
                 <div>
@@ -375,8 +375,8 @@ export default function HomePage() {
               </div>
 
               {/* Shipment Protection */}
-              <div className="flex items-center gap-4 bg-white rounded-2xl pl-4 pr-5 py-4 border-l-4 border-[#007AFF]">
-                <div className="w-11 h-11 rounded-full bg-[#007AFF]/10 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-4 bg-white rounded-2xl pl-4 pr-5 py-4 border-l-4 border-[#7A95B0]">
+                <div className="w-11 h-11 rounded-full bg-[#7A95B0]/12 flex items-center justify-center flex-shrink-0">
                   <TruckIcon />
                 </div>
                 <div>
@@ -389,8 +389,8 @@ export default function HomePage() {
               </div>
 
               {/* CoA */}
-              <div className="flex items-center gap-4 bg-white rounded-2xl pl-4 pr-5 py-4 border-l-4 border-[#F7C948]">
-                <div className="w-11 h-11 rounded-full bg-[#F7C948]/15 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-4 bg-white rounded-2xl pl-4 pr-5 py-4 border-l-4 border-[#C9A057]">
+                <div className="w-11 h-11 rounded-full bg-[#C9A057]/15 flex items-center justify-center flex-shrink-0">
                   <FlaskIcon />
                 </div>
                 <div>
@@ -539,13 +539,13 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-3 flex-wrap">
                 <h3 className="text-[18px] font-bold text-[#1D1D1F]">{activeTab.title}</h3>
-                <span className="inline-flex items-center gap-1.5 bg-[#34C759]/10 text-[#1A8A3F] rounded-full px-2.5 py-1 text-[11px] font-semibold">
+                <span className="inline-flex items-center gap-1.5 bg-[#6B9E78]/12 text-[#3F6849] rounded-full px-2.5 py-1 text-[11px] font-semibold">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                   {activeTab.method}
                 </span>
               </div>
               <p className="text-[13px] text-[#86868B] leading-relaxed mb-4">{activeTab.desc}</p>
-              <div className="border-l-2 border-[#34C759] pl-4 py-1">
+              <div className="border-l-2 border-[#6B9E78] pl-4 py-1">
                 <p className="text-[13px] text-[#1D1D1F]/80 leading-relaxed">
                   <span className="font-semibold text-[#1D1D1F]">Why it matters: </span>{activeTab.why}
                 </p>
@@ -557,7 +557,7 @@ export default function HomePage() {
                 Shop Now <Arrow />
               </Link>
               <span className="inline-flex items-center gap-2 text-[13px] text-[#1D1D1F]/70">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="8 12 11 15 16 9" /></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B9E78" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="8 12 11 15 16 9" /></svg>
                 Free COA included with every order
               </span>
             </div>
@@ -569,7 +569,7 @@ export default function HomePage() {
 
             {/* Purity badge */}
             <div className="absolute top-6 right-6 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md">
-              <div className="w-9 h-9 rounded-full bg-[#34C759]/15 flex items-center justify-center text-[#34C759]">
+              <div className="w-9 h-9 rounded-full bg-[#6B9E78]/15 flex items-center justify-center text-[#6B9E78]">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
               </div>
               <div>
@@ -639,7 +639,7 @@ export default function HomePage() {
           <h2 className="text-[32px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-[-0.02em] leading-[1.2] mb-9 max-w-[760px] mx-auto">
             All the research peptides you need, with the{' '}
             <span className="relative inline-block">
-              <span className="absolute inset-x-0 bottom-1 h-3 bg-[#9FE5A8]/70 -z-0" />
+              <span className="absolute inset-x-0 bottom-1 h-3 bg-[#BFDABF]/80 -z-0" />
               <span className="relative">peace of mind</span>
             </span>{' '}
             and research community at your fingertips.
