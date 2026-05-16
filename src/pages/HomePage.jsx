@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 /* ─── Quality tabs ─── */
 const qualityTabs = [
-  { key: 'potency',     label: 'Potency',     title: 'Verified Potency',     method: 'HPLC Analysis',           desc: 'Every vial is tested to confirm it contains exactly what the label says — down to the microgram.', why: 'No guessing games. You get the exact concentration you paid for, every single time.' },
-  { key: 'purity',      label: 'Purity',      title: 'Verified Purity',      method: 'Mass Spectrometry',       desc: 'Each batch is tested to confirm 99%+ purity with no contaminants or adulterants.',                why: 'Guaranteed purity means your research results won\'t be compromised.' },
-  { key: 'stability',   label: 'Stability',   title: 'Verified Stability',   method: 'Accelerated Stability',   desc: 'Peptides are tested for degradation over time under various storage conditions.',                 why: 'Know exactly how long your compound will remain viable.' },
-  { key: 'safety',      label: 'Safety',      title: 'Verified Safety',      method: 'LAL & ICP-MS Testing',    desc: 'Every batch is screened for endotoxins, heavy metals, and microbial contamination.',              why: 'Safety-tested compounds protect both researchers and research integrity.' },
-  { key: 'consistency', label: 'Consistency', title: 'Verified Consistency', method: 'Multi-Batch Comparison',  desc: 'Batch-to-batch uniformity ensures reproducible results across your entire research project.',     why: 'Consistent compounds mean consistent, reproducible outcomes.' },
+  { key: 'potency',     label: 'Potency',     title: 'Verified Potency',             method: 'HPLC Analysis',          desc: 'Every vial is tested to confirm it contains exactly what the label says — down to the microgram.',                                why: 'No guessing games. You get the exact concentration you paid for, every single time.' },
+  { key: 'purity',      label: 'Purity',      title: '99%+ Purity Guaranteed',       method: 'Mass Spectrometry',      desc: 'Comprehensive testing confirms our peptides are free from impurities, degradation products, and synthesis byproducts.',           why: 'Higher purity means better research outcomes. Every batch is verified to 99%+ purity.' },
+  { key: 'stability',   label: 'Stability',   title: 'Long-Term Stability',          method: 'pH & Stability Testing', desc: 'Optimal pH and formulation testing ensures every batch remains intact throughout its labeled shelf life.',                       why: 'Stable lyophilized product from the day it ships through the labeled shelf life.' },
+  { key: 'safety',      label: 'Safety',      title: 'Contaminant-Free',             method: 'Sterility & LAL Testing',desc: 'Rigorous third-party sterility and endotoxin testing confirms products are free from bacteria, fungi, and harmful toxins.',       why: 'Peace of mind knowing your research won\'t be compromised by contamination.' },
+  { key: 'consistency', label: 'Consistency', title: 'Batch-to-Batch Consistency',   method: 'QC Verification',        desc: 'Precision weighing and quality controls ensure every batch meets the same exacting standards.',                                  why: 'Same great quality whether it\'s your first order or your fiftieth.' },
 ]
 
 /* ─── Why-choose cards ─── */
@@ -22,17 +22,17 @@ const whyChooseCards = [
 
 /* ─── FAQ items ─── */
 const faqItems = [
-  { q: 'What purity level are your peptides and how is it verified?',          a: 'All Amino Select products are guaranteed 99%+ pure. Each batch is independently tested by accredited U.S. laboratories using HPLC and Mass Spectrometry. We provide a Certificate of Analysis (CoA) with every order.' },
-  { q: 'What is a Certificate of Analysis (CoA) and how do I read it?',        a: 'A CoA is an official lab document verifying your peptide\'s quality. Key sections include Purity (99%+), Identity (confirmed via mass spec), and Endotoxin levels. Each CoA is batch-specific and available on every product page.' },
-  { q: 'What is Amino H2O?',                                                   a: 'Amino H2O is our pre-tested bacteriostatic water for reconstitution, USP-grade with 0.9% benzyl alcohol added. Sold for research use only.' },
-  { q: 'How should I store the lyophilized product?',                          a: 'Lyophilized peptides are stable at room temperature short-term. For long-term storage, keep at -20°C. Avoid repeated freeze-thaw cycles. Once reconstituted, refrigerate at 2-8°C and use within 30 days.' },
-  { q: 'How long is the lyophilized product stable?',                          a: 'Lyophilized peptides remain stable for 24+ months when stored at -20°C, and several months at room temperature. See each product\'s storage notes for specifics.' },
-  { q: 'How fast do you ship and is cold shipping required?',                  a: 'Orders ship within 0-2 business days. Standard shipping arrives in 3-5 business days. Lyophilized peptides do not require cold shipping; we cold-pack only where necessary.' },
-  { q: 'Do you ship internationally?',                                         a: 'We currently ship to all 50 U.S. states. Contact support for international order availability.' },
-  { q: 'What is Amino Select and why should I trust you?',                     a: 'Amino Select is a U.S.-based research peptide supplier focused on documented quality. Every batch is third-party tested with a published Certificate of Analysis you can verify yourself.' },
-  { q: 'Are these peptides for human use?',                                    a: 'No. All products are sold strictly for research, laboratory, and educational purposes only. They are not approved for human consumption or therapeutic application.' },
-  { q: 'What is your return and refund policy?',                               a: 'Unopened products in original packaging can be returned within 30 days for a full refund. Damaged or defective items are replaced at no cost — just contact support with your order number.' },
-  { q: 'How can I contact Amino Select support?',                              a: 'Reach our team via the contact form on the site or email support directly. We typically respond within one business day.' },
+  { q: 'What purity level are your peptides and how is it verified?',          a: 'All Amino Select peptides are guaranteed 99%+ pure. Each batch is independently tested by accredited U.S. laboratories using HPLC (High-Performance Liquid Chromatography) and Mass Spectrometry. We provide a Certificate of Analysis (CoA) with every order showing exact purity percentages, molecular weight verification, and amino acid sequence confirmation.' },
+  { q: 'What is a Certificate of Analysis (CoA) and how do I read it?',        a: 'A Certificate of Analysis is an official lab document that verifies your peptide\'s quality. Key sections include: Purity (should be 99%+), Identity (confirms correct peptide via mass spec), Appearance (should match product description), and Endotoxin levels (should be below 1 EU/mg). Each CoA is batch-specific and available on product pages.' },
+  { q: 'What is Amino H2O?',                                                   a: 'Amino H2O is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It is a standard laboratory supply used in research settings. We offer Amino H2O in our accessories section as research supply.' },
+  { q: 'How should I store the lyophilized product?',                          a: 'Lyophilized (freeze-dried) peptides are very stable. For short-term storage (under 3 months), room temperature in a cool, dark place is fine. For long-term storage, refrigerate at 2-8°C or freeze at -20°C. Avoid repeated freeze-thaw cycles. Properly stored lyophilized peptides can remain stable for 2+ years.' },
+  { q: 'How long is the lyophilized product stable?',                          a: 'Lyophilized (freeze-dried) peptides are highly stable and can last 2+ years when stored properly at -20°C or 2-8°C. Always store away from light and avoid repeated temperature fluctuations.' },
+  { q: 'How fast do you ship and is cold shipping required?',                  a: 'Orders are processed within 0-2 business days. Standard shipping takes 3-5 business days from fulfillment. Every order includes free shipment protection. Lyophilized peptides don\'t require cold shipping — they\'re stable at room temperature. All orders ship in discreet, unlabeled packaging.' },
+  { q: 'Do you ship internationally?',                                         a: 'Currently, we ship to all 50 U.S. states. International shipping varies by country due to customs regulations on research materials. Contact our support team for specific country availability. All international orders may be subject to local customs fees and import duties.' },
+  { q: 'What is Amino Select and why should I trust you?',                     a: 'Amino Select is a U.S.-based research peptide supplier committed to quality and transparency. Our peptides are manufactured in-house and independently tested for identity and content on every batch at accredited American third-party laboratories. Unlike other suppliers, we provide full Certificates of Analysis, maintain documented quality procedures, and back everything with our 99%+ identity purity guarantee. Our community of researchers provides real peer feedback and support.' },
+  { q: 'Are these peptides for human use?',                                    a: 'All Amino Select peptides are sold strictly for research, laboratory, and educational purposes only. They are not approved for human consumption, veterinary use, or any therapeutic application. By purchasing, you confirm you are a qualified researcher and will use products in accordance with all applicable laws and regulations.' },
+  { q: 'What is your return and refund policy?',                               a: 'We offer damage protection on every order. If your product arrives damaged in transit, contact us with photos of the damage and we\'ll send a one-time replacement. All claims require photo evidence and are subject to review. One replacement per customer per order. Reconstituted products are not eligible. We are not responsible for misuse or improper storage after delivery.' },
+  { q: 'How can I contact Amino Select support?',                              a: 'You can reach our support team via the contact form on the site. We typically respond within 24 hours on business days. For order issues, have your order number ready. Our team can help with product questions, order tracking, and any concerns about your purchase.' },
 ]
 
 /* ─── Featured product config ─── */
@@ -43,8 +43,8 @@ const featuredProducts = [
   { id: 'semax',       name: 'SEMAX',       subtitle: 'Cognitive & Neuroprotective Peptide',   priceFrom: 29.99, bg: '#DDE0EC' },
   { id: 'selank',      name: 'SELANK',      subtitle: 'Cognitive & Anxiolytic Peptide',        priceFrom: 29.99, bg: '#E5E0EC' },
   { id: 'dsip',        name: 'DSIP',        subtitle: 'Circadian Peptide',                     priceFrom: 29.99, bg: '#E8DDE8' },
-  { id: 'bpc-157',     name: 'BPC-157',     subtitle: 'Tissue Repair Peptide',                 priceFrom: 39.99, bg: '#DCEEDC' },
-  { id: 'tb-500',      name: 'TB-500',      subtitle: 'Tissue Repair Peptide',                 priceFrom: 39.99, bg: '#DCEAEE' },
+  { id: 'bpc-157',     name: 'BPC-157',     subtitle: 'Cellular Peptide',                      priceFrom: 39.99, bg: '#DCEEDC' },
+  { id: 'tb-500',      name: 'TB-500',      subtitle: 'Cellular Peptide',                      priceFrom: 39.99, bg: '#DCEAEE' },
 ]
 
 function productImg(id) {
@@ -302,17 +302,17 @@ export default function HomePage() {
           {/* Left */}
           <div className="flex items-center px-6 lg:px-16 py-16 lg:py-24 max-w-[640px] lg:max-w-none mx-auto lg:mx-0 lg:ml-auto lg:w-full">
             <div className="w-full max-w-[480px] lg:ml-auto lg:mr-12">
-              <h1 className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold text-[#1D1D1F] tracking-[-0.03em] leading-[1.02] mb-6">
-                Researcher<br />sign-in<br />required
+              <h1 className="text-[44px] sm:text-[56px] lg:text-[64px] font-bold text-[#1D1D1F] tracking-[-0.03em] leading-[1.05] mb-6">
+                Research Peptides You Can Trust
               </h1>
-              <p className="text-[15px] text-[#1D1D1F]/65 leading-relaxed mb-8 max-w-[420px]">
-                Create an account or sign in to view our research peptide catalog.
-                99%+ identity purity with full documentation.
+              <p className="text-[15px] sm:text-[17px] text-[#1D1D1F]/75 leading-relaxed mb-8 max-w-[440px]">
+                Research-grade peptides with Certificate of Analysis on every batch.
+                99%+ identity purity, third-party tested.
               </p>
-              <button className="bg-[#1D1D1F] text-white rounded-full px-7 py-3.5 text-[14px] font-medium inline-flex items-center gap-3 hover:opacity-90 transition">
-                Get Started
+              <Link to="/store" className="bg-[#1D1D1F] text-white rounded-full px-7 py-3.5 text-[14px] font-medium inline-flex items-center gap-3 hover:opacity-90 transition">
+                Browse Catalog
                 <Arrow />
-              </button>
+              </Link>
             </div>
           </div>
 
