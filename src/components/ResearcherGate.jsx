@@ -28,7 +28,7 @@ export default function ResearcherGate() {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] overflow-hidden bg-[#EFF1F3]">
+    <div className="fixed inset-0 z-[100] overflow-hidden bg-[#FBFBFD]">
       {/* Floating vial backdrop */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {FLOATING_VIALS.map((v, i) => (

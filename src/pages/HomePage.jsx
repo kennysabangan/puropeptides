@@ -126,7 +126,7 @@ function FeaturedCard({ product }) {
 /* ─── Feature grid card (large) ─── */
 function LargeFeatureCard({ title, body, button, illustration }) {
   return (
-    <div className="bg-white/70 rounded-3xl p-8 sm:p-10 relative overflow-hidden min-h-[260px] flex flex-col">
+    <div className="bg-white rounded-3xl p-8 sm:p-10 relative overflow-hidden min-h-[260px] flex flex-col border border-black/[0.05] apple-shadow">
       <h3 className="text-[22px] sm:text-[24px] font-bold text-[#1D1D1F] tracking-tight mb-3 max-w-[420px]">{title}</h3>
       <p className="text-[14px] text-[#1D1D1F]/70 leading-relaxed mb-6 max-w-[420px]">{body}</p>
       <div className="mt-auto">
@@ -142,7 +142,7 @@ function LargeFeatureCard({ title, body, button, illustration }) {
 /* ─── Feature grid card (small) ─── */
 function SmallFeatureCard({ title, illustration }) {
   return (
-    <div className="bg-white/70 rounded-3xl p-8 relative overflow-hidden min-h-[140px] flex items-center justify-between">
+    <div className="bg-white rounded-3xl p-8 relative overflow-hidden min-h-[140px] flex items-center justify-between border border-black/[0.05] apple-shadow">
       <h3 className="text-[20px] font-bold text-[#1D1D1F] tracking-tight max-w-[300px]">{title}</h3>
       <div className="opacity-50 pointer-events-none flex-shrink-0">{illustration}</div>
     </div>
@@ -291,7 +291,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#E6E8EA] relative overflow-hidden">
+      <section className="bg-white relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[560px]">
           {/* Left */}
           <div className="flex items-center px-6 lg:px-16 py-16 lg:py-24 max-w-[640px] lg:max-w-none mx-auto lg:mx-0 lg:ml-auto lg:w-full">
@@ -335,7 +335,7 @@ export default function HomePage() {
       </section>
 
       {/* Guarantee */}
-      <section className="bg-[#EBEDEF]">
+      <section className="bg-[#FBFBFD]">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
           {/* Left — vial photo */}
           <div className="relative min-h-[400px] lg:min-h-[520px] flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #E8D6E4 0%, #E5D5DE 40%, #D8D2E5 100%)' }}>
@@ -407,7 +407,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Products */}
-      <section className="bg-[#E6E8EA] py-20 lg:py-24">
+      <section className="bg-white py-20 lg:py-24">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div className="flex items-end justify-between mb-10 gap-6">
             <div>
@@ -454,7 +454,7 @@ export default function HomePage() {
       </section>
 
       {/* Everything you need to succeed */}
-      <section className="bg-[#D5EBD7] py-20 lg:py-24">
+      <section className="bg-[#EEF5EA] py-20 lg:py-24">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <h2 className="text-[34px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-tight text-center mb-14">
             Everything you need to succeed
@@ -494,7 +494,7 @@ export default function HomePage() {
       </section>
 
       {/* Quality you can verify */}
-      <section className="bg-[#E6E8EA] py-20 lg:py-24">
+      <section className="bg-[#FBFBFD] py-20 lg:py-24">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left */}
           <div>
@@ -536,7 +536,7 @@ export default function HomePage() {
             </div>
 
             {/* Active tab content */}
-            <div className="bg-white rounded-2xl p-6">
+            <div className="bg-white rounded-2xl p-6 apple-shadow border border-black/[0.05]">
               <div className="flex items-center gap-3 mb-3 flex-wrap">
                 <h3 className="text-[18px] font-bold text-[#1D1D1F]">{activeTab.title}</h3>
                 <span className="inline-flex items-center gap-1.5 bg-[#6B9E78]/12 text-[#3F6849] rounded-full px-2.5 py-1 text-[11px] font-semibold">
@@ -593,7 +593,7 @@ export default function HomePage() {
       </section>
 
       {/* Why choose Amino Select */}
-      <section className="bg-[#E6E8EA] pb-20 lg:pb-24">
+      <section className="bg-white pb-20 lg:pb-24 pt-20 lg:pt-24">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <h2 className="text-[34px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-tight text-center mb-14">
             Why choose Amino Select?
@@ -605,7 +605,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-[#E6E8EA] pb-20 lg:pb-24">
+      <section className="bg-white pb-20 lg:pb-24">
         <div className="max-w-[920px] mx-auto px-6 lg:px-10">
           <h2 className="text-[34px] sm:text-[42px] font-bold text-[#1D1D1F] tracking-tight text-center mb-3">
             Frequently Asked Questions

@@ -8,7 +8,7 @@ export default function Header() {
   const cartCount = getCartCount()
 
   return (
-    <header className="bg-[#E6E8EA] border-b border-black/5">
+    <header className="bg-white border-b border-black/5">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Wordmark */}
@@ -54,7 +54,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#E6E8EA] border-t border-black/5 px-6 py-5">
+        <div className="md:hidden bg-white border-t border-black/5 px-6 py-5">
           <nav className="flex flex-col gap-4">
             <Link to="/store" className="text-[15px] font-medium text-[#1D1D1F]" onClick={() => setMobileOpen(false)}>Products</Link>
             <a href="#research" className="text-[15px] font-medium text-[#1D1D1F]">Research</a>
