@@ -1,30 +1,71 @@
-import { useState, useMemo } from 'react'
-import { products, categories } from '../data/products'
+import { useState, useEffect, useMemo } from 'react'
+import { getProducts } from '../lib/supabase'
 import ProductCard from '../components/ProductCard'
 
+const fallbackCategories = ['Tissue Repair', 'Dermal', 'Cellular', 'Neuro', 'Circadian']
+
 export default function StorePage() {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('default')
   const [activeCategory, setActiveCategory] = useState(null)
 
+  useEffect(() => {
+    getProducts()
+      .then(data => { setProducts(data); setLoading(false) })
+      .catch(err => { setError(err.message); setLoading(false) })
+  }, [])
+
+  const categories = useMemo(() => {
+    const cats = [...new Set(products.map(p => p.category).filter(Boolean))]
+    return cats.length > 0 ? cats : fallbackCategories
+  }, [products])
+
   const filtered = useMemo(() => {
     let list = [...products]
-
     if (search) {
       const q = search.toLowerCase()
       list = list.filter(p => p.name.toLowerCase().includes(q))
     }
-
     if (activeCategory) {
       list = list.filter(p => p.category === activeCategory)
     }
-
     if (sort === 'price-asc') list.sort((a, b) => a.price - b.price)
     if (sort === 'price-desc') list.sort((a, b) => b.price - a.price)
     if (sort === 'name') list.sort((a, b) => a.name.localeCompare(b.name))
-
     return list
-  }, [search, sort, activeCategory])
+  }, [products, search, sort, activeCategory])
+
+  if (loading) {
+    return (
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-14 md:py-20">
+        <div className="mb-12">
+          <div className="h-10 w-48 bg-[#F5F5F7] rounded-lg animate-pulse mb-3" />
+          <div className="h-5 w-80 bg-[#F5F5F7] rounded-lg animate-pulse" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="animate-pulse">
+              <div className="aspect-square bg-[#F5F5F7] rounded-2xl mb-4" />
+              <div className="h-4 w-20 bg-[#F5F5F7] rounded mb-2" />
+              <div className="h-3 w-12 bg-[#F5F5F7] rounded" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-[1200px] mx-auto px-6 py-24 text-center">
+        <p className="text-[#FF3B30] mb-2">Failed to load products</p>
+        <p className="text-[#86868B] text-[14px]">{error}</p>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-14 md:py-20">

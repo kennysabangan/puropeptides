@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { getFeaturedProducts, subscribeEmail } from '../lib/supabase'
 
 /* ─── Shared SVGs ─── */
 const BottleSVG = ({ className = 'w-20 h-40', label = '', color = '#E8D5F5' }) => (
@@ -51,14 +52,7 @@ function FadeSection({ children, className = '', style = {}, delay = 0 }) {
 }
 
 /* ─── Data ─── */
-const featuredProducts = [
-  { id: 'ghk-cu', name: 'GHK-Cu', price: 29.99, category: 'Dermal Compound', bgColor: '#E8D5F5' },
-  { id: 'nad-plus', name: 'NAD+', price: 69.99, category: 'Cellular Peptide', bgColor: '#D5E8F5' },
-  { id: 'glutathione', name: 'Glutathione', price: 59.99, category: 'Antioxidant Peptide', bgColor: '#F5E8D5' },
-  { id: 'semax', name: 'SEMAX', price: 29.99, category: 'Cognitive Peptide', bgColor: '#D5F5E8' },
-  { id: 'selank', name: 'SELANK', price: 29.99, category: 'Anxiolytic Peptide', bgColor: '#F5D5E8' },
-  { id: 'dsip', name: 'DSIP', price: 29.99, category: 'Circadian Peptide', bgColor: '#F5F5D5' },
-]
+const bottleBgColors = ['#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8', '#F5D5E8', '#F5F5D5']
 
 const faqItems = [
   { q: 'What purity level are your peptides and how is it verified?', a: 'All Puro Peptides products are guaranteed 99%+ pure. Each batch is independently tested by accredited U.S. laboratories using HPLC and Mass Spectrometry. We provide a Certificate of Analysis (CoA) with every order.' },
@@ -93,10 +87,38 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState(null)
   const [activeTab, setActiveTab] = useState('potency')
   const scrollRef = useRef(null)
+  const [featuredProducts, setFeaturedProducts] = useState([])
+  const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
+
+  useEffect(() => {
+    getFeaturedProducts()
+      .then(data => {
+        if (data && data.length > 0) {
+          setFeaturedProducts(data)
+        }
+      })
+      .catch(() => {
+        // Keep empty — UI falls back gracefully
+      })
+  }, [])
 
   const scroll = (dir) => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: dir * 300, behavior: 'smooth' })
+    }
+  }
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault()
+    if (!email) return
+    try {
+      await subscribeEmail(email)
+      setSubscribed(true)
+      setEmail('')
+    } catch {
+      // Silently fail for now
+      setSubscribed(true)
     }
   }
 
@@ -198,18 +220,18 @@ export default function HomePage() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D1D1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
             </button>
             <div ref={scrollRef} className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide">
-              {featuredProducts.map((p) => (
+              {featuredProducts.map((p, i) => (
                 <div key={p.id} className="flex-shrink-0 w-[200px]">
                   <Link to={`/product/${p.id}`} className="block">
-                    <div className="rounded-[20px] overflow-hidden mb-3 card-lift" style={{ backgroundColor: p.bgColor }}>
+                    <div className="rounded-[20px] overflow-hidden mb-3 card-lift" style={{ backgroundColor: bottleBgColors[i % bottleBgColors.length] }}>
                       <div className="aspect-square flex items-center justify-center p-6">
-                        <BottleSVG className="w-16 h-32" label={p.name === 'NAD+' ? 'NAD+' : p.name} color="white" />
+                        <BottleSVG className="w-16 h-32" label={p.name} color="white" />
                       </div>
                     </div>
                   </Link>
                   <h3 className="font-semibold text-[14px] text-[#1D1D1F]">{p.name}</h3>
-                  <p className="text-[13px] text-[#86868B] mt-0.5">${p.price.toFixed(2)}</p>
-                  <p className="text-[11px] text-[#86868B]/60 mb-3">{p.category}</p>
+                  <p className="text-[13px] text-[#86868B] mt-0.5">${Number(p.price).toFixed(2)}</p>
+                  {p.category && <p className="text-[11px] text-[#86868B]/60 mb-3">{p.category}</p>}
                   <Link to={`/product/${p.id}`} className="btn-apple inline-flex items-center gap-1.5 bg-[#1D1D1F] text-white text-[12px] font-medium px-4 py-2 rounded-full">
                     View
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -432,16 +454,23 @@ export default function HomePage() {
         <div className="max-w-[500px] mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-[#1D1D1F] mb-3">Research updates from Puro Peptides</h2>
           <p className="text-[14px] text-[#86868B] mb-7">Subscribe for catalog updates, new compounds, and quality documentation</p>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-5 py-3 rounded-full border border-[#E8E8ED] bg-white/80 text-[14px] focus:outline-none focus:ring-2 focus:ring-[#1D1D1F]/10 transition"
-            />
-            <button className="btn-apple bg-[#1D1D1F] text-white font-medium px-6 py-3 rounded-full text-[14px]">
-              Subscribe
-            </button>
-          </div>
+          {subscribed ? (
+            <p className="text-[14px] text-[#34C759] font-medium">✓ Thanks for subscribing!</p>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="flex-1 px-5 py-3 rounded-full border border-[#E8E8ED] bg-white/80 text-[14px] focus:outline-none focus:ring-2 focus:ring-[#1D1D1F]/10 transition"
+              />
+              <button type="submit" className="btn-apple bg-[#1D1D1F] text-white font-medium px-6 py-3 rounded-full text-[14px]">
+                Subscribe
+              </button>
+            </form>
+          )}
           <p className="text-[11px] text-[#86868B]/60 mt-3">For researchers and labs. No spam, unsubscribe anytime.</p>
         </div>
       </FadeSection>

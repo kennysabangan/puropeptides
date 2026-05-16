@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { getCartCount } = useCart()
+  const cartCount = getCartCount()
 
   return (
     <header className="sticky top-0 z-50 glass-nav border-b border-black/5">
@@ -33,14 +36,18 @@ export default function Header() {
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </button>
-            <button className="relative text-[#1D1D1F]/70 hover:text-[#1D1D1F] transition">
+            <Link to="/cart" className="relative text-[#1D1D1F]/70 hover:text-[#1D1D1F] transition">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
-              <span className="absolute -top-1 -right-1 bg-[#1D1D1F] text-white text-[9px] font-semibold w-3.5 h-3.5 rounded-full flex items-center justify-center">0</span>
-            </button>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-[#FF3B30] text-white text-[9px] font-bold min-w-[16px] h-4 rounded-full flex items-center justify-center px-1">
+                  {cartCount > 99 ? '99+' : cartCount}
+                </span>
+              )}
+            </Link>
             <button className="md:hidden text-[#1D1D1F]" onClick={() => setMobileOpen(!mobileOpen)}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                 {mobileOpen ? (

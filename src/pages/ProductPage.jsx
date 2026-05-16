@@ -1,18 +1,51 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { products, bpc157Detail } from '../data/products'
+import { getProduct } from '../lib/supabase'
+import { useCart } from '../context/CartContext'
 
 export default function ProductPage() {
   const { id } = useParams()
+  const { addToCart } = useCart()
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [quantity, setQuantity] = useState(1)
   const [selectedBundle, setSelectedBundle] = useState(1)
   const [showCoa, setShowCoa] = useState(false)
+  const [added, setAdded] = useState(false)
 
-  const isBpc = id === 'bpc-157'
-  const product = isBpc ? bpc157Detail : products.find(p => p.id === id)
-  const detail = isBpc ? bpc157Detail : null
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    getProduct(id)
+      .then(data => { setProduct(data); setLoading(false) })
+      .catch(err => { setError(err.message); setLoading(false) })
+  }, [id])
 
-  if (!product) {
+  const handleAddToCart = () => {
+    if (!product) return
+    addToCart(product, quantity * selectedBundle, '10MG', selectedBundle)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
+  }
+
+  if (loading) {
+    return (
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-8 md:py-14">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+          <div className="bg-[#F5F5F7] rounded-[24px] min-h-[380px] md:min-h-[520px] animate-pulse" />
+          <div className="py-2 space-y-4">
+            <div className="h-4 w-24 bg-[#F5F5F7] rounded animate-pulse" />
+            <div className="h-10 w-48 bg-[#F5F5F7] rounded animate-pulse" />
+            <div className="h-20 w-full bg-[#F5F5F7] rounded animate-pulse" />
+            <div className="h-8 w-32 bg-[#F5F5F7] rounded animate-pulse" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !product) {
     return (
       <div className="max-w-[1200px] mx-auto px-6 py-24 text-center">
         <h2 className="text-2xl font-bold text-[#1D1D1F] mb-4">Product not found</h2>
@@ -25,6 +58,9 @@ export default function ProductPage() {
       </div>
     )
   }
+
+  const aliases = product.product_aliases?.map(a => a.alias) || []
+  const certificates = product.certificates || []
 
   const bundleOptions = [
     { qty: 1, label: '1 Bottle', discount: null, badge: null },
@@ -56,21 +92,21 @@ export default function ProductPage() {
 
         {/* Details Panel */}
         <div className="py-2">
-          {detail && <p className="text-[13px] text-[#86868B] mb-1">{detail.subtitle}</p>}
+          {product.category && <p className="text-[13px] text-[#86868B] mb-1">{product.category}</p>}
           <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-4">{product.name}</h1>
 
           {/* Aliases */}
-          {detail && (
+          {aliases.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-5">
-              {detail.aliases.map(a => (
+              {aliases.map(a => (
                 <span key={a} className="px-3 py-1.5 rounded-full bg-[#F5F5F7] text-[11px] text-[#86868B] font-medium">{a}</span>
               ))}
             </div>
           )}
 
           {/* Description */}
-          {detail && (
-            <p className="text-[#86868B] text-[14px] leading-relaxed mb-7">{detail.description}</p>
+          {product.description && (
+            <p className="text-[#86868B] text-[14px] leading-relaxed mb-7">{product.description}</p>
           )}
 
           {/* Dosage Selector */}
@@ -88,16 +124,12 @@ export default function ProductPage() {
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 className="w-11 h-11 flex items-center justify-center text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-l-full transition"
-              >
-                −
-              </button>
+              >−</button>
               <span className="w-12 text-center text-[14px] font-medium text-[#1D1D1F]">{quantity}</span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
                 className="w-11 h-11 flex items-center justify-center text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-r-full transition"
-              >
-                +
-              </button>
+              >+</button>
             </div>
           </div>
 
@@ -140,15 +172,18 @@ export default function ProductPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 mb-8">
+          <div className="flex gap-3 mb-8 relative">
             <button
               onClick={() => setShowCoa(!showCoa)}
               className="px-6 py-3.5 rounded-full border border-[#1D1D1F] text-[#1D1D1F] text-[14px] font-medium hover:bg-[#F5F5F7] transition"
             >
               View CoA
             </button>
-            <button className="btn-apple flex-1 bg-[#1D1D1F] text-white text-[14px] font-medium py-3.5 rounded-full">
-              Add to Cart
+            <button
+              onClick={handleAddToCart}
+              className={`btn-apple flex-1 text-[14px] font-medium py-3.5 rounded-full transition-all ${added ? 'bg-[#34C759] text-white' : 'bg-[#1D1D1F] text-white'}`}
+            >
+              {added ? '✓ Added!' : 'Add to Cart'}
             </button>
           </div>
 
@@ -170,7 +205,7 @@ export default function ProductPage() {
       </div>
 
       {/* CoA Section */}
-      {showCoa && detail && (
+      {showCoa && certificates.length > 0 && (
         <div className="mt-12 bg-[#FBFBFD] rounded-[20px] p-7 md:p-9">
           <h3 className="font-bold text-xl text-[#1D1D1F] mb-2">Certificate of Analysis</h3>
           <p className="text-[14px] text-[#86868B] mb-6">Independent lab-verified testing results</p>
@@ -186,47 +221,17 @@ export default function ProductPage() {
                 </tr>
               </thead>
               <tbody>
-                {detail.coa.map(row => (
-                  <tr key={row.lot} className="border-b border-[#E8E8ED]/60">
-                    <td className="py-3.5 font-medium text-[#1D1D1F]">{row.lot}</td>
+                {certificates.map(row => (
+                  <tr key={row.lot_number} className="border-b border-[#E8E8ED]/60">
+                    <td className="py-3.5 font-medium text-[#1D1D1F]">{row.lot_number}</td>
                     <td className="py-3.5 text-[#34C759] font-semibold">{row.purity}%</td>
-                    <td className="py-3.5 text-[#86868B]">{row.labeled}</td>
-                    <td className="py-3.5 text-[#1D1D1F] font-medium">{row.actual}</td>
-                    <td className="py-3.5 text-[#86868B]">{row.tested}</td>
+                    <td className="py-3.5 text-[#86868B]">{row.labeled_amount}</td>
+                    <td className="py-3.5 text-[#1D1D1F] font-medium">{row.actual_amount}</td>
+                    <td className="py-3.5 text-[#86868B]">{row.tested_date}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
-      )}
-
-      {/* Compound Info */}
-      {detail && (
-        <div className="mt-8 grid md:grid-cols-2 gap-5">
-          <div className="bg-[#FBFBFD] rounded-[20px] p-7">
-            <h3 className="font-semibold text-[15px] text-[#1D1D1F] mb-5">Compound Information</h3>
-            <div className="space-y-3">
-              {Object.entries(detail.compoundInfo).map(([key, val]) => (
-                <div key={key} className="flex justify-between text-[14px]">
-                  <span className="text-[#86868B] capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                  <span className="text-[#1D1D1F] font-medium">{val}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="bg-[#FBFBFD] rounded-[20px] p-7">
-            <h3 className="font-semibold text-[15px] text-[#1D1D1F] mb-5">Storage</h3>
-            <div className="space-y-4">
-              <div>
-                <p className="text-[13px] text-[#86868B]">Lyophilized</p>
-                <p className="text-[14px] font-medium text-[#1D1D1F]">{detail.storage.lyophilized}</p>
-              </div>
-              <div>
-                <p className="text-[13px] text-[#86868B]">Reconstituted</p>
-                <p className="text-[14px] font-medium text-[#1D1D1F]">{detail.storage.reconstituted}</p>
-              </div>
-            </div>
           </div>
         </div>
       )}
