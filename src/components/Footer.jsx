@@ -90,9 +90,10 @@ export default function Footer() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              {['VISA', 'AMEX', 'DISCOVER', 'Apple Pay'].map(p => (
-                <span key={p} className="text-[10px] font-semibold text-[#86868B]/50 bg-white/5 px-2.5 py-1 rounded">{p}</span>
-              ))}
+              <img src="/images/homepage/payment-visa.png" alt="Visa" className="h-6 object-contain opacity-50" />
+              <img src="/images/homepage/payment-amex.png" alt="Amex" className="h-6 object-contain opacity-50" />
+              <img src="/images/homepage/payment-discover.png" alt="Discover" className="h-6 object-contain opacity-50" />
+              <img src="/images/homepage/payment-applepay.png" alt="Apple Pay" className="h-6 object-contain opacity-50" />
             </div>
             <p className="text-[11px] text-[#86868B]/50">© 2026 Puro Peptides. All rights reserved.</p>
             <div className="flex items-center gap-5">

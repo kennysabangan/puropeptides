@@ -79,15 +79,16 @@ export default function ProductPage() {
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Image Panel */}
-        <div className="bg-[#F5F5F7] rounded-[24px] p-12 md:p-20 flex items-center justify-center min-h-[380px] md:min-h-[520px]">
-          <svg viewBox="0 0 80 160" className="w-28 h-56" fill="none">
-            <rect x="28" y="0" width="24" height="16" rx="3" fill="#0B0B0B" opacity="0.1" />
-            <rect x="22" y="16" width="36" height="8" rx="2" fill="#0B0B0B" opacity="0.12" />
-            <rect x="20" y="24" width="40" height="120" rx="10" fill="white" stroke="#0B0B0B" strokeWidth="1.5" opacity="0.85" />
-            <rect x="28" y="50" width="24" height="3" rx="1.5" fill="#0B0B0B" opacity="0.1" />
-            <rect x="28" y="58" width="18" height="3" rx="1.5" fill="#0B0B0B" opacity="0.06" />
-            <text x="40" y="85" textAnchor="middle" fill="#0B0B0B" fontSize="7" fontFamily="Inter" fontWeight="600">{product.name}</text>
-          </svg>
+        <div className="bg-[#F5F5F7] rounded-[24px] p-8 md:p-12 flex flex-col items-center justify-center min-h-[380px] md:min-h-[520px]">
+          <img src={`/images/products/${product.id}/${product.id}-vial.png`} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
+          {/* Thumbnail gallery for products with multiple images (e.g. BPC-157) */}
+          <div className="flex gap-2 mt-6">
+            {[0,1,2,3,4].map(n => {
+              const padded = String(n).padStart(2, '0')
+              const src = `/images/products/${product.id}/${padded}.png`
+              return <img key={n} src={src} alt={`${product.name} view ${n+1}`} className="w-10 h-10 object-contain rounded-lg bg-white/60 cursor-pointer hover:ring-2 hover:ring-[#1D1D1F]/20 transition" loading="lazy" onError={(e) => e.target.style.display='none'} />
+            })}
+          </div>
         </div>
 
         {/* Details Panel */}

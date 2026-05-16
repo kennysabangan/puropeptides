@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom'
 
 const bottleColors = ['#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8', '#F5D5E8', '#F5F5D5', '#D5F5F5', '#E8E8D5']
 
-function BottleThumb({ name, index }) {
+function BottleThumb({ name, index, productId }) {
   const color = bottleColors[index % bottleColors.length]
+  const imgSrc = `/images/products/${productId}/${productId}-vial.png`
   return (
-    <div className="w-16 h-16 rounded-[14px] flex items-center justify-center flex-shrink-0" style={{ backgroundColor: color }}>
-      <svg viewBox="0 0 80 160" className="w-8 h-16" fill="none">
-        <rect x="28" y="0" width="24" height="16" rx="3" fill="#0B0B0B" opacity="0.1" />
-        <rect x="22" y="16" width="36" height="8" rx="2" fill="#0B0B0B" opacity="0.12" />
-        <rect x="20" y="24" width="40" height="120" rx="10" fill="white" stroke="#0B0B0B" strokeWidth="1.5" opacity="0.85" />
-      </svg>
+    <div className="w-16 h-16 rounded-[14px] flex items-center justify-center flex-shrink-0 overflow-hidden" style={{ backgroundColor: color }}>
+      <img src={imgSrc} alt={name} className="w-12 h-12 object-contain" loading="lazy" />
     </div>
   )
 }
@@ -45,7 +42,7 @@ export default function CartPage() {
 
               return (
                 <div key={`${item.product.id}-${item.dosage}-${item.bundleType}`} className="flex items-center gap-4 bg-[#FBFBFD] rounded-[16px] p-4">
-                  <BottleThumb name={item.product.name} index={i} />
+                  <BottleThumb name={item.product.name} index={i} productId={item.product.id} />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-[14px] text-[#1D1D1F]">{item.product.name}</h3>
                     <p className="text-[12px] text-[#86868B]">{item.dosage} · {item.bundleType === 1 ? '1 Bottle' : item.bundleType === 2 ? '2 Bottles' : '3+ Bottles'}</p>

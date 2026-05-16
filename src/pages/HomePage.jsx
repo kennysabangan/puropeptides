@@ -2,19 +2,27 @@ import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getFeaturedProducts, subscribeEmail } from '../lib/supabase'
 
-/* ─── Shared SVGs ─── */
-const BottleSVG = ({ className = 'w-20 h-40', label = '', color = '#E8D5F5' }) => (
-  <svg viewBox="0 0 80 160" className={className} fill="none">
-    <rect x="28" y="0" width="24" height="16" rx="3" fill="#0B0B0B" opacity="0.1" />
-    <rect x="22" y="16" width="36" height="8" rx="2" fill="#0B0B0B" opacity="0.12" />
-    <rect x="20" y="24" width="40" height="120" rx="10" fill={color} stroke="#0B0B0B" strokeWidth="1.5" opacity="0.9" />
-    {label && (
-      <text x="40" y="86" textAnchor="middle" fill="#0B0B0B" fontSize="7" fontFamily="Inter" fontWeight="600">{label}</text>
-    )}
-    <rect x="28" y="50" width="24" height="3" rx="1.5" fill="#0B0B0B" opacity="0.1" />
-    <rect x="28" y="58" width="18" height="3" rx="1.5" fill="#0B0B0B" opacity="0.06" />
-  </svg>
-)
+/* ─── Product image slug mapping ─── */
+const featuredImageMap = {
+  'GHK-Cu': '/images/homepage/featured-ghk-cu.png',
+  'NAD+': '/images/homepage/featured-nad-plus.png',
+  'Glutathione': '/images/homepage/featured-glutathione.png',
+  'SEMAX': '/images/homepage/featured-semax.png',
+  'SELANK': '/images/homepage/featured-selank.png',
+  'DSIP': '/images/homepage/featured-dsip.png',
+}
+
+function getFeaturedImage(name) {
+  return featuredImageMap[name] || null
+}
+
+function getProductImage(slug) {
+  return `/images/products/${slug}/${slug}-vial.png`
+}
+
+function ProductImg({ slug, name, className = 'w-full h-full object-contain', style = {} }) {
+  return <img src={getProductImage(slug)} alt={name} className={className} style={style} loading="lazy" />
+}
 
 /* ─── Intersection Observer hook ─── */
 function useInView(options = {}) {
@@ -150,9 +158,9 @@ export default function HomePage() {
             <div className="relative">
               <div className="rounded-[24px] p-10 md:p-14 flex items-center justify-center min-h-[320px] md:min-h-[420px] hero-gradient">
                 <div className="flex items-end gap-5">
-                  <BottleSVG className="w-14 h-28 opacity-70" label="BPC-157" color="#FFB6C1" />
-                  <BottleSVG className="w-18 h-36" label="GLP-3" color="#C8E6C9" />
-                  <BottleSVG className="w-12 h-24 opacity-60" label="NAD+" color="#E1BEE7" />
+                  <img src="/images/homepage/hero-bpc157-vial.webp" alt="BPC-157 vial" className="w-28 h-auto opacity-90" style={{ maxHeight: '220px' }} />
+                  <img src="/images/homepage/hero-tb500-vial.webp" alt="TB-500 vial" className="w-32 h-auto" style={{ maxHeight: '260px' }} />
+                  <img src="/images/homepage/hero-amino-h2o-bottle.png" alt="Amino H2O bottle" className="w-24 h-auto opacity-80" style={{ maxHeight: '200px' }} />
                 </div>
               </div>
             </div>
@@ -164,8 +172,8 @@ export default function HomePage() {
       <FadeSection className="py-20 md:py-28" style={{ backgroundColor: '#FBFBFD' }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="bg-gradient-to-br from-[#F5F0FF] to-[#EDE7FF] rounded-[24px] flex items-center justify-center min-h-[280px]">
-              <BottleSVG className="w-24 h-48" label="BPC-157" color="white" />
+            <div className="bg-gradient-to-br from-[#F5F0FF] to-[#EDE7FF] rounded-[24px] flex items-center justify-center min-h-[280px] overflow-hidden">
+              <img src="/images/homepage/hero-tb500-vial-large.png" alt="TB-500 vial" className="w-40 h-auto object-contain" style={{ maxHeight: '300px' }} />
             </div>
             <div>
               <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1D1D1F] leading-tight tracking-[-0.02em] mb-4">
@@ -183,11 +191,8 @@ export default function HomePage() {
               { title: 'CoA with Every Batch', sub: 'Third-party tested in America', color: '#FFB800' },
             ].map((item) => (
               <div key={item.title} className="bg-white rounded-[20px] p-7 apple-shadow card-lift">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: `${item.color}18` }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={item.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <polyline points="9 12 11 14 15 10" />
-                  </svg>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 overflow-hidden" style={{ backgroundColor: `${item.color}18` }}>
+                  <img src={item.title === '99% Purity Guaranteed' ? '/images/homepage/icon-purity-check.png' : item.title === 'Shipment Protection' ? '/images/homepage/icon-shipment-shield.png' : '/images/homepage/icon-coa-doc.png'} alt={item.title} className="w-6 h-6 object-contain" />
                 </div>
                 <h3 className="font-semibold text-[#1D1D1F] text-[15px] mb-1">{item.title}</h3>
                 <p className="text-[13px] text-[#86868B]">{item.sub}</p>
@@ -225,7 +230,7 @@ export default function HomePage() {
                   <Link to={`/product/${p.id}`} className="block">
                     <div className="rounded-[20px] overflow-hidden mb-3 card-lift" style={{ backgroundColor: bottleBgColors[i % bottleBgColors.length] }}>
                       <div className="aspect-square flex items-center justify-center p-6">
-                        <BottleSVG className="w-16 h-32" label={p.name} color="white" />
+                        <img src={getFeaturedImage(p.name) || getProductImage(p.id)} alt={p.name} className="w-full h-full object-contain p-4" />
                       </div>
                     </div>
                   </Link>
@@ -272,12 +277,8 @@ export default function HomePage() {
               { title: 'Extensive research library at your fingertips', desc: 'Access our comprehensive collection of research articles, studies, and educational resources.', icon: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20. M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z', cta: 'Explore Research Library' },
             ].map((card) => (
               <div key={card.title} className="bg-white rounded-[20px] p-8 apple-shadow card-lift">
-                <div className="w-11 h-11 bg-[#E8F5ED] rounded-full flex items-center justify-center mb-5">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34C759" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={card.icon.split('. ')[0]} />
-                    {card.icon.split('. ').length > 1 && <path d={card.icon.split('. ')[1]} />}
-                    {card.icon.split('. ').length > 2 && <path d={card.icon.split('. ')[2]} />}
-                  </svg>
+                <div className="w-11 h-11 bg-[#E8F5ED] rounded-full flex items-center justify-center mb-5 overflow-hidden">
+                  <img src={card.title === 'Join a community of researchers' ? '/images/homepage/illustration-community.png' : card.title === 'Research-grade quality, researcher-friendly pricing' ? '/images/homepage/illustration-lab-testing.png' : card.title === 'Expert support whenever you need it' ? '/images/homepage/illustration-support.png' : '/images/homepage/illustration-research.png'} alt={card.title} className="w-7 h-7 object-contain" />
                 </div>
                 <h3 className="font-semibold text-[17px] text-[#1D1D1F] mb-2">{card.title}</h3>
                 <p className="text-[14px] text-[#86868B] leading-relaxed mb-5">{card.desc}</p>
@@ -353,8 +354,8 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex flex-col items-center gap-6 sticky top-28">
-              <div className="bg-gradient-to-br from-[#F5F0FF] to-[#E8F5ED] rounded-[24px] p-10 flex items-center justify-center">
-                <BottleSVG className="w-28 h-56" label="BPC-157" color="white" />
+              <div className="bg-gradient-to-br from-[#F5F0FF] to-[#E8F5ED] rounded-[24px] p-10 flex items-center justify-center overflow-hidden">
+                <img src="/images/homepage/hero-tb500-vial-large.png" alt="Quality verified vial" className="w-48 h-auto object-contain" style={{ maxHeight: '380px' }} />
               </div>
               <a href="#" className="text-[13px] font-medium text-[#1D1D1F] flex items-center gap-1 hover:gap-1.5 transition-all">
                 View our quality procedures
