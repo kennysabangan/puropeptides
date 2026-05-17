@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import AccountMenu from './AccountMenu'
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -27,12 +28,7 @@ export default function Header() {
 
           {/* Right icons */}
           <div className="flex items-center gap-5">
-            <button aria-label="Account" className="text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </button>
+            <AccountMenu />
             <button onClick={openCart} aria-label="Open cart" className="relative text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />

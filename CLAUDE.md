@@ -34,3 +34,21 @@ The active brand in code is **"Amino Select"** (most recent rebrand on
 `main`). Earlier names in the git history: "Amino Club", "Puro Peptides".
 Match what's already in the codebase (`Header.jsx`, etc.) — don't
 reintroduce old names.
+
+## Auth + admin
+
+- Supabase Auth (email + password). Sessions hydrate via
+  `src/context/AuthContext.jsx`. Routes are gated through
+  `src/components/ProtectedRoute.jsx`.
+- `profiles.is_admin` (see `supabase/migrations/002_auth_and_profiles.sql`)
+  gates the `/admin` surface. A trigger blocks self-promotion — to make
+  the first admin, sign up the user via `/register`, then in the
+  Supabase dashboard → Table Editor → `profiles` → flip `is_admin = true`
+  on that row.
+- Migrations to apply in order via Supabase SQL Editor:
+  `002_auth_and_profiles.sql`, `003_carts.sql`, then create a public
+  Storage bucket named `certificates` and apply
+  `004_storage_certificates.sql`.
+- Signed-in users get server-synced carts (table `carts`). Anonymous
+  carts stay in localStorage. Sign-in additively merges local cart →
+  server cart.
