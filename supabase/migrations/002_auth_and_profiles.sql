@@ -1,6 +1,7 @@
 -- Auth: profiles, addresses, and order ownership
+-- Idempotent: safe to re-run.
 
-CREATE TABLE profiles (
+CREATE TABLE IF NOT EXISTS profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   email TEXT,
   full_name TEXT,
@@ -9,9 +10,9 @@ CREATE TABLE profiles (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE INDEX idx_profiles_is_admin ON profiles(is_admin) WHERE is_admin = true;
+CREATE INDEX IF NOT EXISTS idx_profiles_is_admin ON profiles(is_admin) WHERE is_admin = true;
 
-CREATE TABLE addresses (
+CREATE TABLE IF NOT EXISTS addresses (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
   full_name TEXT NOT NULL,
@@ -27,17 +28,17 @@ CREATE TABLE addresses (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE INDEX idx_addresses_user ON addresses(user_id);
-CREATE UNIQUE INDEX idx_addresses_one_default_per_user
+CREATE INDEX IF NOT EXISTS idx_addresses_user ON addresses(user_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_addresses_one_default_per_user
   ON addresses(user_id) WHERE is_default = true;
 
 ALTER TABLE orders
-  ADD COLUMN user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
-  ADD COLUMN tracking_number TEXT,
-  ADD COLUMN tracking_carrier TEXT,
-  ADD COLUMN notes TEXT;
+  ADD COLUMN IF NOT EXISTS user_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+  ADD COLUMN IF NOT EXISTS tracking_number TEXT,
+  ADD COLUMN IF NOT EXISTS tracking_carrier TEXT,
+  ADD COLUMN IF NOT EXISTS notes TEXT;
 
-CREATE INDEX idx_orders_user ON orders(user_id);
+CREATE INDEX IF NOT EXISTS idx_orders_user ON orders(user_id);
 
 -- Admin helper, used by RLS policies below
 CREATE OR REPLACE FUNCTION public.is_admin()
@@ -81,15 +82,18 @@ ALTER TABLE profiles  ENABLE ROW LEVEL SECURITY;
 ALTER TABLE addresses ENABLE ROW LEVEL SECURITY;
 
 -- profiles
+DROP POLICY IF EXISTS "Users read own profile" ON profiles;
 CREATE POLICY "Users read own profile"
   ON profiles FOR SELECT
   USING (id = auth.uid() OR public.is_admin());
 
+DROP POLICY IF EXISTS "Users update own profile" ON profiles;
 CREATE POLICY "Users update own profile"
   ON profiles FOR UPDATE
   USING (id = auth.uid())
   WITH CHECK (id = auth.uid());
 
+DROP POLICY IF EXISTS "Admins update any profile" ON profiles;
 CREATE POLICY "Admins update any profile"
   ON profiles FOR UPDATE
   USING (public.is_admin())
@@ -116,27 +120,34 @@ CREATE TRIGGER profiles_block_self_promotion
   FOR EACH ROW EXECUTE FUNCTION public.prevent_admin_self_promotion();
 
 -- addresses
+DROP POLICY IF EXISTS "Users CRUD own addresses select" ON addresses;
 CREATE POLICY "Users CRUD own addresses select"
   ON addresses FOR SELECT USING (user_id = auth.uid());
+DROP POLICY IF EXISTS "Users CRUD own addresses insert" ON addresses;
 CREATE POLICY "Users CRUD own addresses insert"
   ON addresses FOR INSERT WITH CHECK (user_id = auth.uid());
+DROP POLICY IF EXISTS "Users CRUD own addresses update" ON addresses;
 CREATE POLICY "Users CRUD own addresses update"
   ON addresses FOR UPDATE USING (user_id = auth.uid()) WITH CHECK (user_id = auth.uid());
+DROP POLICY IF EXISTS "Users CRUD own addresses delete" ON addresses;
 CREATE POLICY "Users CRUD own addresses delete"
   ON addresses FOR DELETE USING (user_id = auth.uid());
 
 -- orders: existing "Anyone can create" policy stays for guest checkout.
 -- Add owner reads + admin reads/updates.
+DROP POLICY IF EXISTS "Users read own orders" ON orders;
 CREATE POLICY "Users read own orders"
   ON orders FOR SELECT
   USING (user_id = auth.uid() OR public.is_admin());
 
+DROP POLICY IF EXISTS "Admins update any order" ON orders;
 CREATE POLICY "Admins update any order"
   ON orders FOR UPDATE
   USING (public.is_admin())
   WITH CHECK (public.is_admin());
 
 -- order_items: visible if parent order is visible to the caller
+DROP POLICY IF EXISTS "Users read own order_items" ON order_items;
 CREATE POLICY "Users read own order_items"
   ON order_items FOR SELECT
   USING (
@@ -148,23 +159,31 @@ CREATE POLICY "Users read own order_items"
   );
 
 -- subscribers: admin read + delete
+DROP POLICY IF EXISTS "Admins read subscribers" ON subscribers;
 CREATE POLICY "Admins read subscribers"
   ON subscribers FOR SELECT USING (public.is_admin());
+DROP POLICY IF EXISTS "Admins delete subscribers" ON subscribers;
 CREATE POLICY "Admins delete subscribers"
   ON subscribers FOR DELETE USING (public.is_admin());
 
 -- products: admin write
+DROP POLICY IF EXISTS "Admins insert products" ON products;
 CREATE POLICY "Admins insert products"
   ON products FOR INSERT WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS "Admins update products" ON products;
 CREATE POLICY "Admins update products"
   ON products FOR UPDATE USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS "Admins delete products" ON products;
 CREATE POLICY "Admins delete products"
   ON products FOR DELETE USING (public.is_admin());
 
 -- certificates: admin write
+DROP POLICY IF EXISTS "Admins insert certificates" ON certificates;
 CREATE POLICY "Admins insert certificates"
   ON certificates FOR INSERT WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS "Admins update certificates" ON certificates;
 CREATE POLICY "Admins update certificates"
   ON certificates FOR UPDATE USING (public.is_admin()) WITH CHECK (public.is_admin());
+DROP POLICY IF EXISTS "Admins delete certificates" ON certificates;
 CREATE POLICY "Admins delete certificates"
   ON certificates FOR DELETE USING (public.is_admin());
