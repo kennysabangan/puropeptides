@@ -19,15 +19,13 @@ const SORT_OPTIONS = [
   { value: 'name', label: 'Name: A → Z' },
 ]
 
-const fallbackCategories = ['Tissue Repair', 'Dermal', 'Cellular', 'Neuro', 'Circadian']
-
 export default function StorePage() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('default')
-  const [activeCategory, setActiveCategory] = useState(null)
+  const [activeCategory, setActiveCategory] = useState(null) // category slug
 
   useEffect(() => {
     getProducts()
@@ -35,9 +33,17 @@ export default function StorePage() {
       .catch(err => { setError(err.message); setLoading(false) })
   }, [])
 
+  // Deduplicate categories across products, ordered by sort_order.
   const categories = useMemo(() => {
-    const cats = [...new Set(products.map(p => p.category).filter(Boolean))]
-    return cats.length > 0 ? cats : fallbackCategories
+    const map = new Map() // slug -> { slug, name, sort_order }
+    for (const p of products) {
+      for (const c of (p.categories || [])) {
+        if (!map.has(c.slug)) map.set(c.slug, c)
+      }
+    }
+    return [...map.values()].sort((a, b) =>
+      (a.sort_order ?? 999) - (b.sort_order ?? 999) || a.name.localeCompare(b.name),
+    )
   }, [products])
 
   const filtered = useMemo(() => {
@@ -47,7 +53,9 @@ export default function StorePage() {
       list = list.filter(p => p.name.toLowerCase().includes(q))
     }
     if (activeCategory) {
-      list = list.filter(p => p.category === activeCategory)
+      list = list.filter(p =>
+        (p.categories || []).some(c => c.slug === activeCategory),
+      )
     }
     if (sort === 'price-asc') list.sort((a, b) => a.price - b.price)
     if (sort === 'price-desc') list.sort((a, b) => b.price - a.price)
@@ -126,13 +134,25 @@ export default function StorePage() {
         </button>
         {categories.map(cat => (
           <button
-            key={cat}
-            onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-            className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${activeCategory === cat ? 'bg-[#1D1D1F] text-white' : 'bg-[#F5F5F7] text-[#86868B] hover:bg-[#E8E8ED]'}`}
+            key={cat.slug}
+            onClick={() => setActiveCategory(activeCategory === cat.slug ? null : cat.slug)}
+            className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${
+              activeCategory === cat.slug
+                ? 'bg-[#1D1D1F] text-white'
+                : 'bg-[#F5F5F7] text-[#1D1D1F]/70 hover:bg-[#E8E8ED] hover:text-[#1D1D1F]'
+            }`}
           >
-            {cat}
+            {cat.name}
           </button>
         ))}
+        {activeCategory && (
+          <button
+            onClick={() => setActiveCategory(null)}
+            className="px-3 py-2 rounded-full text-[13px] font-medium text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#F5F5F7] transition-all"
+          >
+            Clear filter
+          </button>
+        )}
       </div>
 
       {/* Product Grid */}

@@ -16,10 +16,15 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 export async function getProducts() {
   const { data, error } = await supabase
     .from('products')
-    .select('*')
+    .select('*, product_categories(categories(slug, name, sort_order))')
     .order('name')
   if (error) throw error
-  return data
+  return data.map((p) => ({
+    ...p,
+    categories: (p.product_categories || [])
+      .map((pc) => pc.categories)
+      .filter(Boolean),
+  }))
 }
 
 export async function getProduct(slug) {
