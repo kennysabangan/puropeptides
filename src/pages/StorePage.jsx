@@ -97,7 +97,7 @@ export default function StorePage() {
       {/* Header */}
       <div className="mb-12">
         <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-3">All Products</h1>
-        <p className="text-[#86868B] text-[15px]">Premium research peptides for verified researchers</p>
+        <p className="text-[#86868B] text-[15px]">Premium research peptides with 99%+ purity</p>
       </div>
 
       {/* Search & Sort */}
@@ -114,14 +114,17 @@ export default function StorePage() {
             className="w-full pl-11 pr-4 py-3 border border-[#E8E8ED] rounded-full text-[14px] bg-[#FBFBFD] focus:outline-none focus:border-[#1D1D1F]/30 focus:bg-white transition"
           />
         </div>
-        <Select
-          value={sort}
-          onChange={setSort}
-          options={SORT_OPTIONS}
-          leftIcon={<SortIcon />}
-          align="right"
-          ariaLabel="Sort products"
-        />
+        <div className="flex items-center gap-3 sm:ml-auto">
+          <span className="text-[13px] text-[#86868B] hidden sm:inline">Sort by:</span>
+          <Select
+            value={sort}
+            onChange={setSort}
+            options={SORT_OPTIONS}
+            leftIcon={<SortIcon />}
+            align="right"
+            ariaLabel="Sort products"
+          />
+        </div>
       </div>
 
       {/* Category Chips */}
