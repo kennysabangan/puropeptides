@@ -2,10 +2,10 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ResearcherGate from './components/ResearcherGate'
+import CartDrawer from './components/CartDrawer'
 import HomePage from './pages/HomePage'
 import StorePage from './pages/StorePage'
 import ProductPage from './pages/ProductPage'
-import CartPage from './pages/CartPage'
 import { CartProvider } from './context/CartContext'
 import { VerificationProvider, useVerification } from './context/VerificationContext'
 
@@ -23,11 +23,11 @@ function GatedApp() {
             <Route path="/" element={<HomePage />} />
             <Route path="/store" element={<StorePage />} />
             <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/cart" element={<CartPage />} />
           </Routes>
         </main>
         <Footer />
       </div>
+      <CartDrawer />
     </CartProvider>
   )
 }

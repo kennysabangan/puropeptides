@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext'
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { getCartCount } = useCart()
+  const { getCartCount, openCart } = useCart()
   const cartCount = getCartCount()
 
   return (
@@ -33,7 +33,7 @@ export default function Header() {
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </button>
-            <Link to="/cart" aria-label="Cart" className="relative text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition">
+            <button onClick={openCart} aria-label="Open cart" className="relative text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
                 <line x1="3" y1="6" x2="21" y2="6" />
@@ -42,7 +42,7 @@ export default function Header() {
               <span className="absolute -top-2 -right-2 bg-[#1D1D1F] text-white text-[10px] font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center px-1">
                 {cartCount > 99 ? '99+' : cartCount}
               </span>
-            </Link>
+            </button>
             <button className="md:hidden text-[#1D1D1F]" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                 {mobileOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M3 12h18M3 6h18M3 18h18" />}
