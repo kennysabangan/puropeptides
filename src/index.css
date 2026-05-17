@@ -13,6 +13,11 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button, [role="button"], label {
+  touch-action: manipulation;
 }
 
 html {
@@ -125,6 +130,10 @@ h1, h2, h3, h4, h5, h6 {
 .card-lift:hover {
   transform: scale(1.02);
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.08);
+}
+.card-lift:active {
+  transform: scale(0.98);
+  transition-duration: 0.12s;
 }
 
 /* Gradient wash for hero */
