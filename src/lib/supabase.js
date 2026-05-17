@@ -321,6 +321,30 @@ export async function adminUploadCoa(file, path) {
   return data.publicUrl
 }
 
+// Product images: returns a public URL after successful upload.
+// path convention: `${productSlugOrId}/${Date.now()}-${file.name}`
+export async function adminUploadProductImage(file, path) {
+  const { error } = await supabase
+    .storage
+    .from('product-images')
+    .upload(path, file, { upsert: true, contentType: file.type || 'image/png' })
+  if (error) throw error
+  const { data } = supabase.storage.from('product-images').getPublicUrl(path)
+  return data.publicUrl
+}
+
+// Delete a previously-uploaded product image by its public URL.
+// No-op (silently) for legacy paths that aren't in the bucket.
+export async function adminDeleteProductImage(publicUrl) {
+  if (!publicUrl) return
+  const marker = '/storage/v1/object/public/product-images/'
+  const idx = publicUrl.indexOf(marker)
+  if (idx === -1) return
+  const path = publicUrl.slice(idx + marker.length)
+  const { error } = await supabase.storage.from('product-images').remove([path])
+  if (error) throw error
+}
+
 export async function adminAnalytics() {
   const { data: orders, error } = await supabase
     .from('orders')

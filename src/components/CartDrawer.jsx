@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useCart } from '../context/CartContext'
+import { getPrimaryImage } from '../lib/productImage'
 
 const bottleColors = ['#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8', '#F5D5E8', '#F5F5D5', '#D5F5F5', '#E8E8D5']
 
-function BottleThumb({ name, index, productId }) {
-  const color = bottleColors[index % bottleColors.length]
-  const imgSrc = `/images/products/${productId}/${productId}-vial.png`
+function BottleThumb({ product, index }) {
+  const color = product.bg_color || bottleColors[index % bottleColors.length]
   return (
     <div className="w-16 h-16 rounded-[14px] flex items-center justify-center flex-shrink-0 overflow-hidden" style={{ backgroundColor: color }}>
-      <img src={imgSrc} alt={name} className="w-12 h-12 object-contain" loading="lazy" />
+      <img src={getPrimaryImage(product)} alt={product.name} className="w-12 h-12 object-contain" loading="lazy" />
     </div>
   )
 }
@@ -109,7 +109,7 @@ export default function CartDrawer() {
                     key={`${item.product.id}-${item.dosage}-${item.bundleType}`}
                     className="flex items-start gap-3"
                   >
-                    <BottleThumb name={item.product.name} index={i} productId={item.product.id} />
+                    <BottleThumb product={item.product} index={i} />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">
                         <h3 className="font-semibold text-[14px] text-[#1D1D1F] leading-tight truncate">{item.product.name}</h3>

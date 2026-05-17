@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getPrimaryImage } from '../lib/productImage'
 
 const bottleColors = [
   '#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8',
@@ -7,7 +8,7 @@ const bottleColors = [
 
 export default function ProductCard({ product, index = 0 }) {
   const bgColor = product.bg_color || bottleColors[index % bottleColors.length]
-  const imgSrc = `/images/products/${product.id}/${product.id}-vial.png`
+  const imgSrc = getPrimaryImage(product)
 
   return (
     <div className="group card-lift">
