@@ -43,33 +43,33 @@ export default function Footer() {
             <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Shop</h4>
             <ul className="space-y-3">
               <li><Link to="/store" className="text-[13px] text-[#86868B] hover:text-white transition">All Products</Link></li>
+              <li><Link to="/quality" className="text-[13px] text-[#86868B] hover:text-white transition">Quality</Link></li>
             </ul>
           </div>
           {/* RESOURCES */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Resources</h4>
             <ul className="space-y-3">
-              {['Research Library', 'Certificates of Analysis'].map(item => (
-                <li key={item}><a href="#" className="text-[13px] text-[#86868B] hover:text-white transition">{item}</a></li>
-              ))}
+              <li><Link to="/research" className="text-[13px] text-[#86868B] hover:text-white transition">Research Library</Link></li>
+              <li><Link to="/coa" className="text-[13px] text-[#86868B] hover:text-white transition">Certificates of Analysis</Link></li>
             </ul>
           </div>
           {/* SUPPORT */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Support</h4>
             <ul className="space-y-3">
-              {['Contact Us', 'FAQ', 'Shipping Info', 'Returns'].map(item => (
-                <li key={item}><a href="#" className="text-[13px] text-[#86868B] hover:text-white transition">{item}</a></li>
-              ))}
+              <li><Link to="/contact" className="text-[13px] text-[#86868B] hover:text-white transition">Contact Us</Link></li>
+              <li><Link to="/shipping" className="text-[13px] text-[#86868B] hover:text-white transition">Shipping Info</Link></li>
+              <li><Link to="/returns" className="text-[13px] text-[#86868B] hover:text-white transition">Returns</Link></li>
             </ul>
           </div>
           {/* LEGAL */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Legal</h4>
             <ul className="space-y-3">
-              {['Privacy Policy', 'Terms of Service', 'Disclaimer'].map(item => (
-                <li key={item}><a href="#" className="text-[13px] text-[#86868B] hover:text-white transition">{item}</a></li>
-              ))}
+              <li><Link to="/privacy" className="text-[13px] text-[#86868B] hover:text-white transition">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-[13px] text-[#86868B] hover:text-white transition">Terms of Service</Link></li>
+              <li><Link to="/disclaimer" className="text-[13px] text-[#86868B] hover:text-white transition">Disclaimer</Link></li>
             </ul>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Footer() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-5">
           <p className="text-[11px] text-[#86868B]/70 leading-relaxed">
             <strong className="text-[#86868B]">FDA DISCLAIMER:</strong> Statements made regarding our products have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease. Please consult a licensed health care professional before using any product.{' '}
-            <a href="#" className="underline underline-offset-2">Read full disclaimer →</a>
+            <Link to="/disclaimer" className="underline underline-offset-2">Read full disclaimer →</Link>
           </p>
         </div>
       </div>
