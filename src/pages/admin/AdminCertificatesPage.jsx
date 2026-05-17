@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   adminListCertificates,
   adminListProducts,
@@ -6,6 +6,7 @@ import {
   adminDeleteCertificate,
   adminUploadCoa,
 } from '../../lib/supabase'
+import Select from '../../components/Select'
 
 const EMPTY = {
   product_id: '',
@@ -34,6 +35,11 @@ export default function AdminCertificatesPage() {
       setProducts(p)
       setLoading(false)
     })
+
+  const productOptions = useMemo(
+    () => products.map((p) => ({ value: p.id, label: p.name })),
+    [products],
+  )
 
   useEffect(() => {
     Promise.all([adminListCertificates(), adminListProducts()])
@@ -81,17 +87,14 @@ export default function AdminCertificatesPage() {
         <form onSubmit={handleSave} className="space-y-3 bg-[#FBFBFD] rounded-2xl p-5 max-w-[640px]">
           <div>
             <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">Product</label>
-            <select
-              required
+            <Select
               value={form.product_id}
-              onChange={(e) => setForm({ ...form, product_id: e.target.value })}
-              className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] outline-none focus:border-[#1D1D1F] transition"
-            >
-              <option value="">Select a product…</option>
-              {products.map((p) => (
-                <option key={p.id} value={p.id}>{p.name}</option>
-              ))}
-            </select>
+              onChange={(v) => setForm({ ...form, product_id: v })}
+              options={productOptions}
+              placeholder="Select a product…"
+              ariaLabel="Product"
+              buttonClassName="w-full !justify-between !py-3"
+            />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <Field label="Lot number" value={form.lot_number} onChange={(v) => setForm({ ...form, lot_number: v })} required />

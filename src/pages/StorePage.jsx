@@ -1,6 +1,23 @@
 import { useState, useEffect, useMemo } from 'react'
 import { getProducts } from '../lib/supabase'
 import ProductCard from '../components/ProductCard'
+import Select from '../components/Select'
+
+const SortIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <line x1="3" y1="6" x2="13" y2="6" />
+    <line x1="3" y1="12" x2="11" y2="12" />
+    <line x1="3" y1="18" x2="9" y2="18" />
+    <polyline points="17 8 17 18 21 14" />
+  </svg>
+)
+
+const SORT_OPTIONS = [
+  { value: 'default', label: 'Featured' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'name', label: 'Name: A → Z' },
+]
 
 const fallbackCategories = ['Tissue Repair', 'Dermal', 'Cellular', 'Neuro', 'Circadian']
 
@@ -89,16 +106,14 @@ export default function StorePage() {
             className="w-full pl-11 pr-4 py-3 border border-[#E8E8ED] rounded-full text-[14px] bg-[#FBFBFD] focus:outline-none focus:border-[#1D1D1F]/30 focus:bg-white transition"
           />
         </div>
-        <select
+        <Select
           value={sort}
-          onChange={(e) => setSort(e.target.value)}
-          className="px-5 py-3 border border-[#E8E8ED] rounded-full text-[14px] bg-[#FBFBFD] focus:outline-none focus:border-[#1D1D1F]/30 transition appearance-none cursor-pointer"
-        >
-          <option value="default">Sort by</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="name">Name</option>
-        </select>
+          onChange={setSort}
+          options={SORT_OPTIONS}
+          leftIcon={<SortIcon />}
+          align="right"
+          ariaLabel="Sort products"
+        />
       </div>
 
       {/* Category Chips */}

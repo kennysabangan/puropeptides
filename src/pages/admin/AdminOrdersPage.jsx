@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { adminListOrders } from '../../lib/supabase'
+import Select from '../../components/Select'
 
-const STATUSES = ['', 'pending', 'confirmed', 'shipped', 'delivered', 'cancelled']
+const STATUS_OPTIONS = [
+  { value: '',          label: 'All statuses' },
+  { value: 'pending',   label: 'Pending' },
+  { value: 'confirmed', label: 'Confirmed' },
+  { value: 'shipped',   label: 'Shipped' },
+  { value: 'delivered', label: 'Delivered' },
+  { value: 'cancelled', label: 'Cancelled' },
+]
 
 const STATUS_STYLES = {
   pending:   'bg-[#FFF3E0] text-[#FF9500]',
@@ -38,15 +46,13 @@ export default function AdminOrdersPage() {
           placeholder="Search order # or email"
           className="flex-1 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] outline-none focus:border-[#1D1D1F] transition"
         />
-        <select
+        <Select
           value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] outline-none focus:border-[#1D1D1F] transition"
-        >
-          {STATUSES.map((s) => (
-            <option key={s} value={s}>{s || 'All statuses'}</option>
-          ))}
-        </select>
+          onChange={setStatus}
+          options={STATUS_OPTIONS}
+          align="right"
+          ariaLabel="Filter by status"
+        />
       </div>
 
       {loading ? (
