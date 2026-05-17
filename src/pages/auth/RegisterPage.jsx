@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
 export default function RegisterPage() {
   const { signUp, signIn } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from || '/account'
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -20,12 +22,12 @@ export default function RegisterPage() {
     try {
       const result = await signUp({ email, password, fullName })
       if (result?.session) {
-        navigate('/account', { replace: true })
+        navigate(from, { replace: true })
         return
       }
       try {
         await signIn({ email, password })
-        navigate('/account', { replace: true })
+        navigate(from, { replace: true })
       } catch {
         setConfirmSent(true)
       }

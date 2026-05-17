@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import { getPrimaryImage } from '../lib/productImage'
 
 const bottleColors = ['#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8', '#F5D5E8', '#F5F5D5', '#D5F5F5', '#E8E8D5']
@@ -15,6 +17,14 @@ function BottleThumb({ product, index }) {
 
 export default function CartDrawer() {
   const { items, isCartOpen, closeCart, removeFromCart, updateQuantity, getCartTotal } = useCart()
+  const { user, loading: authLoading } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const goAuth = (path) => {
+    closeCart()
+    navigate(path, { state: { from: location.pathname || '/' } })
+  }
 
   // Close on ESC
   useEffect(() => {
@@ -167,9 +177,32 @@ export default function CartDrawer() {
                   <span className="font-bold text-[18px] text-[#1D1D1F]">${total.toFixed(2)}</span>
                 </div>
               </div>
-              <button className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition">
-                Checkout
-              </button>
+              {!authLoading && !user ? (
+                <>
+                  <button
+                    onClick={() => goAuth('/register')}
+                    className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition"
+                  >
+                    Create account to checkout
+                  </button>
+                  <p className="text-center text-[12px] text-[#86868B] mt-2.5">
+                    Already have an account?{' '}
+                    <button
+                      onClick={() => goAuth('/login')}
+                      className="text-[#1D1D1F] font-medium hover:underline"
+                    >
+                      Sign in
+                    </button>
+                  </p>
+                  <p className="text-[11px] text-[#86868B] text-center mt-3 leading-snug">
+                    Your cart is saved — items will be waiting after sign-up.
+                  </p>
+                </>
+              ) : (
+                <button className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition">
+                  Checkout
+                </button>
+              )}
               <button
                 onClick={closeCart}
                 className="w-full mt-2 text-[12px] text-[#86868B] hover:text-[#1D1D1F] transition py-1"
