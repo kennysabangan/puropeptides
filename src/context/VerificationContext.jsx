@@ -3,10 +3,11 @@ import { createContext, useContext, useEffect, useState } from 'react'
 const VerificationContext = createContext()
 
 const VERIFICATION_STORAGE_KEY = 'amino-select-verified'
-// In dev (vite dev server) we always re-show the gate on refresh so we
-// can iterate on its visual design. In prod, the verification persists
-// in localStorage across sessions like before.
-const PERSIST = !import.meta.env.DEV
+// TEMP — while iterating on the gate's visual design we want every page
+// refresh to re-show it (including on the live Vercel deploy, which is
+// where the design is being reviewed). Flip back to `true` before public
+// launch so returning visitors aren't re-prompted.
+const PERSIST = false
 
 function loadVerified() {
   if (!PERSIST) return false
