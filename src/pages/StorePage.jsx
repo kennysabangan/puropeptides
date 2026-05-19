@@ -19,7 +19,7 @@ export default function StorePage() {
   }, [])
 
   const categories = useMemo(() => {
-    const cats = [...new Set(products.map(p => p.category).filter(Boolean))]
+    const cats = [...new Set(products.map(p => p.compound_type).filter(Boolean))]
     return cats.length > 0 ? cats : fallbackCategories
   }, [products])
 
@@ -30,7 +30,7 @@ export default function StorePage() {
       list = list.filter(p => p.name.toLowerCase().includes(q))
     }
     if (activeCategory) {
-      list = list.filter(p => p.category === activeCategory)
+      list = list.filter(p => p.compound_type === activeCategory)
     }
     if (sort === 'price-asc') list.sort((a, b) => a.price - b.price)
     if (sort === 'price-desc') list.sort((a, b) => b.price - a.price)

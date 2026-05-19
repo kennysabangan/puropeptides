@@ -95,9 +95,9 @@ export default function CartPage() {
             <Link to="/store" className="flex-1 text-center px-6 py-3.5 rounded-full border border-[#1D1D1F] text-[#1D1D1F] text-[14px] font-medium hover:bg-[#F5F5F7] transition">
               Continue Shopping
             </Link>
-            <button className="flex-1 btn-apple bg-[#1D1D1F] text-white text-[14px] font-medium py-3.5 rounded-full">
+            <Link to="/checkout" className="flex-1 btn-apple bg-[#1D1D1F] text-white text-[14px] font-medium py-3.5 rounded-full text-center">
               Checkout
-            </button>
+            </Link>
           </div>
         </>
       )}

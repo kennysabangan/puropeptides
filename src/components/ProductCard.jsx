@@ -7,11 +7,11 @@ const bottleColors = [
 
 export default function ProductCard({ product, index = 0 }) {
   const bgColor = product.bg_color || bottleColors[index % bottleColors.length]
-  const imgSrc = `/images/products/${product.id}/${product.id}-vial.png`
+  const imgSrc = `/images/products/${product.slug}/${product.slug}-vial.png`
 
   return (
     <div className="group card-lift">
-      <Link to={`/product/${product.id}`} className="block">
+      <Link to={`/product/${product.slug}`} className="block">
         <div className="rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: bgColor }}>
           <div className="aspect-square flex items-center justify-center p-8">
             <img src={imgSrc} alt={product.name} className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />
@@ -24,7 +24,7 @@ export default function ProductCard({ product, index = 0 }) {
           <p className="text-[13px] text-[#86868B] mt-0.5">${product.price.toFixed(2)}</p>
         </div>
         <Link
-          to={`/product/${product.id}`}
+          to={`/product/${product.slug}`}
           className="text-[13px] font-medium text-[#1D1D1F] flex items-center gap-1 hover:gap-1.5 transition-all"
         >
           View

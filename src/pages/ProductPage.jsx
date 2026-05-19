@@ -80,7 +80,7 @@ export default function ProductPage() {
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Image Panel */}
         <div className="bg-[#F5F5F7] rounded-[24px] p-8 md:p-12 flex flex-col items-center justify-center min-h-[380px] md:min-h-[520px]">
-          <img src={`/images/products/${product.id}/${product.id}-vial.png`} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
+          <img src={`/images/products/${product.slug}/${product.slug}-vial.png`} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
 
         </div>
 
