@@ -10,7 +10,7 @@ export default function ProductCard({ product, index = 0 }) {
   const bgColor = product.bg_color || bottleColors[index % bottleColors.length]
   const imgSrc = getPrimaryImage(product)
   const href = `/product/${product.slug || product.id}`
-  const subtitle = product.subtitle || product.categories?.[0]?.name || ''
+  const subtitle = product.categories?.[0]?.name || product.subtitle || ''
 
   return (
     <div className="group h-full">
