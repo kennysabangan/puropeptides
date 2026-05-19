@@ -1,10 +1,18 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+
+function safeNext(value) {
+  if (!value || typeof value !== 'string') return null
+  if (!value.startsWith('/') || value.startsWith('//')) return null
+  return value
+}
 
 export default function RegisterPage() {
   const { signUp, signIn } = useAuth()
   const navigate = useNavigate()
+  const [params] = useSearchParams()
+  const next = safeNext(params.get('next')) || '/account'
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -20,12 +28,12 @@ export default function RegisterPage() {
     try {
       const result = await signUp({ email, password, fullName })
       if (result?.session) {
-        navigate('/account', { replace: true })
+        navigate(next, { replace: true })
         return
       }
       try {
         await signIn({ email, password })
-        navigate('/account', { replace: true })
+        navigate(next, { replace: true })
       } catch {
         setConfirmSent(true)
       }

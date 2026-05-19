@@ -1,5 +1,6 @@
 import { useCart } from '../context/CartContext'
-import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import { Link, useNavigate } from 'react-router-dom'
 
 const bottleColors = ['#E8D5F5', '#D5E8F5', '#F5E8D5', '#D5F5E8', '#F5D5E8', '#F5F5D5', '#D5F5F5', '#E8E8D5']
 
@@ -14,11 +15,21 @@ function BottleThumb({ name, index, productId }) {
 }
 
 export default function CartPage() {
-  const { items, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart()
+  const { items, removeFromCart, updateQuantity, getCartTotal } = useCart()
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
   const subtotal = getCartTotal()
   const shipping = subtotal >= 150 ? 0 : 9.99
   const total = subtotal + shipping
+
+  const handleCheckout = () => {
+    if (!user) {
+      navigate('/register?next=/checkout')
+      return
+    }
+    navigate('/checkout')
+  }
 
   return (
     <div className="max-w-[800px] mx-auto px-6 lg:px-8 py-14 md:py-20">
@@ -95,7 +106,10 @@ export default function CartPage() {
             <Link to="/store" className="flex-1 text-center px-6 py-3.5 rounded-full border border-[#1D1D1F] text-[#1D1D1F] text-[14px] font-medium hover:bg-[#F5F5F7] transition">
               Continue Shopping
             </Link>
-            <button className="flex-1 btn-apple bg-[#1D1D1F] text-white text-[14px] font-medium py-3.5 rounded-full">
+            <button
+              onClick={handleCheckout}
+              className="flex-1 btn-apple bg-[#1D1D1F] text-white text-[14px] font-medium py-3.5 rounded-full"
+            >
               Checkout
             </button>
           </div>

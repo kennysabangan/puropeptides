@@ -1,12 +1,19 @@
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+
+function safeNext(value) {
+  if (!value || typeof value !== 'string') return null
+  if (!value.startsWith('/') || value.startsWith('//')) return null
+  return value
+}
 
 export default function LoginPage() {
   const { signIn } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from || '/account'
+  const [params] = useSearchParams()
+  const from = safeNext(params.get('next')) || location.state?.from || '/account'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -70,7 +77,12 @@ export default function LoginPage() {
 
         <p className="text-[13px] text-[#86868B] mt-6 text-center">
           No account?{' '}
-          <Link to="/register" className="text-[#1D1D1F] font-medium hover:underline">Create one</Link>
+          <Link
+            to={params.get('next') ? `/register?next=${encodeURIComponent(params.get('next'))}` : '/register'}
+            className="text-[#1D1D1F] font-medium hover:underline"
+          >
+            Create one
+          </Link>
         </p>
       </div>
     </div>
