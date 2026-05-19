@@ -16,7 +16,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 export async function getProducts() {
   const { data, error } = await supabase
     .from('products')
-    .select('*, product_categories(categories(slug, name, sort_order))')
+    .select('*, product_categories(categories(slug, name))')
     .order('name')
   if (error) throw error
   return data.map((p) => ({
