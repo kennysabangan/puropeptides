@@ -13,18 +13,30 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 
 // ---------- Products ----------
 
+// Neutral product copy — no mechanism/benefit language
+function sanitizeProduct(p) {
+  return {
+    ...p,
+    subtitle: '10MG',
+    description: '10MG lyophilized powder. Research use only.',
+  }
+}
+
 export async function getProducts() {
   const { data, error } = await supabase
     .from('products')
     .select('*, product_categories(categories(slug, name))')
     .order('name')
   if (error) throw error
-  return data.map((p) => ({
-    ...p,
-    categories: (p.product_categories || [])
-      .map((pc) => pc.categories)
-      .filter(Boolean),
-  }))
+  return data.map((p) => {
+    const s = sanitizeProduct(p)
+    return {
+      ...s,
+      categories: (p.product_categories || [])
+        .map((pc) => pc.categories)
+        .filter(Boolean),
+    }
+  })
 }
 
 export async function getProduct(slug) {
@@ -34,7 +46,7 @@ export async function getProduct(slug) {
     .eq('slug', slug)
     .single()
   if (error) throw error
-  return data
+  return sanitizeProduct(data)
 }
 
 export async function getFeaturedProducts() {
@@ -44,7 +56,7 @@ export async function getFeaturedProducts() {
     .eq('is_featured', true)
     .order('name')
   if (error) throw error
-  return data
+  return data.map(sanitizeProduct)
 }
 
 export async function subscribeEmail(email) {
