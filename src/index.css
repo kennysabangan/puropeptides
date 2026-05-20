@@ -230,6 +230,31 @@ h1, h2, h3, h4, h5, h6 {
   color: #1A5C30;
 }
 
+/* ─── Nav link accent touches ─── */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav-link:hover {
+  color: #1A5C30;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #1A5C30;
+  border-radius: 1px;
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover::after,
+.nav-link-active::after {
+  transform: scaleX(1);
+}
+
 /* ─── Premium product card ─── */
 .product-card-premium {
   background: white;
