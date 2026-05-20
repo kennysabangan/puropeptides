@@ -73,6 +73,8 @@ export default function ProductPage() {
     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-8 md:py-14">
       {/* Breadcrumb */}
       <nav className="mb-8 text-[13px] text-[#86868B] flex items-center gap-2">
+        <Link to="/" className="hover:text-[#1D1D1F] transition">Home</Link>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
         <Link to="/store" className="hover:text-[#1D1D1F] transition">Store</Link>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
         <span className="text-[#1D1D1F] font-medium">{product.name}</span>
@@ -80,8 +82,8 @@ export default function ProductPage() {
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Image Panel */}
-        <div className="bg-[#F5F5F7] rounded-[24px] p-8 md:p-12 flex flex-col items-center justify-center min-h-[380px] md:min-h-[520px]">
-          <img src={getPrimaryImage(product)} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
+        <div className="bg-[#F5F5F7] rounded-[24px] p-10 md:p-16 flex flex-col items-center justify-center min-h-[420px] md:min-h-[580px]">
+          <img src={getPrimaryImage(product)} alt={product.name} className="w-48 md:w-56 h-auto object-contain" style={{ maxHeight: '420px' }} />
         </div>
 
         {/* Details Panel */}
@@ -136,7 +138,7 @@ export default function ProductPage() {
               const saved = originalTotal - totalPrice
               return (
                 <div>
-                  <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1D1D1F]">${totalPrice.toFixed(2)}</span>
+                  <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1A5C30]">${totalPrice.toFixed(2)}</span>
                   {saved > 0 && (
                     <span className="ml-2 text-[14px] text-[#34C759] font-medium">You save ${saved.toFixed(2)}</span>
                   )}
@@ -148,7 +150,7 @@ export default function ProductPage() {
 
           {/* Bundle & Save */}
           <div className="mb-7">
-            <h3 className="text-[13px] font-semibold text-[#1D1D1F] mb-3">Bundle & Save</h3>
+            <h3 className="text-[13px] font-semibold text-[#1A5C30] mb-3">Bundle & Save</h3>
             <div className="space-y-2">
               {bundleOptions.map(b => (
                 <button
@@ -189,7 +191,7 @@ export default function ProductPage() {
             </button>
             <button
               onClick={handleAddToCart}
-              className={`btn-apple flex-1 text-[14px] font-medium py-3.5 rounded-full transition-all ${added ? 'bg-[#34C759] text-white' : 'bg-[#1D1D1F] text-white'}`}
+              className={`btn-apple flex-1 text-[14px] font-medium py-3.5 rounded-full transition-all ${added ? 'bg-[#34C759] text-white' : 'bg-[#1A5C30] text-white hover:bg-[#15502A]'}`}
             >
               {added ? '✓ Added!' : 'Add to Cart'}
             </button>
@@ -215,7 +217,7 @@ export default function ProductPage() {
       {/* CoA Section */}
       {showCoa && certificates.length > 0 && (
         <div className="mt-12 bg-[#FBFBFD] rounded-[20px] p-7 md:p-9">
-          <h3 className="font-bold text-xl text-[#1D1D1F] mb-2">Certificate of Analysis</h3>
+          <h3 className="font-bold text-xl text-[#1A5C30] mb-2">Certificate of Analysis</h3>
           <p className="text-[14px] text-[#86868B] mb-6">Independent lab-verified testing results</p>
           <div className="overflow-x-auto">
             <table className="w-full text-[14px]">
