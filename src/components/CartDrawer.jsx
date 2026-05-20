@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
 import { getPrimaryImage } from '../lib/productImage'
@@ -19,15 +19,11 @@ export default function CartDrawer() {
   const { items, isCartOpen, closeCart, removeFromCart, updateQuantity, getCartTotal } = useCart()
   const { user, loading: authLoading } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const goAuth = (path) => {
     closeCart()
-    navigate(path, { state: { from: '/checkout' } })
-  }
-
-  const goCheckout = () => {
-    closeCart()
-    navigate('/checkout')
+    navigate(path, { state: { from: location.pathname || '/' } })
   }
 
   // Close on ESC
@@ -203,10 +199,7 @@ export default function CartDrawer() {
                   </p>
                 </>
               ) : (
-                <button
-                  onClick={goCheckout}
-                  className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition"
-                >
+                <button className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition">
                   Checkout
                 </button>
               )}

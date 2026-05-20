@@ -7,8 +7,6 @@ import ProtectedRoute from './components/ProtectedRoute'
 import HomePage from './pages/HomePage'
 import StorePage from './pages/StorePage'
 import ProductPage from './pages/ProductPage'
-import CheckoutPage from './pages/CheckoutPage'
-import CheckoutSuccessPage from './pages/CheckoutSuccessPage'
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
 import AccountLayout from './pages/account/AccountLayout'
@@ -47,22 +45,6 @@ function GatedApp() {
               <Route path="/" element={<HomePage />} />
               <Route path="/store" element={<StorePage />} />
               <Route path="/product/:id" element={<ProductPage />} />
-              <Route
-                path="/checkout"
-                element={
-                  <ProtectedRoute>
-                    <CheckoutPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/checkout/success"
-                element={
-                  <ProtectedRoute>
-                    <CheckoutSuccessPage />
-                  </ProtectedRoute>
-                }
-              />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
 
