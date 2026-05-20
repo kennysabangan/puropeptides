@@ -1,9 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { createCheckout } from '@zkp2p/pay-sdk'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
-import { listAddresses, createAddress, supabase } from '../lib/supabase'
+import { listAddresses, createAddress } from '../lib/supabase'
 import { getPrimaryImage } from '../lib/productImage'
+
+const PEER_OPTS = {
+  apiBaseUrl: import.meta.env.VITE_PEER_API_BASE_URL,
+  checkoutBaseUrl: import.meta.env.VITE_PEER_CHECKOUT_BASE_URL,
+  apiKey: import.meta.env.VITE_PEER_API_KEY,
+}
 
 const EMPTY_ADDRESS = {
   full_name: '', line1: '', line2: '', city: '', state: '',
@@ -78,42 +85,25 @@ export default function CheckoutPage() {
       }
       if (!address) throw new Error('Pick or add a shipping address.')
 
-      const { data: sessionData } = await supabase.auth.getSession()
-      const token = sessionData?.session?.access_token
-      if (!token) throw new Error('Your session expired — please sign in again.')
-
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          items: items.map((i) => ({
-            product_id: i.product.id,
-            quantity: i.quantity,
-            dosage: i.dosage,
-            bundleType: i.bundleType,
-          })),
-          shipping_address: {
-            full_name: address.full_name,
-            line1: address.line1,
-            line2: address.line2 || null,
-            city: address.city,
-            state: address.state || null,
-            postal_code: address.postal_code,
-            country: address.country || 'US',
-            phone: address.phone || null,
+      const orderId = crypto.randomUUID()
+      const result = await createCheckout(
+        {
+          requestedUsdcAmount: total.toFixed(2),
+          destinationChainId: Number(import.meta.env.VITE_PEER_DESTINATION_CHAIN_ID) || 8453,
+          destinationToken: 'USDC',
+          destinationAddress: import.meta.env.VITE_PEER_DESTINATION_ADDRESS,
+          successUrl: window.location.origin + '/checkout/success?order_id=' + orderId,
+          cancelUrl: window.location.origin + '/checkout',
+          notes: {
+            merchantOrderId: orderId,
+            customerId: user?.id || '',
           },
-        }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (!res.ok || !data.invoice_url) {
-        throw new Error(data.detail || data.error || 'Checkout failed.')
-      }
-      window.location.assign(data.invoice_url)
+        },
+        PEER_OPTS,
+      )
+      window.location.href = result.checkoutUrl
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'Failed to create checkout')
       setPaying(false)
     }
   }
@@ -126,7 +116,7 @@ export default function CheckoutPage() {
     <div className="max-w-[800px] mx-auto px-6 lg:px-8 py-14 md:py-20">
       <Link to="/cart" className="text-[12px] text-[#86868B] hover:text-[#1D1D1F]">← Back to cart</Link>
       <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mt-2 mb-2">Checkout</h1>
-      <p className="text-[#86868B] text-[14px] mb-10">Pay with crypto via NowPayments.</p>
+      <p className="text-[#86868B] text-[14px] mb-10">Pay with Venmo, CashApp, or PayPal — settle in USDC on Base.</p>
 
       {/* Items */}
       <section className="mb-10">
@@ -262,7 +252,7 @@ export default function CheckoutPage() {
         {paying ? 'Creating invoice…' : `Pay $${total.toFixed(2)} with crypto`}
       </button>
       <p className="mt-3 text-[11px] text-[#86868B] text-center">
-        You'll be redirected to NowPayments to complete payment. Bitcoin, Ethereum, USDT and 50+ other coins supported.
+        You'll be redirected to Peer Pay to complete payment. Pay with Venmo, CashApp, or PayPal.
       </p>
     </div>
   )
