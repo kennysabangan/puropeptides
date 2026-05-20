@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import AccountMenu from './AccountMenu'
 
@@ -7,6 +7,8 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { getCartCount, openCart } = useCart()
   const cartCount = getCartCount()
+  const location = useLocation()
+  const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/')
 
   return (
     <header className="bg-[#E6E8EA] border-b border-black/5">
@@ -20,10 +22,10 @@ export default function Header() {
 
           {/* Center Nav */}
           <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
-            <Link to="/store" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Products</Link>
-            <a href="#research" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Research</a>
-            <a href="#partner" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Partner Program</a>
-            <a href="#contact" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Contact us</a>
+            <Link to="/store" className={`text-[14px] font-medium transition nav-link ${isActive('/store') ? 'text-[#1A5C30] nav-link-active' : 'text-[#1D1D1F]'}`}>Products</Link>
+            <a href="#research" className="text-[14px] text-[#1D1D1F] font-medium nav-link transition">Research</a>
+            <a href="#partner" className="text-[14px] text-[#1D1D1F] font-medium nav-link transition">Partner Program</a>
+            <a href="#contact" className="text-[14px] text-[#1D1D1F] font-medium nav-link transition">Contact us</a>
           </nav>
 
           {/* Right icons */}
@@ -52,10 +54,10 @@ export default function Header() {
       {mobileOpen && (
         <div className="md:hidden bg-[#E6E8EA] border-t border-black/5 px-6 py-5">
           <nav className="flex flex-col gap-4">
-            <Link to="/store" className="text-[15px] font-medium text-[#1D1D1F]" onClick={() => setMobileOpen(false)}>Products</Link>
-            <a href="#research" className="text-[15px] font-medium text-[#1D1D1F]">Research</a>
-            <a href="#partner" className="text-[15px] font-medium text-[#1D1D1F]">Partner Program</a>
-            <a href="#contact" className="text-[15px] font-medium text-[#1D1D1F]">Contact us</a>
+            <Link to="/store" className={`text-[15px] font-medium transition ${isActive('/store') ? 'text-[#1A5C30]' : 'text-[#1D1D1F]'}`} onClick={() => setMobileOpen(false)}>Products</Link>
+            <a href="#research" className="text-[15px] font-medium text-[#1D1D1F] transition hover:text-[#1A5C30]">Research</a>
+            <a href="#partner" className="text-[15px] font-medium text-[#1D1D1F] transition hover:text-[#1A5C30]">Partner Program</a>
+            <a href="#contact" className="text-[15px] font-medium text-[#1D1D1F] transition hover:text-[#1A5C30]">Contact us</a>
           </nav>
         </div>
       )}

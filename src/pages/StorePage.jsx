@@ -70,7 +70,7 @@ export default function StorePage() {
           <div className="h-10 w-48 bg-[#F5F5F7] rounded-lg animate-pulse mb-3" />
           <div className="h-5 w-80 bg-[#F5F5F7] rounded-lg animate-pulse" />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-7 lg:gap-8">
           {[...Array(8)].map((_, i) => (
             <div key={i} className="animate-pulse">
               <div className="aspect-square bg-[#F5F5F7] rounded-2xl mb-4" />
@@ -159,7 +159,7 @@ export default function StorePage() {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-7 lg:gap-8">
         {filtered.map((product, i) => (
           <ProductCard key={product.id} product={product} index={i} />
         ))}
