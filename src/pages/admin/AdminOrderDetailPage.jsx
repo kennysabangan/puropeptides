@@ -69,6 +69,26 @@ export default function AdminOrderDetailPage() {
       </div>
 
       <div className="bg-[#FBFBFD] rounded-2xl p-5 space-y-3">
+        <p className="text-[13px] font-medium text-[#1D1D1F]">Payment</p>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-[12px]">
+          <PayRow label="Status" value={order.payment_status || '—'} />
+          <PayRow
+            label="Paid"
+            value={
+              order.pay_amount && order.pay_currency
+                ? `${Number(order.pay_amount).toFixed(8)} ${String(order.pay_currency).toUpperCase()}`
+                : '—'
+            }
+          />
+          <PayRow label="Invoice ID" value={order.nowpayments_invoice_id || '—'} mono />
+          <PayRow label="Payment ID" value={order.nowpayments_payment_id || '—'} mono />
+          {order.pay_address && (
+            <PayRow label="Pay address" value={order.pay_address} mono colSpan />
+          )}
+        </div>
+      </div>
+
+      <div className="bg-[#FBFBFD] rounded-2xl p-5 space-y-3">
         <p className="text-[13px] font-medium text-[#1D1D1F]">Status</p>
         <div className="flex flex-wrap gap-2">
           {STATUSES.map((s) => (
@@ -160,6 +180,15 @@ function Row({ label, value }) {
     <div className="flex justify-between">
       <span className="text-[#86868B]">{label}</span>
       <span className="text-[#1D1D1F] font-medium">{value}</span>
+    </div>
+  )
+}
+
+function PayRow({ label, value, mono = false, colSpan = false }) {
+  return (
+    <div className={colSpan ? 'col-span-2' : ''}>
+      <span className="text-[#86868B]">{label}: </span>
+      <span className={`text-[#1D1D1F] ${mono ? 'font-mono break-all' : 'font-medium capitalize'}`}>{value}</span>
     </div>
   )
 }
