@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProduct } from '../lib/supabase'
 import { useCart } from '../context/CartContext'
+import { getPrimaryImage, getGalleryImages } from '../lib/productImage'
 
 export default function ProductPage() {
   const { id } = useParams()
@@ -80,8 +81,7 @@ export default function ProductPage() {
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Image Panel */}
         <div className="bg-[#F5F5F7] rounded-[24px] p-8 md:p-12 flex flex-col items-center justify-center min-h-[380px] md:min-h-[520px]">
-          <img src={`/images/products/${product.slug}/${product.slug}-vial.png`} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
-
+          <img src={getPrimaryImage(product)} alt={product.name} className="w-40 h-auto object-contain" style={{ maxHeight: '340px' }} />
         </div>
 
         {/* Details Panel */}
@@ -129,7 +129,21 @@ export default function ProductPage() {
 
           {/* Price */}
           <div className="mb-7">
-            <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1D1D1F]">${(product.price * quantity).toFixed(2)}</span>
+            {(() => {
+              const unitPrice = product.price * (selectedBundle === 2 ? 0.95 : selectedBundle >= 3 ? 0.925 : 1)
+              const totalPrice = unitPrice * selectedBundle * quantity
+              const originalTotal = product.price * selectedBundle * quantity
+              const saved = originalTotal - totalPrice
+              return (
+                <div>
+                  <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1D1D1F]">${totalPrice.toFixed(2)}</span>
+                  {saved > 0 && (
+                    <span className="ml-2 text-[14px] text-[#34C759] font-medium">You save ${saved.toFixed(2)}</span>
+                  )}
+                  <p className="text-[13px] text-[#86868B] mt-1">${unitPrice.toFixed(2)} per bottle</p>
+                </div>
+              )
+            })()}
           </div>
 
           {/* Bundle & Save */}

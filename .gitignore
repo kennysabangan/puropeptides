@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 .vercel
 .env
+
+# Python bytecode (from .claude/skills/*/scripts/)
+__pycache__/
+*.pyc

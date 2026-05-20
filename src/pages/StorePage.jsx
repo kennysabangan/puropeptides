@@ -1,8 +1,23 @@
 import { useState, useEffect, useMemo } from 'react'
 import { getProducts } from '../lib/supabase'
 import ProductCard from '../components/ProductCard'
+import Select from '../components/Select'
 
-const fallbackCategories = ['Tissue Repair', 'Dermal', 'Cellular', 'Neuro', 'Circadian']
+const SortIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <line x1="3" y1="6" x2="13" y2="6" />
+    <line x1="3" y1="12" x2="11" y2="12" />
+    <line x1="3" y1="18" x2="9" y2="18" />
+    <polyline points="17 8 17 18 21 14" />
+  </svg>
+)
+
+const SORT_OPTIONS = [
+  { value: 'default', label: 'Featured' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'name', label: 'Name: A → Z' },
+]
 
 export default function StorePage() {
   const [products, setProducts] = useState([])
@@ -10,7 +25,7 @@ export default function StorePage() {
   const [error, setError] = useState(null)
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('default')
-  const [activeCategory, setActiveCategory] = useState(null)
+  const [activeCategory, setActiveCategory] = useState(null) // category slug
 
   useEffect(() => {
     getProducts()
@@ -18,9 +33,17 @@ export default function StorePage() {
       .catch(err => { setError(err.message); setLoading(false) })
   }, [])
 
+  // Deduplicate categories across products, ordered by sort_order.
   const categories = useMemo(() => {
-    const cats = [...new Set(products.map(p => p.compound_type).filter(Boolean))]
-    return cats.length > 0 ? cats : fallbackCategories
+    const map = new Map() // slug -> { slug, name, sort_order }
+    for (const p of products) {
+      for (const c of (p.categories || [])) {
+        if (!map.has(c.slug)) map.set(c.slug, c)
+      }
+    }
+    return [...map.values()].sort((a, b) =>
+      (a.sort_order ?? 999) - (b.sort_order ?? 999) || a.name.localeCompare(b.name),
+    )
   }, [products])
 
   const filtered = useMemo(() => {
@@ -30,7 +53,9 @@ export default function StorePage() {
       list = list.filter(p => p.name.toLowerCase().includes(q))
     }
     if (activeCategory) {
-      list = list.filter(p => p.compound_type === activeCategory)
+      list = list.filter(p =>
+        (p.categories || []).some(c => c.slug === activeCategory),
+      )
     }
     if (sort === 'price-asc') list.sort((a, b) => a.price - b.price)
     if (sort === 'price-desc') list.sort((a, b) => b.price - a.price)
@@ -72,7 +97,7 @@ export default function StorePage() {
       {/* Header */}
       <div className="mb-12">
         <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-3">All Products</h1>
-        <p className="text-[#86868B] text-[15px]">Premium research peptides for verified researchers</p>
+        <p className="text-[#86868B] text-[15px]">USA-manufactured research peptides with 99%+ purity. Domestic shipping, no customs.</p>
       </div>
 
       {/* Search & Sort */}
@@ -89,16 +114,17 @@ export default function StorePage() {
             className="w-full pl-11 pr-4 py-3 border border-[#E8E8ED] rounded-full text-[14px] bg-[#FBFBFD] focus:outline-none focus:border-[#1D1D1F]/30 focus:bg-white transition"
           />
         </div>
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-          className="px-5 py-3 border border-[#E8E8ED] rounded-full text-[14px] bg-[#FBFBFD] focus:outline-none focus:border-[#1D1D1F]/30 transition appearance-none cursor-pointer"
-        >
-          <option value="default">Sort by</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="name">Name</option>
-        </select>
+        <div className="flex items-center gap-3 sm:ml-auto">
+          <span className="text-[13px] text-[#86868B] hidden sm:inline">Sort by:</span>
+          <Select
+            value={sort}
+            onChange={setSort}
+            options={SORT_OPTIONS}
+            leftIcon={<SortIcon />}
+            align="right"
+            ariaLabel="Sort products"
+          />
+        </div>
       </div>
 
       {/* Category Chips */}
@@ -111,13 +137,25 @@ export default function StorePage() {
         </button>
         {categories.map(cat => (
           <button
-            key={cat}
-            onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-            className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${activeCategory === cat ? 'bg-[#1D1D1F] text-white' : 'bg-[#F5F5F7] text-[#86868B] hover:bg-[#E8E8ED]'}`}
+            key={cat.slug}
+            onClick={() => setActiveCategory(activeCategory === cat.slug ? null : cat.slug)}
+            className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${
+              activeCategory === cat.slug
+                ? 'bg-[#1D1D1F] text-white'
+                : 'bg-[#F5F5F7] text-[#1D1D1F]/70 hover:bg-[#E8E8ED] hover:text-[#1D1D1F]'
+            }`}
           >
-            {cat}
+            {cat.name}
           </button>
         ))}
+        {activeCategory && (
+          <button
+            onClick={() => setActiveCategory(null)}
+            className="px-3 py-2 rounded-full text-[13px] font-medium text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#F5F5F7] transition-all"
+          >
+            Clear filter
+          </button>
+        )}
       </div>
 
       {/* Product Grid */}

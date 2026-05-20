@@ -1,64 +1,47 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import AccountMenu from './AccountMenu'
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { getCartCount } = useCart()
+  const { getCartCount, openCart } = useCart()
   const cartCount = getCartCount()
 
   return (
-    <header className="sticky top-0 z-50 glass-nav border-b border-black/5">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-12 md:h-14">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-              <circle cx="14" cy="14" r="13" stroke="#1D1D1F" strokeWidth="1.5" />
-              <path d="M10 8v12M18 8v12M10 14h8" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <span className="font-semibold text-[15px] tracking-tight text-[#1D1D1F]">Amino Select</span>
+    <header className="bg-[#E6E8EA] border-b border-black/5">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="flex items-center justify-between h-16 md:h-18">
+          {/* Wordmark */}
+          <Link to="/" className="flex flex-col leading-none">
+            <span className="font-bold text-[26px] tracking-tight text-[#1D1D1F] lowercase">amino</span>
+            <span className="text-[11px] tracking-[0.2em] text-[#1D1D1F]/70 uppercase font-semibold -mt-0.5 self-end">select</span>
           </Link>
 
           {/* Center Nav */}
-          <nav className="hidden md:flex items-center gap-7">
-            <Link to="/store" className="text-[13px] text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition font-medium">Products</Link>
-            <a href="#" className="text-[13px] text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition font-medium">Research</a>
-            <a href="#" className="text-[13px] text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition font-medium">Partner Program</a>
-            <a href="#" className="text-[13px] text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition font-medium">Contact</a>
+          <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+            <Link to="/store" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Products</Link>
+            <a href="#research" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Research</a>
+            <a href="#partner" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Partner Program</a>
+            <a href="#contact" className="text-[14px] text-[#1D1D1F] hover:opacity-60 transition font-medium">Contact us</a>
           </nav>
 
-          {/* Right */}
-          <div className="flex items-center gap-3">
-            <button className="text-[#1D1D1F]/70 hover:text-[#1D1D1F] transition">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
+          {/* Right icons */}
+          <div className="flex items-center gap-5">
+            <AccountMenu />
+            <button onClick={openCart} aria-label="Open cart" className="relative text-[#1D1D1F]/80 hover:text-[#1D1D1F] transition">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
+              <span className="absolute -top-2 -right-2 bg-[#1D1D1F] text-white text-[10px] font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center px-1">
+                {cartCount > 99 ? '99+' : cartCount}
+              </span>
             </button>
-            <Link to="/cart" className="relative text-[#1D1D1F]/70 hover:text-[#1D1D1F] transition">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="9" cy="21" r="1" />
-                <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-              {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-[#FF3B30] text-white text-[9px] font-bold min-w-[16px] h-4 rounded-full flex items-center justify-center px-1">
-                  {cartCount > 99 ? '99+' : cartCount}
-                </span>
-              )}
-            </Link>
-            <button className="md:hidden text-[#1D1D1F]" onClick={() => setMobileOpen(!mobileOpen)}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                {mobileOpen ? (
-                  <>
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </>
-                ) : (
-                  <>
-                    <path d="M3 12h18M3 6h18M3 18h18" />
-                  </>
-                )}
+            <button className="md:hidden text-[#1D1D1F]" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                {mobileOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M3 12h18M3 6h18M3 18h18" />}
               </svg>
             </button>
           </div>
@@ -67,12 +50,12 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <div className="md:hidden glass-nav border-t border-black/5 px-6 py-5">
+        <div className="md:hidden bg-[#E6E8EA] border-t border-black/5 px-6 py-5">
           <nav className="flex flex-col gap-4">
             <Link to="/store" className="text-[15px] font-medium text-[#1D1D1F]" onClick={() => setMobileOpen(false)}>Products</Link>
-            <a href="#" className="text-[15px] font-medium text-[#1D1D1F]">Research</a>
-            <a href="#" className="text-[15px] font-medium text-[#1D1D1F]">Partner Program</a>
-            <a href="#" className="text-[15px] font-medium text-[#1D1D1F]">Contact</a>
+            <a href="#research" className="text-[15px] font-medium text-[#1D1D1F]">Research</a>
+            <a href="#partner" className="text-[15px] font-medium text-[#1D1D1F]">Partner Program</a>
+            <a href="#contact" className="text-[15px] font-medium text-[#1D1D1F]">Contact us</a>
           </nav>
         </div>
       )}
