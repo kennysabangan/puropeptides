@@ -96,7 +96,7 @@ export default function StorePage() {
     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-14 md:py-20">
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-3">All Products</h1>
+        <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-3">Shop our <em className="not-italic text-[#1a5c3a]">research collection</em></h1>
         <p className="text-[#86868B] text-[15px]">USA-manufactured research peptides with 99%+ purity. Domestic shipping, no customs.</p>
       </div>
 
@@ -131,7 +131,7 @@ export default function StorePage() {
       <div className="flex flex-wrap gap-2 mb-10">
         <button
           onClick={() => setActiveCategory(null)}
-          className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${!activeCategory ? 'bg-[#1D1D1F] text-white' : 'bg-[#F5F5F7] text-[#86868B] hover:bg-[#E8E8ED]'}`}
+          className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${!activeCategory ? 'bg-[#1a5c3a] text-white' : 'bg-white text-[#1a5c3a] border border-[#1a5c3a]/20 hover:bg-[#1a5c3a]/5'}`}
         >
           All
         </button>
@@ -141,8 +141,8 @@ export default function StorePage() {
             onClick={() => setActiveCategory(activeCategory === cat.slug ? null : cat.slug)}
             className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all ${
               activeCategory === cat.slug
-                ? 'bg-[#1D1D1F] text-white'
-                : 'bg-[#F5F5F7] text-[#1D1D1F]/70 hover:bg-[#E8E8ED] hover:text-[#1D1D1F]'
+                ? 'bg-[#1a5c3a] text-white'
+                : 'bg-white text-[#1a5c3a] border border-[#1a5c3a]/20 hover:bg-[#1a5c3a]/5'
             }`}
           >
             {cat.name}
@@ -151,7 +151,7 @@ export default function StorePage() {
         {activeCategory && (
           <button
             onClick={() => setActiveCategory(null)}
-            className="px-3 py-2 rounded-full text-[13px] font-medium text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#F5F5F7] transition-all"
+            className="px-3 py-2 rounded-full text-[13px] font-medium text-[#86868B] hover:text-[#1a5c3a] hover:bg-[#1a5c3a]/5 transition-all"
           >
             Clear filter
           </button>
