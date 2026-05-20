@@ -12,7 +12,7 @@ export function getPrimaryImage(product) {
 export function getHeroImage(product) {
   if (product?.image_url) return product.image_url
   if (!product?.slug) return ''
-  return `/images/products/${product.slug}/00.png`
+  return `/images/products/${product.slug}/${product.slug}-vial.png`
 }
 
 export function getGalleryImages(product) {
@@ -21,6 +21,6 @@ export function getGalleryImages(product) {
   }
   if (!product?.slug) return []
   return Array.from({ length: 5 }, (_, i) =>
-    `/images/products/${product.slug}/${String(i).padStart(2, '0')}.png`,
+    `/images/products/${product.slug}/${product.slug}-vial.png`,
   )
 }

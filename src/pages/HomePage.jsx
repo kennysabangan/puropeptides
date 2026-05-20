@@ -48,7 +48,7 @@ const featuredProducts = [
 ]
 
 function productImg(id) {
-  return `/images/products/${id}/00.png`
+  return `/images/products/${id}/${id}-vial.png`
 }
 
 /* ─── Reusable icons ─── */
@@ -313,19 +313,19 @@ export default function HomePage() {
           {/* Right — dark column with floating vials */}
           <div className="relative min-h-[400px] lg:min-h-[600px]" style={{ background: 'linear-gradient(180deg, rgba(15,61,36,0.4) 0%, rgba(26,26,26,0.6) 100%)' }}>
             <FloatingVial
-              src="/images/products/amino-h2o/00.png"
+              src="/images/products/amino-h2o/amino-h2o-vial.png"
               alt="Amino H2O"
               className="w-[68%] max-w-[420px] top-1/2 left-1/2"
               style={{ transform: 'translate(-58%, -50%) rotate(-8deg)', filter: 'brightness(1.1)' }}
             />
             <FloatingVial
-              src="/images/products/tb-500/00.png"
+              src="/images/products/tb-500/tb-500-vial.png"
               alt="TB-500"
               className="w-[28%] max-w-[180px] top-[18%] right-[10%]"
               style={{ transform: 'rotate(18deg)', filter: 'brightness(1.1)' }}
             />
             <FloatingVial
-              src="/images/products/bpc-157/00.png"
+              src="/images/products/bpc-157/bpc-157-vial.png"
               alt="BPC-157"
               className="w-[26%] max-w-[170px] bottom-[22%] right-[6%]"
               style={{ transform: 'rotate(-12deg)', filter: 'brightness(1.1)' }}
@@ -340,7 +340,7 @@ export default function HomePage() {
           {/* Left — vial photo */}
           <div className="relative min-h-[400px] lg:min-h-[520px] flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #E8D6E4 0%, #E5D5DE 40%, #D8D2E5 100%)' }}>
             <img
-              src="/images/products/nad-plus/00.png"
+              src="/images/products/nad-plus/nad-plus-vial.png"
               alt="NAD+ vial"
               className="w-[70%] max-w-[420px] drop-shadow-2xl"
               style={{ transform: 'rotate(-8deg)' }}
@@ -565,7 +565,7 @@ export default function HomePage() {
 
           {/* Right — vial showcase */}
           <div className="relative rounded-3xl overflow-hidden min-h-[520px] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #DDE5F0 0%, #E0DAEE 100%)' }}>
-            <img src="/images/products/tb-500/00.png" alt="TB-500" className="w-[60%] max-w-[320px] drop-shadow-2xl" style={{ transform: 'rotate(-6deg)' }} />
+            <img src="/images/products/tb-500/tb-500-vial.png" alt="TB-500" className="w-[60%] max-w-[320px] drop-shadow-2xl" style={{ transform: 'rotate(-6deg)' }} />
 
             {/* Purity badge */}
             <div className="absolute top-6 right-6 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md">
@@ -629,7 +629,7 @@ export default function HomePage() {
       {/* Closing CTA */}
       <section className="relative overflow-hidden" style={{ background: 'linear-gradient(105deg, #E0DDEE 0%, #E4E8D2 55%, #DCEED8 100%)' }}>
         <img
-          src="/images/products/dsip/00.png"
+          src="/images/products/dsip/dsip-vial.png"
           alt=""
           aria-hidden="true"
           className="absolute select-none hidden md:block"

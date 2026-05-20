@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useVerification } from '../context/VerificationContext'
 
 const FLOATING_VIALS = [
-  { src: '/images/products/nad-plus/00.png',   top: '4%',  left: '72%', size: 180, rotate: -12, opacity: 0.55 },
-  { src: '/images/products/bpc-157/00.png',    top: '10%', left: '12%', size: 150, rotate: 18,  opacity: 0.45 },
-  { src: '/images/products/dsip/00.png',       top: '24%', left: '28%', size: 170, rotate: -22, opacity: 0.5  },
-  { src: '/images/products/ghk-cu/00.png',     top: '22%', left: '58%', size: 130, rotate: 14,  opacity: 0.4  },
-  { src: '/images/products/glow/00.png',       top: '64%', left: '20%', size: 220, rotate: 8,   opacity: 0.55 },
-  { src: '/images/products/melanotan-i/00.png',top: '70%', left: '78%', size: 160, rotate: -16, opacity: 0.5  },
-  { src: '/images/products/semax/00.png',      top: '82%', left: '46%', size: 130, rotate: 24,  opacity: 0.45 },
+  { src: '/images/products/nad-plus/nad-plus-vial.png',   top: '4%',  left: '72%', size: 180, rotate: -12, opacity: 0.55 },
+  { src: '/images/products/bpc-157/bpc-157-vial.png',    top: '10%', left: '12%', size: 150, rotate: 18,  opacity: 0.45 },
+  { src: '/images/products/dsip/dsip-vial.png',       top: '24%', left: '28%', size: 170, rotate: -22, opacity: 0.5  },
+  { src: '/images/products/ghk-cu/ghk-cu-vial.png',     top: '22%', left: '58%', size: 130, rotate: 14,  opacity: 0.4  },
+  { src: '/images/products/glow/glow-vial.png',       top: '64%', left: '20%', size: 220, rotate: 8,   opacity: 0.55 },
+  { src: '/images/products/melanotan-i/melanotan-i-vial.png',top: '70%', left: '78%', size: 160, rotate: -16, opacity: 0.5  },
+  { src: '/images/products/semax/semax-vial.png',      top: '82%', left: '46%', size: 130, rotate: 24,  opacity: 0.45 },
 ]
 
 export default function ResearcherGate() {
