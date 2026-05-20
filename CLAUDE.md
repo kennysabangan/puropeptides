@@ -48,7 +48,33 @@ reintroduce old names.
 - Migrations to apply in order via Supabase SQL Editor:
   `002_auth_and_profiles.sql`, `003_carts.sql`, then create a public
   Storage bucket named `certificates` and apply
-  `004_storage_certificates.sql`.
+  `004_storage_certificates.sql`, `005_storage_product_images.sql`,
+  `006_product_categories.sql`, then `007_orders_payments.sql`
+  (NowPayments fields on `orders`).
 - Signed-in users get server-synced carts (table `carts`). Anonymous
   carts stay in localStorage. Sign-in additively merges local cart →
   server cart.
+
+## Checkout — NowPayments
+
+Crypto checkout uses NowPayments hosted invoices.
+
+- Flow: Cart drawer → `/checkout` (sign-up gated) → server creates an
+  `orders` row and a NowPayments invoice → redirect to `invoice_url` →
+  customer pays → NowPayments POSTs to `/api/webhooks/nowpayments` →
+  `payment_status` advances; on `finished` the order flips to
+  `status='confirmed'` and the user's server cart is cleared →
+  `/checkout/success` polls `/api/orders/:id/status` until terminal.
+- Serverless functions live under `api/` (Vercel auto-detects them):
+  - `api/checkout.js` — auth'd; recomputes totals server-side from
+    the `products` table; creates the invoice.
+  - `api/webhooks/nowpayments.js` — verifies `x-nowpayments-sig`
+    HMAC-SHA512 over `JSON.stringify` of the alphabetically-sorted body.
+  - `api/orders/[id]/status.js` — auth'd polling endpoint.
+- Required Vercel env vars (see `.env.example`):
+  `SUPABASE_SERVICE_ROLE_KEY`, `NOWPAYMENTS_API_KEY`,
+  `NOWPAYMENTS_IPN_SECRET`, `NOWPAYMENTS_ENV` (`sandbox` or `prod`),
+  and `SITE_URL` for invoice redirect URLs.
+- Sandbox vs production: keep `NOWPAYMENTS_ENV=sandbox` until ready,
+  then flip to `prod` and rotate to production API key + IPN secret
+  in one env-var change.
