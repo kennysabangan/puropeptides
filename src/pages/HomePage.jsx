@@ -290,45 +290,45 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#E6E8EA] relative overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[560px]">
-          {/* Left */}
-          <div className="flex items-center px-6 lg:px-16 py-16 lg:py-24 max-w-[640px] lg:max-w-none mx-auto lg:mx-0 lg:ml-auto lg:w-full">
-            <div className="w-full max-w-[480px] lg:ml-auto lg:mr-12">
-              <h1 className="text-[44px] sm:text-[56px] lg:text-[64px] font-bold text-[#1D1D1F] tracking-[-0.03em] leading-[1.05] mb-6">
-                Research Peptides You Can Trust
+      {/* Hero — Dark Orbitrex-style */}
+      <section className="relative overflow-hidden hero-dark-gradient">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+          {/* Left — headline + trust line */}
+          <div className="flex items-center px-6 lg:px-16 py-20 lg:py-28 max-w-[640px] lg:max-w-none mx-auto lg:mx-0 lg:ml-auto lg:w-full">
+            <div className="w-full max-w-[520px] lg:ml-auto lg:mr-12">
+              <h1 className="hero-headline text-[52px] sm:text-[64px] lg:text-[72px] font-extrabold text-white tracking-[-0.04em] leading-[1.02] mb-6">
+                Research Peptides<br />You Can Trust
               </h1>
-              <p className="text-[15px] sm:text-[17px] text-[#1D1D1F]/75 leading-relaxed mb-8 max-w-[440px]">
-                Research-grade peptides with Certificate of Analysis on every batch.
-                99%+ identity purity, third-party tested.
+              <p className="hero-trust text-[16px] sm:text-[18px] text-[#7FCB98] leading-relaxed mb-10 max-w-[460px]">
+                Research-grade peptides with Certificate of Analysis on every batch.<br />
+                99%+ identity purity, third-party tested in the USA.
               </p>
-              <Link to="/store" className="bg-[#1D1D1F] text-white rounded-full px-7 py-3.5 text-[14px] font-medium inline-flex items-center gap-3 hover:opacity-90 transition">
+              <Link to="/store" className="bg-white text-[#0f3d24] rounded-full px-8 py-4 text-[15px] font-semibold inline-flex items-center gap-3 hover:bg-[#7FCB98] hover:text-white transition-all duration-300">
                 Browse Catalog
                 <Arrow />
               </Link>
             </div>
           </div>
 
-          {/* Right — lavender column with floating vials */}
-          <div className="relative min-h-[400px] lg:min-h-[560px]" style={{ background: 'linear-gradient(135deg, #DDD8EE 0%, #E4DEF0 50%, #D9DEF0 100%)' }}>
+          {/* Right — dark column with floating vials */}
+          <div className="relative min-h-[400px] lg:min-h-[600px]" style={{ background: 'linear-gradient(180deg, rgba(15,61,36,0.4) 0%, rgba(26,26,26,0.6) 100%)' }}>
             <FloatingVial
               src="/images/products/amino-h2o/00.png"
               alt="Amino H2O"
               className="w-[68%] max-w-[420px] top-1/2 left-1/2"
-              style={{ transform: 'translate(-58%, -50%) rotate(-8deg)' }}
+              style={{ transform: 'translate(-58%, -50%) rotate(-8deg)', filter: 'brightness(1.1)' }}
             />
             <FloatingVial
               src="/images/products/tb-500/00.png"
               alt="TB-500"
               className="w-[28%] max-w-[180px] top-[18%] right-[10%]"
-              style={{ transform: 'rotate(18deg)' }}
+              style={{ transform: 'rotate(18deg)', filter: 'brightness(1.1)' }}
             />
             <FloatingVial
               src="/images/products/bpc-157/00.png"
               alt="BPC-157"
               className="w-[26%] max-w-[170px] bottom-[22%] right-[6%]"
-              style={{ transform: 'rotate(-12deg)' }}
+              style={{ transform: 'rotate(-12deg)', filter: 'brightness(1.1)' }}
             />
           </div>
         </div>

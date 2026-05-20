@@ -129,7 +129,21 @@ export default function ProductPage() {
 
           {/* Price */}
           <div className="mb-7">
-            <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1D1D1F]">${(product.price * quantity).toFixed(2)}</span>
+            {(() => {
+              const unitPrice = product.price * (selectedBundle === 2 ? 0.95 : selectedBundle >= 3 ? 0.925 : 1)
+              const totalPrice = unitPrice * selectedBundle * quantity
+              const originalTotal = product.price * selectedBundle * quantity
+              const saved = originalTotal - totalPrice
+              return (
+                <div>
+                  <span className="text-[clamp(1.5rem,3vw,2rem)] font-bold text-[#1D1D1F]">${totalPrice.toFixed(2)}</span>
+                  {saved > 0 && (
+                    <span className="ml-2 text-[14px] text-[#34C759] font-medium">You save ${saved.toFixed(2)}</span>
+                  )}
+                  <p className="text-[13px] text-[#86868B] mt-1">${unitPrice.toFixed(2)} per bottle</p>
+                </div>
+              )
+            })()}
           </div>
 
           {/* Bundle & Save */}

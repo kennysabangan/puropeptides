@@ -97,7 +97,7 @@ export default function StorePage() {
       {/* Header */}
       <div className="mb-12">
         <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-3">All Products</h1>
-        <p className="text-[#86868B] text-[15px]">Premium research peptides with 99%+ purity</p>
+        <p className="text-[#86868B] text-[15px]">USA-manufactured research peptides with 99%+ purity. Domestic shipping, no customs.</p>
       </div>
 
       {/* Search & Sort */}

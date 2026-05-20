@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-brand-black: #0D1F12;
+  --color-brand-dark: #132A18;
+  --color-brand-primary: #1A5C30;
+  --color-brand-accent: #2ECC6A;
+  --color-brand-muted: #3A7A4E;
+  --color-brand-light: #E8F5EC;
   --color-apple-black: #1D1D1F;
   --color-apple-gray: #86868B;
   --color-apple-green: #34C759;
@@ -20,7 +26,6 @@ a, button, [role="button"], label {
   touch-action: manipulation;
 }
 
-/* Tailwind v4 dropped the UA `cursor: pointer` on buttons — put it back. */
 button:not(:disabled):not([aria-disabled="true"]),
 [role="button"]:not([aria-disabled="true"]),
 [type="button"]:not(:disabled),
@@ -44,15 +49,44 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Apple-style frosted glass navbar */
+/* ─── Dark Hero (Orbitrex-inspired) ─── */
+.hero-dark-gradient {
+  background: linear-gradient(135deg, #0f3d24 0%, #132a18 40%, #1a1a1a 100%);
+}
+
+.hero-headline {
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-trust {
+  text-shadow: 0 1px 20px rgba(127, 203, 152, 0.15);
+}
+
+/* ─── Dark hero gradient (Orbitrex-inspired) ─── */
+.hero-dark {
+  background: linear-gradient(150deg, #0D1F12 0%, #132A18 35%, #1A5C30 100%);
+}
+
+.hero-dark-deep {
+  background: linear-gradient(135deg, #070F09 0%, #0D1F12 40%, #132A18 100%);
+}
+
+/* ─── Glass navbars ─── */
+.glass-nav-dark {
+  background: rgba(13, 31, 18, 0.85);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  box-shadow: 0 0.5px 0 0 rgba(255, 255, 255, 0.06);
+}
+
 .glass-nav {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: saturate(200%) blur(25px);
   -webkit-backdrop-filter: saturate(200%) blur(25px);
   box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.08);
 }
 
-/* Apple card shadow */
+/* ─── Shadows ─── */
 .apple-shadow {
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
 }
@@ -61,16 +95,10 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
 }
 
-/* Fade-in on scroll animation */
+/* ─── Animations ─── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in-up {
@@ -82,7 +110,6 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
-/* Stagger children */
 .stagger-children > * {
   opacity: 0;
   transform: translateY(20px);
@@ -103,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0);
 }
 
-/* Smooth accordion */
+/* ─── Accordion ─── */
 .accordion-content {
   display: grid;
   grid-template-rows: 0fr;
@@ -118,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Hide scrollbar */
+/* ─── Scrollbar ─── */
 .scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -127,19 +154,19 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-/* Apple pill button hover */
-.btn-apple {
+/* ─── Button styles ─── */
+.btn-brand {
   transition: all 0.2s ease;
 }
-.btn-apple:hover {
+.btn-brand:hover {
   opacity: 0.85;
   transform: scale(1.02);
 }
-.btn-apple:active {
+.btn-brand:active {
   transform: scale(0.98);
 }
 
-/* Subtle card hover lift */
+/* ─── Card lift ─── */
 .card-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -152,11 +179,74 @@ h1, h2, h3, h4, h5, h6 {
   transition-duration: 0.12s;
 }
 
-/* Gradient wash for hero */
-.hero-gradient {
-  background: linear-gradient(145deg, 
-    #F5F5F7 0%, 
-    #F0EDF5 30%, 
-    #EDF0F5 60%, 
-    #F5F5F7 100%);
+/* ─── Brand italic accent (Orbitrex-inspired) ─── */
+.brand-italic {
+  font-style: italic;
+  color: #2ECC6A;
+}
+
+/* ─── Green accent underline for headings ─── */
+.heading-accent {
+  position: relative;
+  display: inline;
+}
+.heading-accent::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #2ECC6A;
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+/* ─── Premium pill filter buttons ─── */
+.pill-filter {
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.pill-filter-active {
+  background: #1A5C30;
+  color: white;
+  border-color: #1A5C30;
+}
+
+.pill-filter-inactive {
+  background: transparent;
+  color: #3A7A4E;
+  border-color: #1A5C3030;
+}
+
+.pill-filter-inactive:hover {
+  background: #E8F5EC;
+  border-color: #1A5C3060;
+  color: #1A5C30;
+}
+
+/* ─── Premium product card ─── */
+.product-card-premium {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 92, 48, 0.06);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(13, 31, 18, 0.1);
+  border-color: rgba(26, 92, 48, 0.12);
+}
+
+/* ─── Orbitrex-style dark section dividers ─── */
+.brand-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #1A5C3040 50%, transparent 100%);
 }
