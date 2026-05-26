@@ -61,7 +61,7 @@ function ProfileForm({ user, profile, refreshProfile }) {
   return (
     <div className="space-y-10 max-w-[520px]">
       <div>
-        <h2 className="text-[18px] font-semibold text-[#1D1D1F] mb-5">Profile</h2>
+        <h2 className="text-[18px] font-semibold text-[#1A1F2E] mb-5">Profile</h2>
         <form onSubmit={handleSaveProfile} className="space-y-3">
           <Field label="Full name" value={fullName} onChange={setFullName} />
           <Field label="Email" type="email" value={email} onChange={setEmail} />
@@ -69,7 +69,7 @@ function ProfileForm({ user, profile, refreshProfile }) {
             type="submit"
             disabled={savingProfile}
             className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition ${
-              savingProfile ? 'bg-[#1D1D1F]/30 text-white cursor-not-allowed' : 'bg-[#1D1D1F] text-white btn-apple'
+              savingProfile ? 'bg-[#1A1F2E]/30 text-white cursor-not-allowed' : 'bg-[#1A1F2E] text-white btn-apple'
             }`}
           >
             {savingProfile ? 'Saving…' : 'Save'}
@@ -78,7 +78,7 @@ function ProfileForm({ user, profile, refreshProfile }) {
       </div>
 
       <div>
-        <h2 className="text-[18px] font-semibold text-[#1D1D1F] mb-5">Password</h2>
+        <h2 className="text-[18px] font-semibold text-[#1A1F2E] mb-5">Password</h2>
         <form onSubmit={handleChangePassword} className="space-y-3">
           <Field label="New password" type="password" value={password} onChange={setPassword} minLength={8} />
           <button
@@ -86,8 +86,8 @@ function ProfileForm({ user, profile, refreshProfile }) {
             disabled={savingPassword || password.length < 8}
             className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition ${
               savingPassword || password.length < 8
-                ? 'bg-[#1D1D1F]/30 text-white cursor-not-allowed'
-                : 'bg-[#1D1D1F] text-white btn-apple'
+                ? 'bg-[#1A1F2E]/30 text-white cursor-not-allowed'
+                : 'bg-[#1A1F2E] text-white btn-apple'
             }`}
           >
             {savingPassword ? 'Updating…' : 'Update password'}
@@ -104,12 +104,12 @@ function ProfileForm({ user, profile, refreshProfile }) {
 function Field({ label, value, onChange, type = 'text', ...rest }) {
   return (
     <div>
-      <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">{label}</label>
+      <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1D1D1F] outline-none focus:border-[#1D1D1F] transition"
+        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1A1F2E] outline-none focus:border-[#1A1F2E] transition"
         {...rest}
       />
     </div>

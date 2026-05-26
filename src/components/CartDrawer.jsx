@@ -70,15 +70,15 @@ export default function CartDrawer() {
         {/* Header */}
         <header className="flex items-center justify-between px-6 py-5 border-b border-black/[0.07] flex-shrink-0">
           <div>
-            <h2 className="text-[18px] font-bold text-[#1D1D1F] tracking-tight">Your Cart</h2>
-            <p className="text-[12px] text-[#86868B] mt-0.5">
+            <h2 className="text-[18px] font-bold text-[#1A1F2E] tracking-tight">Your Cart</h2>
+            <p className="text-[12px] text-[#8B95A5] mt-0.5">
               {itemCount === 0 ? 'Empty' : `${itemCount} item${itemCount !== 1 ? 's' : ''}`}
             </p>
           </div>
           <button
             onClick={closeCart}
             aria-label="Close cart"
-            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-black/5 text-[#1D1D1F]/70 hover:text-[#1D1D1F] transition"
+            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-black/5 text-[#1A1F2E]/70 hover:text-[#1A1F2E] transition"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <path d="M18 6L6 18M6 6l12 12" />
@@ -89,18 +89,18 @@ export default function CartDrawer() {
         {/* Body */}
         {items.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-black/[0.04] flex items-center justify-center mb-5 text-[#1D1D1F]/50">
+            <div className="w-16 h-16 rounded-full bg-black/[0.04] flex items-center justify-center mb-5 text-[#1A1F2E]/50">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
             </div>
-            <p className="text-[15px] font-semibold text-[#1D1D1F] mb-1">Your cart is empty</p>
-            <p className="text-[13px] text-[#86868B] mb-6">Add some research peptides to get started.</p>
+            <p className="text-[15px] font-semibold text-[#1A1F2E] mb-1">Your cart is empty</p>
+            <p className="text-[13px] text-[#8B95A5] mb-6">Add some research peptides to get started.</p>
             <button
               onClick={closeCart}
-              className="bg-[#1D1D1F] text-white rounded-full px-6 py-2.5 text-[13px] font-medium hover:opacity-90 transition"
+              className="bg-[#1A1F2E] text-white rounded-full px-6 py-2.5 text-[13px] font-medium hover:opacity-90 transition"
             >
               Continue Shopping
             </button>
@@ -122,35 +122,35 @@ export default function CartDrawer() {
                     <BottleThumb product={item.product} index={i} />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-semibold text-[14px] text-[#1D1D1F] leading-tight truncate">{item.product.name}</h3>
+                        <h3 className="font-semibold text-[14px] text-[#1A1F2E] leading-tight truncate">{item.product.name}</h3>
                         <button
                           onClick={() => removeFromCart(i)}
                           aria-label={`Remove ${item.product.name}`}
-                          className="text-[#86868B] hover:text-[#FF3B30] transition p-0.5 flex-shrink-0"
+                          className="text-[#8B95A5] hover:text-[#FF3B30] transition p-0.5 flex-shrink-0"
                         >
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
                             <path d="M18 6L6 18M6 6l12 12" />
                           </svg>
                         </button>
                       </div>
-                      <p className="text-[12px] text-[#86868B] mb-2">
+                      <p className="text-[12px] text-[#8B95A5] mb-2">
                         {item.dosage} · {item.bundleType === 1 ? '1 Bottle' : item.bundleType === 2 ? '2 Bottles' : '3+ Bottles'}
                       </p>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center border border-[#E8E8ED] rounded-full">
                           <button
                             onClick={() => updateQuantity(i, item.quantity - 1)}
-                            className="w-7 h-7 flex items-center justify-center text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-l-full transition text-[12px]"
+                            className="w-7 h-7 flex items-center justify-center text-[#1A1F2E] hover:bg-[#F5F5F7] rounded-l-full transition text-[12px]"
                             aria-label="Decrease quantity"
                           >−</button>
-                          <span className="w-7 text-center text-[12px] font-medium text-[#1D1D1F]">{item.quantity}</span>
+                          <span className="w-7 text-center text-[12px] font-medium text-[#1A1F2E]">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(i, item.quantity + 1)}
-                            className="w-7 h-7 flex items-center justify-center text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-r-full transition text-[12px]"
+                            className="w-7 h-7 flex items-center justify-center text-[#1A1F2E] hover:bg-[#F5F5F7] rounded-r-full transition text-[12px]"
                             aria-label="Increase quantity"
                           >+</button>
                         </div>
-                        <p className="font-semibold text-[14px] text-[#1D1D1F]">${(unitPrice * item.quantity).toFixed(2)}</p>
+                        <p className="font-semibold text-[14px] text-[#1A1F2E]">${(unitPrice * item.quantity).toFixed(2)}</p>
                       </div>
                     </div>
                   </div>
@@ -162,50 +162,50 @@ export default function CartDrawer() {
             <footer className="border-t border-black/[0.07] px-6 py-5 flex-shrink-0 bg-white">
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-[13px]">
-                  <span className="text-[#86868B]">Subtotal</span>
-                  <span className="text-[#1D1D1F] font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="text-[#8B95A5]">Subtotal</span>
+                  <span className="text-[#1A1F2E] font-medium">${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[13px]">
-                  <span className="text-[#86868B]">Shipping</span>
-                  <span className="text-[#1D1D1F] font-medium">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+                  <span className="text-[#8B95A5]">Shipping</span>
+                  <span className="text-[#1A1F2E] font-medium">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
                 </div>
                 {shipping > 0 && (
-                  <p className="text-[11px] text-[#86868B]">Free shipping on orders over $150</p>
+                  <p className="text-[11px] text-[#8B95A5]">Free shipping on orders over $150</p>
                 )}
                 <div className="border-t border-[#E8E8ED] pt-2 flex justify-between items-center">
-                  <span className="font-semibold text-[14px] text-[#1D1D1F]">Total</span>
-                  <span className="font-bold text-[18px] text-[#1D1D1F]">${total.toFixed(2)}</span>
+                  <span className="font-semibold text-[14px] text-[#1A1F2E]">Total</span>
+                  <span className="font-bold text-[18px] text-[#1A1F2E]">${total.toFixed(2)}</span>
                 </div>
               </div>
               {!authLoading && !user ? (
                 <>
                   <button
                     onClick={() => goAuth('/register')}
-                    className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition"
+                    className="w-full bg-[#1A1F2E] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition"
                   >
                     Create account to checkout
                   </button>
-                  <p className="text-center text-[12px] text-[#86868B] mt-2.5">
+                  <p className="text-center text-[12px] text-[#8B95A5] mt-2.5">
                     Already have an account?{' '}
                     <button
                       onClick={() => goAuth('/login')}
-                      className="text-[#1D1D1F] font-medium hover:underline"
+                      className="text-[#1A1F2E] font-medium hover:underline"
                     >
                       Sign in
                     </button>
                   </p>
-                  <p className="text-[11px] text-[#86868B] text-center mt-3 leading-snug">
+                  <p className="text-[11px] text-[#8B95A5] text-center mt-3 leading-snug">
                     Your cart is saved — items will be waiting after sign-up.
                   </p>
                 </>
               ) : (
-                <button className="w-full bg-[#1D1D1F] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition">
+                <button className="w-full bg-[#1A1F2E] text-white rounded-full py-3.5 text-[14px] font-medium hover:opacity-90 transition">
                   Checkout
                 </button>
               )}
               <button
                 onClick={closeCart}
-                className="w-full mt-2 text-[12px] text-[#86868B] hover:text-[#1D1D1F] transition py-1"
+                className="w-full mt-2 text-[12px] text-[#8B95A5] hover:text-[#1A1F2E] transition py-1"
               >
                 Continue shopping
               </button>

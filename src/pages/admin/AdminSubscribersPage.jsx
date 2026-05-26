@@ -30,12 +30,12 @@ export default function AdminSubscribersPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[18px] font-semibold text-[#1D1D1F]">Subscribers</h2>
+        <h2 className="text-[18px] font-semibold text-[#1A1F2E]">Subscribers</h2>
         <button
           onClick={handleExport}
           disabled={subs.length === 0}
           className={`px-4 py-2 rounded-full text-[12px] font-medium transition ${
-            subs.length === 0 ? 'bg-[#1D1D1F]/20 text-white cursor-not-allowed' : 'bg-[#1D1D1F] text-white btn-apple'
+            subs.length === 0 ? 'bg-[#1A1F2E]/20 text-white cursor-not-allowed' : 'bg-[#1A1F2E] text-white btn-apple'
           }`}
         >
           Export CSV
@@ -43,13 +43,13 @@ export default function AdminSubscribersPage() {
       </div>
 
       {loading ? (
-        <p className="text-[13px] text-[#86868B]">Loading…</p>
+        <p className="text-[13px] text-[#8B95A5]">Loading…</p>
       ) : subs.length === 0 ? (
-        <p className="text-[13px] text-[#86868B]">No subscribers yet.</p>
+        <p className="text-[13px] text-[#8B95A5]">No subscribers yet.</p>
       ) : (
         <div className="overflow-hidden bg-white border border-black/5 rounded-2xl">
           <table className="w-full text-[13px]">
-            <thead className="bg-[#FBFBFD] text-[#86868B] text-[11px] uppercase tracking-wide">
+            <thead className="bg-[#FAFAF7] text-[#8B95A5] text-[11px] uppercase tracking-wide">
               <tr>
                 <th className="px-4 py-3 text-left">Email</th>
                 <th className="px-4 py-3 text-left">Subscribed</th>
@@ -58,8 +58,8 @@ export default function AdminSubscribersPage() {
             <tbody>
               {subs.map((s) => (
                 <tr key={s.id} className="border-t border-black/5">
-                  <td className="px-4 py-3 text-[#1D1D1F]">{s.email}</td>
-                  <td className="px-4 py-3 text-[#86868B]">{new Date(s.subscribed_at).toLocaleString()}</td>
+                  <td className="px-4 py-3 text-[#1A1F2E]">{s.email}</td>
+                  <td className="px-4 py-3 text-[#8B95A5]">{new Date(s.subscribed_at).toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>

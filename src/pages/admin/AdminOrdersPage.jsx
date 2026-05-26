@@ -36,7 +36,7 @@ export default function AdminOrdersPage() {
 
   return (
     <div>
-      <h2 className="text-[18px] font-semibold text-[#1D1D1F] mb-5">Orders</h2>
+      <h2 className="text-[18px] font-semibold text-[#1A1F2E] mb-5">Orders</h2>
 
       <div className="flex gap-3 mb-4">
         <input
@@ -44,7 +44,7 @@ export default function AdminOrdersPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search order # or email"
-          className="flex-1 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] outline-none focus:border-[#1D1D1F] transition"
+          className="flex-1 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] outline-none focus:border-[#1A1F2E] transition"
         />
         <Select
           value={status}
@@ -56,13 +56,13 @@ export default function AdminOrdersPage() {
       </div>
 
       {loading ? (
-        <p className="text-[13px] text-[#86868B]">Loading…</p>
+        <p className="text-[13px] text-[#8B95A5]">Loading…</p>
       ) : orders.length === 0 ? (
-        <p className="text-[13px] text-[#86868B]">No orders.</p>
+        <p className="text-[13px] text-[#8B95A5]">No orders.</p>
       ) : (
         <div className="overflow-hidden bg-white border border-black/5 rounded-2xl">
           <table className="w-full text-[13px]">
-            <thead className="bg-[#FBFBFD] text-[#86868B] text-[11px] uppercase tracking-wide">
+            <thead className="bg-[#FAFAF7] text-[#8B95A5] text-[11px] uppercase tracking-wide">
               <tr>
                 <th className="px-4 py-3 text-left">Order</th>
                 <th className="px-4 py-3 text-left">Email</th>
@@ -78,18 +78,18 @@ export default function AdminOrdersPage() {
                 const itemCount = (o.order_items || []).reduce((s, i) => s + (i.quantity || 0), 0)
                 return (
                   <tr key={o.id} className="border-t border-black/5">
-                    <td className="px-4 py-3 font-medium text-[#1D1D1F]">{o.order_number}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{o.email}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{new Date(o.created_at).toLocaleDateString()}</td>
+                    <td className="px-4 py-3 font-medium text-[#1A1F2E]">{o.order_number}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{o.email}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{new Date(o.created_at).toLocaleDateString()}</td>
                     <td className="px-4 py-3">
-                      <span className={`inline-block px-2 py-0.5 rounded-full text-[11px] font-medium capitalize ${STATUS_STYLES[o.status] || 'bg-[#F5F5F7] text-[#1D1D1F]'}`}>
+                      <span className={`inline-block px-2 py-0.5 rounded-full text-[11px] font-medium capitalize ${STATUS_STYLES[o.status] || 'bg-[#F5F5F7] text-[#1A1F2E]'}`}>
                         {o.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right text-[#86868B]">{itemCount}</td>
-                    <td className="px-4 py-3 text-right font-semibold text-[#1D1D1F]">${Number(o.total).toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right text-[#8B95A5]">{itemCount}</td>
+                    <td className="px-4 py-3 text-right font-semibold text-[#1A1F2E]">${Number(o.total).toFixed(2)}</td>
                     <td className="px-4 py-3 text-right">
-                      <Link to={`/admin/orders/${o.id}`} className="text-[12px] text-[#1D1D1F] font-medium hover:underline">View</Link>
+                      <Link to={`/admin/orders/${o.id}`} className="text-[12px] text-[#1A1F2E] font-medium hover:underline">View</Link>
                     </td>
                   </tr>
                 )

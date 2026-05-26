@@ -141,12 +141,12 @@ export default function AdminProductEditPage() {
     })
   }
 
-  if (loading) return <p className="text-[13px] text-[#86868B]">Loading…</p>
+  if (loading) return <p className="text-[13px] text-[#8B95A5]">Loading…</p>
 
   return (
     <div>
-      <Link to="/admin/products" className="text-[12px] text-[#86868B] hover:text-[#1D1D1F]">← All products</Link>
-      <h2 className="text-[20px] font-semibold text-[#1D1D1F] mt-1 mb-6">{isNew ? 'New product' : form.name || 'Product'}</h2>
+      <Link to="/admin/products" className="text-[12px] text-[#8B95A5] hover:text-[#1A1F2E]">← All products</Link>
+      <h2 className="text-[20px] font-semibold text-[#1A1F2E] mt-1 mb-6">{isNew ? 'New product' : form.name || 'Product'}</h2>
 
       <form onSubmit={handleSave} className="space-y-6 max-w-[720px]">
         {/* Basic fields */}
@@ -163,12 +163,12 @@ export default function AdminProductEditPage() {
           </div>
           <Field label="Background color" value={form.bg_color || ''} onChange={(v) => setForm({ ...form, bg_color: v })} placeholder="#F5F5F5" />
           <div>
-            <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">Description</label>
+            <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">Description</label>
             <textarea
               value={form.description || ''}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={5}
-              className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1D1D1F] outline-none focus:border-[#1D1D1F] transition"
+              className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1A1F2E] outline-none focus:border-[#1A1F2E] transition"
             />
           </div>
           <div className="flex gap-6">
@@ -178,24 +178,24 @@ export default function AdminProductEditPage() {
         </div>
 
         {/* Primary image */}
-        <div className="bg-[#FBFBFD] rounded-2xl p-5">
-          <p className="text-[13px] font-semibold text-[#1D1D1F] mb-3">Primary image</p>
+        <div className="bg-[#FAFAF7] rounded-2xl p-5">
+          <p className="text-[13px] font-semibold text-[#1A1F2E] mb-3">Primary image</p>
           <div className="flex items-start gap-4">
             <div className="w-24 h-24 rounded-2xl bg-white border border-black/10 flex items-center justify-center overflow-hidden flex-shrink-0">
               {form.image_url ? (
                 <img src={form.image_url} alt="Primary" className="w-full h-full object-contain" />
               ) : (
-                <span className="text-[11px] text-[#86868B]">No image</span>
+                <span className="text-[11px] text-[#8B95A5]">No image</span>
               )}
             </div>
             <div className="flex-1 space-y-2">
-              <p className="text-[12px] text-[#86868B]">
+              <p className="text-[12px] text-[#8B95A5]">
                 Replaces the legacy <code className="text-[11px]">/images/products/{form.slug || '…'}/{(form.slug || 'slug')}-vial.png</code> thumbnail.
                 If empty, the legacy file is still used.
               </p>
               <div className="flex gap-2">
                 <label className={`px-4 py-2 rounded-full text-[12px] font-medium cursor-pointer transition ${
-                  uploadingPrimary ? 'bg-[#1D1D1F]/30 text-white cursor-not-allowed' : 'bg-[#1D1D1F] text-white btn-apple'
+                  uploadingPrimary ? 'bg-[#1A1F2E]/30 text-white cursor-not-allowed' : 'bg-[#1A1F2E] text-white btn-apple'
                 }`}>
                   {uploadingPrimary ? 'Uploading…' : (form.image_url ? 'Replace' : 'Upload')}
                   <input type="file" accept="image/*" className="hidden" onChange={handlePrimaryUpload} disabled={uploadingPrimary} />
@@ -204,7 +204,7 @@ export default function AdminProductEditPage() {
                   <button
                     type="button"
                     onClick={handlePrimaryClear}
-                    className="px-4 py-2 rounded-full text-[12px] font-medium border border-black/10 text-[#1D1D1F] hover:bg-[#F5F5F7] transition"
+                    className="px-4 py-2 rounded-full text-[12px] font-medium border border-black/10 text-[#1A1F2E] hover:bg-[#F5F5F7] transition"
                   >
                     Clear
                   </button>
@@ -215,18 +215,18 @@ export default function AdminProductEditPage() {
         </div>
 
         {/* Gallery */}
-        <div className="bg-[#FBFBFD] rounded-2xl p-5">
+        <div className="bg-[#FAFAF7] rounded-2xl p-5">
           <div className="flex items-center justify-between mb-3">
-            <p className="text-[13px] font-semibold text-[#1D1D1F]">Gallery images</p>
+            <p className="text-[13px] font-semibold text-[#1A1F2E]">Gallery images</p>
             <label className={`px-4 py-2 rounded-full text-[12px] font-medium cursor-pointer transition ${
-              uploadingGallery ? 'bg-[#1D1D1F]/30 text-white cursor-not-allowed' : 'bg-[#1D1D1F] text-white btn-apple'
+              uploadingGallery ? 'bg-[#1A1F2E]/30 text-white cursor-not-allowed' : 'bg-[#1A1F2E] text-white btn-apple'
             }`}>
               {uploadingGallery ? 'Uploading…' : '+ Add images'}
               <input type="file" accept="image/*" multiple className="hidden" onChange={handleGalleryUpload} disabled={uploadingGallery} />
             </label>
           </div>
           {(form.gallery_urls || []).length === 0 ? (
-            <p className="text-[12px] text-[#86868B]">No gallery images. Legacy <code className="text-[11px]">00.png–04.png</code> are used as fallback on the product page.</p>
+            <p className="text-[12px] text-[#8B95A5]">No gallery images. Legacy <code className="text-[11px]">00.png–04.png</code> are used as fallback on the product page.</p>
           ) : (
             <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {form.gallery_urls.map((url, i) => (
@@ -236,10 +236,10 @@ export default function AdminProductEditPage() {
                   </div>
                   <div className="flex items-center justify-between gap-1">
                     <div className="flex gap-1">
-                      <button type="button" onClick={() => moveGallery(i, -1)} disabled={i === 0} className="px-1.5 py-0.5 text-[11px] text-[#1D1D1F] disabled:text-[#86868B]/50 hover:bg-[#F5F5F7] rounded">↑</button>
-                      <button type="button" onClick={() => moveGallery(i, 1)} disabled={i === form.gallery_urls.length - 1} className="px-1.5 py-0.5 text-[11px] text-[#1D1D1F] disabled:text-[#86868B]/50 hover:bg-[#F5F5F7] rounded">↓</button>
+                      <button type="button" onClick={() => moveGallery(i, -1)} disabled={i === 0} className="px-1.5 py-0.5 text-[11px] text-[#1A1F2E] disabled:text-[#8B95A5]/50 hover:bg-[#F5F5F7] rounded">↑</button>
+                      <button type="button" onClick={() => moveGallery(i, 1)} disabled={i === form.gallery_urls.length - 1} className="px-1.5 py-0.5 text-[11px] text-[#1A1F2E] disabled:text-[#8B95A5]/50 hover:bg-[#F5F5F7] rounded">↓</button>
                     </div>
-                    <button type="button" onClick={() => promoteToPrimary(i)} className="text-[10px] text-[#1D1D1F] hover:underline">Set primary</button>
+                    <button type="button" onClick={() => promoteToPrimary(i)} className="text-[10px] text-[#1A1F2E] hover:underline">Set primary</button>
                     <button type="button" onClick={() => removeGallery(i)} className="text-[10px] text-[#FF3B30] hover:underline">Remove</button>
                   </div>
                 </li>
@@ -254,7 +254,7 @@ export default function AdminProductEditPage() {
           type="submit"
           disabled={saving}
           className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition ${
-            saving ? 'bg-[#1D1D1F]/30 text-white cursor-not-allowed' : 'bg-[#1D1D1F] text-white btn-apple'
+            saving ? 'bg-[#1A1F2E]/30 text-white cursor-not-allowed' : 'bg-[#1A1F2E] text-white btn-apple'
           }`}
         >
           {saving ? 'Saving…' : 'Save'}
@@ -267,12 +267,12 @@ export default function AdminProductEditPage() {
 function Field({ label, value, onChange, type = 'text', ...rest }) {
   return (
     <div>
-      <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">{label}</label>
+      <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1D1D1F] outline-none focus:border-[#1D1D1F] transition"
+        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1A1F2E] outline-none focus:border-[#1A1F2E] transition"
         {...rest}
       />
     </div>
@@ -281,12 +281,12 @@ function Field({ label, value, onChange, type = 'text', ...rest }) {
 
 function Check({ label, checked, onChange }) {
   return (
-    <label className="flex items-center gap-2 text-[13px] text-[#1D1D1F]">
+    <label className="flex items-center gap-2 text-[13px] text-[#1A1F2E]">
       <input
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="w-4 h-4 accent-[#1D1D1F]"
+        className="w-4 h-4 accent-[#1A1F2E]"
       />
       {label}
     </label>

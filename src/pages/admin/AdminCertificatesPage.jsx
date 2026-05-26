@@ -83,10 +83,10 @@ export default function AdminCertificatesPage() {
   return (
     <div className="space-y-10">
       <div>
-        <h2 className="text-[18px] font-semibold text-[#1D1D1F] mb-5">Upload COA</h2>
-        <form onSubmit={handleSave} className="space-y-3 bg-[#FBFBFD] rounded-2xl p-5 max-w-[640px]">
+        <h2 className="text-[18px] font-semibold text-[#1A1F2E] mb-5">Upload COA</h2>
+        <form onSubmit={handleSave} className="space-y-3 bg-[#FAFAF7] rounded-2xl p-5 max-w-[640px]">
           <div>
-            <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">Product</label>
+            <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">Product</label>
             <Select
               value={form.product_id}
               onChange={(v) => setForm({ ...form, product_id: v })}
@@ -107,7 +107,7 @@ export default function AdminCertificatesPage() {
           </div>
           <Field label="Tested date" type="date" value={form.tested_date || ''} onChange={(v) => setForm({ ...form, tested_date: v })} />
           <div>
-            <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">COA PDF</label>
+            <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">COA PDF</label>
             <input
               type="file"
               accept="application/pdf"
@@ -120,7 +120,7 @@ export default function AdminCertificatesPage() {
             type="submit"
             disabled={saving}
             className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition ${
-              saving ? 'bg-[#1D1D1F]/30 text-white cursor-not-allowed' : 'bg-[#1D1D1F] text-white btn-apple'
+              saving ? 'bg-[#1A1F2E]/30 text-white cursor-not-allowed' : 'bg-[#1A1F2E] text-white btn-apple'
             }`}
           >
             {saving ? 'Saving…' : 'Save COA'}
@@ -129,15 +129,15 @@ export default function AdminCertificatesPage() {
       </div>
 
       <div>
-        <h2 className="text-[18px] font-semibold text-[#1D1D1F] mb-5">Existing COAs</h2>
+        <h2 className="text-[18px] font-semibold text-[#1A1F2E] mb-5">Existing COAs</h2>
         {loading ? (
-          <p className="text-[13px] text-[#86868B]">Loading…</p>
+          <p className="text-[13px] text-[#8B95A5]">Loading…</p>
         ) : certs.length === 0 ? (
-          <p className="text-[13px] text-[#86868B]">None yet.</p>
+          <p className="text-[13px] text-[#8B95A5]">None yet.</p>
         ) : (
           <div className="overflow-hidden bg-white border border-black/5 rounded-2xl">
             <table className="w-full text-[13px]">
-              <thead className="bg-[#FBFBFD] text-[#86868B] text-[11px] uppercase tracking-wide">
+              <thead className="bg-[#FAFAF7] text-[#8B95A5] text-[11px] uppercase tracking-wide">
                 <tr>
                   <th className="px-4 py-3 text-left">Product</th>
                   <th className="px-4 py-3 text-left">Lot</th>
@@ -151,12 +151,12 @@ export default function AdminCertificatesPage() {
               <tbody>
                 {certs.map((c) => (
                   <tr key={c.id} className="border-t border-black/5">
-                    <td className="px-4 py-3 font-medium text-[#1D1D1F]">{c.products?.name || '—'}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{c.lot_number}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{c.variant}</td>
-                    <td className="px-4 py-3 text-right text-[#1D1D1F]">{Number(c.purity).toFixed(3)}%</td>
-                    <td className="px-4 py-3 text-[#86868B]">{c.tested_date || '—'}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{c.file_name || '—'}</td>
+                    <td className="px-4 py-3 font-medium text-[#1A1F2E]">{c.products?.name || '—'}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{c.lot_number}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{c.variant}</td>
+                    <td className="px-4 py-3 text-right text-[#1A1F2E]">{Number(c.purity).toFixed(3)}%</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{c.tested_date || '—'}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{c.file_name || '—'}</td>
                     <td className="px-4 py-3 text-right">
                       <button onClick={() => handleDelete(c.id)} className="text-[12px] text-[#FF3B30] hover:underline">Delete</button>
                     </td>
@@ -174,12 +174,12 @@ export default function AdminCertificatesPage() {
 function Field({ label, value, onChange, type = 'text', ...rest }) {
   return (
     <div>
-      <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">{label}</label>
+      <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1D1D1F] outline-none focus:border-[#1D1D1F] transition"
+        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1A1F2E] outline-none focus:border-[#1A1F2E] transition"
         {...rest}
       />
     </div>

@@ -25,7 +25,7 @@ const qualitySteps = [
 ]
 
 const commitments = [
-  { title: 'In-House Manufacturing', desc: 'We control every step of production in our U.S. facility — from synthesis to packaging.', color: '#E8F5ED' },
+  { title: 'In-House Manufacturing', desc: 'We control every step of production in our U.S. facility — from synthesis to packaging.', color: '#F7F5F0' },
   { title: 'Batch Traceability', desc: 'Every vial can be traced back to its production batch, raw materials, and test results.', color: '#E8F0FE' },
   { title: 'Continuous Improvement', desc: 'We regularly audit and upgrade our processes to stay ahead of industry standards.', color: '#FFF3E0' },
   { title: 'Transparent Communication', desc: 'We publish testing methodologies and welcome questions about our quality procedures.', color: '#F5F0FF' },
@@ -37,27 +37,27 @@ export default function QualityPage() {
       {/* Hero */}
       <section className="bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-28 md:pt-36 pb-16 md:pb-24 text-center">
-          <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold text-[#1D1D1F] leading-[1.05] tracking-[-0.03em] mb-5">
+          <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold text-[#1A1F2E] leading-[1.05] tracking-[-0.03em] mb-5">
             Our Quality Commitment
           </h1>
-          <p className="text-[#86868B] text-[17px] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#8B95A5] text-[17px] leading-relaxed max-w-2xl mx-auto">
             Every peptide we produce is synthesized, purified, and verified under rigorous quality controls. We don't cut corners — your research depends on it.
           </p>
         </div>
       </section>
 
       {/* The Amino Select Difference */}
-      <FadeSection className="py-20 md:py-28" style={{ backgroundColor: '#FBFBFD' }}>
+      <FadeSection className="py-20 md:py-28" style={{ backgroundColor: '#FAFAF7' }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1D1D1F] text-center tracking-[-0.02em] mb-14">
+          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1A1F2E] text-center tracking-[-0.02em] mb-14">
             The Amino Select Difference
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {differenceCards.map((card) => (
               <div key={card.title} className="bg-white rounded-[20px] p-7 apple-shadow card-lift">
                 <div className="text-2xl mb-4">{card.icon}</div>
-                <h3 className="font-semibold text-[15px] text-[#1D1D1F] mb-2">{card.title}</h3>
-                <p className="text-[13px] text-[#86868B] leading-relaxed">{card.desc}</p>
+                <h3 className="font-semibold text-[15px] text-[#1A1F2E] mb-2">{card.title}</h3>
+                <p className="text-[13px] text-[#8B95A5] leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
@@ -67,18 +67,18 @@ export default function QualityPage() {
       {/* Our Quality Process */}
       <FadeSection className="py-20 md:py-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1D1D1F] text-center tracking-[-0.02em] mb-4">
+          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1A1F2E] text-center tracking-[-0.02em] mb-4">
             Our Quality Process
           </h2>
-          <p className="text-center text-[#86868B] text-[15px] mb-14 max-w-2xl mx-auto">
+          <p className="text-center text-[#8B95A5] text-[15px] mb-14 max-w-2xl mx-auto">
             From raw materials to your lab bench, every step is documented and verified.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {qualitySteps.map((step) => (
               <div key={step.num} className="bg-white rounded-[20px] p-7 apple-shadow">
-                <span className="text-[11px] font-semibold text-[#86868B] tracking-wider">{step.num}</span>
-                <h3 className="font-semibold text-[16px] text-[#1D1D1F] mt-2 mb-2">{step.title}</h3>
-                <p className="text-[13px] text-[#86868B] leading-relaxed">{step.desc}</p>
+                <span className="text-[11px] font-semibold text-[#8B95A5] tracking-wider">{step.num}</span>
+                <h3 className="font-semibold text-[16px] text-[#1A1F2E] mt-2 mb-2">{step.title}</h3>
+                <p className="text-[13px] text-[#8B95A5] leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -88,19 +88,19 @@ export default function QualityPage() {
       {/* Our Commitments */}
       <FadeSection className="py-20 md:py-28" style={{ backgroundColor: '#F5F5F7' }}>
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1D1D1F] text-center tracking-[-0.02em] mb-14">
+          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-[#1A1F2E] text-center tracking-[-0.02em] mb-14">
             Our Commitments
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
             {commitments.map((card) => (
               <div key={card.title} className="bg-white rounded-[20px] p-8 apple-shadow card-lift">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: card.color }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D1D1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1F2E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-[16px] text-[#1D1D1F] mb-2">{card.title}</h3>
-                <p className="text-[14px] text-[#86868B] leading-relaxed">{card.desc}</p>
+                <h3 className="font-semibold text-[16px] text-[#1A1F2E] mb-2">{card.title}</h3>
+                <p className="text-[14px] text-[#8B95A5] leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
@@ -110,15 +110,15 @@ export default function QualityPage() {
       {/* CTA */}
       <FadeSection className="py-24" style={{ background: 'linear-gradient(135deg, #FFFDE7 0%, #F5F0FF 100%)' }}>
         <div className="max-w-[800px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-[clamp(1.5rem,3.5vw,2.25rem)] font-bold text-[#1D1D1F] leading-snug tracking-[-0.02em] mb-4">
+          <h2 className="text-[clamp(1.5rem,3.5vw,2.25rem)] font-bold text-[#1A1F2E] leading-snug tracking-[-0.02em] mb-4">
             See the proof for yourself
           </h2>
-          <p className="text-[#86868B] text-[15px] mb-8">Browse our catalog or review our Certificates of Analysis.</p>
+          <p className="text-[#8B95A5] text-[15px] mb-8">Browse our catalog or review our Certificates of Analysis.</p>
           <div className="flex items-center justify-center gap-4">
-            <Link to="/store" className="btn-apple inline-flex items-center gap-2 bg-[#1D1D1F] text-white text-[15px] font-medium px-8 py-3.5 rounded-full">
+            <Link to="/store" className="btn-apple inline-flex items-center gap-2 bg-[#1A1F2E] text-white text-[15px] font-medium px-8 py-3.5 rounded-full">
               Browse Products
             </Link>
-            <Link to="/coa" className="inline-flex items-center gap-2 border border-[#1D1D1F]/10 text-[#1D1D1F] text-[15px] font-medium px-8 py-3.5 rounded-full hover:bg-[#1D1D1F]/5 transition">
+            <Link to="/coa" className="inline-flex items-center gap-2 border border-[#1A1F2E]/10 text-[#1A1F2E] text-[15px] font-medium px-8 py-3.5 rounded-full hover:bg-[#1A1F2E]/5 transition">
               View COAs
             </Link>
           </div>

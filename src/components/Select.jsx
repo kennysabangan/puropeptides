@@ -96,23 +96,23 @@ export default function Select({
         aria-label={ariaLabel}
         className={`flex items-center gap-2 px-4 py-2.5 rounded-full border text-[13px] font-medium transition select-none ${
           open
-            ? 'border-[#1D1D1F]/40 bg-white shadow-sm'
-            : 'border-[#E8E8ED] bg-[#FBFBFD] hover:bg-white hover:border-[#D1D1D6]'
+            ? 'border-[#1A1F2E]/40 bg-white shadow-sm'
+            : 'border-[#E8E8ED] bg-[#FAFAF7] hover:bg-white hover:border-[#D1D1D6]'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${buttonClassName}`}
       >
         {leftIcon && (
-          <span className={`flex-shrink-0 ${selected ? 'text-[#1D1D1F]' : 'text-[#86868B]'}`}>
+          <span className={`flex-shrink-0 ${selected ? 'text-[#1A1F2E]' : 'text-[#8B95A5]'}`}>
             {leftIcon}
           </span>
         )}
-        <span className={`truncate ${selected ? 'text-[#1D1D1F]' : 'text-[#86868B]'}`}>
+        <span className={`truncate ${selected ? 'text-[#1A1F2E]' : 'text-[#8B95A5]'}`}>
           {selected ? selected.label : placeholder}
         </span>
         <svg
           width="13" height="13" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" strokeWidth="2.2"
           strokeLinecap="round" strokeLinejoin="round"
-          className={`ml-1 text-[#86868B] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          className={`ml-1 text-[#8B95A5] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
           aria-hidden="true"
         >
           <polyline points="6 9 12 15 18 9" />
@@ -147,7 +147,7 @@ export default function Select({
                   onMouseEnter={() => setActiveIndex(i)}
                   onClick={() => choose(opt.value)}
                   className={`w-full text-left px-3.5 py-2 text-[13px] flex items-center justify-between gap-3 transition ${
-                    isSelected ? 'text-[#1D1D1F] font-medium' : 'text-[#1D1D1F]/85'
+                    isSelected ? 'text-[#1A1F2E] font-medium' : 'text-[#1A1F2E]/85'
                   } ${isActive ? 'bg-[#F5F5F7]' : ''}`}
                 >
                   <span className="truncate">{opt.label}</span>
@@ -156,7 +156,7 @@ export default function Select({
                       width="14" height="14" viewBox="0 0 24 24"
                       fill="none" stroke="currentColor" strokeWidth="2.6"
                       strokeLinecap="round" strokeLinejoin="round"
-                      className="text-[#1D1D1F] flex-shrink-0"
+                      className="text-[#1A1F2E] flex-shrink-0"
                       aria-hidden="true"
                     >
                       <polyline points="20 6 9 17 4 12" />

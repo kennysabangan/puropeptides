@@ -69,21 +69,21 @@ export default function AddressesPage() {
     await refresh()
   }
 
-  if (loading) return <p className="text-[13px] text-[#86868B]">Loading…</p>
+  if (loading) return <p className="text-[13px] text-[#8B95A5]">Loading…</p>
 
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-[18px] font-semibold text-[#1D1D1F]">Addresses</h2>
+        <h2 className="text-[18px] font-semibold text-[#1A1F2E]">Addresses</h2>
         {!editing && (
-          <button onClick={startNew} className="px-4 py-2 rounded-full bg-[#1D1D1F] text-white text-[12px] font-medium btn-apple">
+          <button onClick={startNew} className="px-4 py-2 rounded-full bg-[#1A1F2E] text-white text-[12px] font-medium btn-apple">
             + Add
           </button>
         )}
       </div>
 
       {editing ? (
-        <form onSubmit={handleSave} className="space-y-3 bg-[#FBFBFD] rounded-2xl p-5">
+        <form onSubmit={handleSave} className="space-y-3 bg-[#FAFAF7] rounded-2xl p-5">
           <Field label="Full name" value={form.full_name} onChange={(v) => setForm({ ...form, full_name: v })} required />
           <Field label="Address line 1" value={form.line1} onChange={(v) => setForm({ ...form, line1: v })} required />
           <Field label="Address line 2" value={form.line2 || ''} onChange={(v) => setForm({ ...form, line2: v })} />
@@ -96,12 +96,12 @@ export default function AddressesPage() {
             <Field label="Country" value={form.country} onChange={(v) => setForm({ ...form, country: v })} required />
           </div>
           <Field label="Phone" value={form.phone || ''} onChange={(v) => setForm({ ...form, phone: v })} />
-          <label className="flex items-center gap-2 text-[13px] text-[#1D1D1F]">
+          <label className="flex items-center gap-2 text-[13px] text-[#1A1F2E]">
             <input
               type="checkbox"
               checked={form.is_default}
               onChange={(e) => setForm({ ...form, is_default: e.target.checked })}
-              className="w-4 h-4 accent-[#1D1D1F]"
+              className="w-4 h-4 accent-[#1A1F2E]"
             />
             Set as default
           </label>
@@ -113,35 +113,35 @@ export default function AddressesPage() {
               type="submit"
               disabled={saving}
               className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition ${
-                saving ? 'bg-[#1D1D1F]/30 text-white' : 'bg-[#1D1D1F] text-white btn-apple'
+                saving ? 'bg-[#1A1F2E]/30 text-white' : 'bg-[#1A1F2E] text-white btn-apple'
               }`}
             >
               {saving ? 'Saving…' : 'Save'}
             </button>
-            <button type="button" onClick={cancel} className="px-5 py-2.5 rounded-full border border-black/10 text-[13px] font-medium text-[#1D1D1F] hover:bg-[#F5F5F7] transition">
+            <button type="button" onClick={cancel} className="px-5 py-2.5 rounded-full border border-black/10 text-[13px] font-medium text-[#1A1F2E] hover:bg-[#F5F5F7] transition">
               Cancel
             </button>
           </div>
         </form>
       ) : addresses.length === 0 ? (
-        <div className="bg-[#FBFBFD] rounded-2xl p-8 text-center">
-          <p className="text-[13px] text-[#86868B]">No addresses on file.</p>
+        <div className="bg-[#FAFAF7] rounded-2xl p-8 text-center">
+          <p className="text-[13px] text-[#8B95A5]">No addresses on file.</p>
         </div>
       ) : (
         <ul className="space-y-2">
           {addresses.map((a) => (
-            <li key={a.id} className="bg-[#FBFBFD] rounded-2xl p-4 flex items-start justify-between gap-4">
-              <div className="text-[13px] text-[#1D1D1F] leading-relaxed">
+            <li key={a.id} className="bg-[#FAFAF7] rounded-2xl p-4 flex items-start justify-between gap-4">
+              <div className="text-[13px] text-[#1A1F2E] leading-relaxed">
                 <p className="font-medium flex items-center gap-2">
                   {a.full_name}
-                  {a.is_default && <span className="text-[10px] uppercase bg-[#1D1D1F] text-white px-2 py-0.5 rounded-full">Default</span>}
+                  {a.is_default && <span className="text-[10px] uppercase bg-[#1A1F2E] text-white px-2 py-0.5 rounded-full">Default</span>}
                 </p>
                 <p>{a.line1}{a.line2 ? `, ${a.line2}` : ''}</p>
                 <p>{a.city}{a.state ? `, ${a.state}` : ''} {a.postal_code}, {a.country}</p>
-                {a.phone && <p className="text-[#86868B]">{a.phone}</p>}
+                {a.phone && <p className="text-[#8B95A5]">{a.phone}</p>}
               </div>
               <div className="flex gap-2">
-                <button onClick={() => startEdit(a)} className="text-[12px] text-[#1D1D1F] hover:underline">Edit</button>
+                <button onClick={() => startEdit(a)} className="text-[12px] text-[#1A1F2E] hover:underline">Edit</button>
                 <button onClick={() => handleDelete(a.id)} className="text-[12px] text-[#FF3B30] hover:underline">Delete</button>
               </div>
             </li>
@@ -155,12 +155,12 @@ export default function AddressesPage() {
 function Field({ label, value, onChange, type = 'text', ...rest }) {
   return (
     <div>
-      <label className="block text-[12px] font-medium text-[#1D1D1F] mb-1.5">{label}</label>
+      <label className="block text-[12px] font-medium text-[#1A1F2E] mb-1.5">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1D1D1F] outline-none focus:border-[#1D1D1F] transition"
+        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-[14px] text-[#1A1F2E] outline-none focus:border-[#1A1F2E] transition"
         {...rest}
       />
     </div>

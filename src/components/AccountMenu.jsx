@@ -39,7 +39,7 @@ export default function AccountMenu() {
 
   if (loading) {
     return (
-      <button className="text-[#1D1D1F]/40" aria-label="Account">
+      <button className="text-[#1A1F2E]/40" aria-label="Account">
         <UserIcon />
       </button>
     )
@@ -50,15 +50,15 @@ export default function AccountMenu() {
       <div className="relative" ref={ref}>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="text-[#1D1D1F]/70 hover:text-[#1D1D1F] transition"
+          className="text-[#1A1F2E]/70 hover:text-[#1A1F2E] transition"
           aria-label="Account"
         >
           <UserIcon />
         </button>
         {open && (
           <div className="absolute right-0 mt-2 w-44 bg-white rounded-2xl apple-shadow border border-black/5 py-2 z-50">
-            <Link to="/login" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7]">Sign in</Link>
-            <Link to="/register" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7]">Create account</Link>
+            <Link to="/login" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7]">Sign in</Link>
+            <Link to="/register" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7]">Create account</Link>
           </div>
         )}
       </div>
@@ -69,7 +69,7 @@ export default function AccountMenu() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-7 h-7 rounded-full bg-[#1D1D1F] text-white text-[12px] font-semibold flex items-center justify-center hover:opacity-90 transition"
+        className="w-7 h-7 rounded-full bg-[#1A1F2E] text-white text-[12px] font-semibold flex items-center justify-center hover:opacity-90 transition"
         aria-label="Account menu"
       >
         {initialOf(profile, user)}
@@ -77,15 +77,15 @@ export default function AccountMenu() {
       {open && (
         <div className="absolute right-0 mt-2 w-52 bg-white rounded-2xl apple-shadow border border-black/5 py-2 z-50">
           <div className="px-4 py-2 border-b border-black/5">
-            <p className="text-[13px] font-medium text-[#1D1D1F] truncate">{profile?.full_name || 'Account'}</p>
-            <p className="text-[11px] text-[#86868B] truncate">{user.email}</p>
+            <p className="text-[13px] font-medium text-[#1A1F2E] truncate">{profile?.full_name || 'Account'}</p>
+            <p className="text-[11px] text-[#8B95A5] truncate">{user.email}</p>
           </div>
-          <Link to="/account" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7]">Overview</Link>
-          <Link to="/account/orders" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7]">Orders</Link>
-          <Link to="/account/profile" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7]">Profile</Link>
-          <Link to="/account/addresses" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7]">Addresses</Link>
+          <Link to="/account" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7]">Overview</Link>
+          <Link to="/account/orders" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7]">Orders</Link>
+          <Link to="/account/profile" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7]">Profile</Link>
+          <Link to="/account/addresses" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7]">Addresses</Link>
           {isAdmin && (
-            <Link to="/admin" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1D1D1F] hover:bg-[#F5F5F7] border-t border-black/5">
+            <Link to="/admin" onClick={() => setOpen(false)} className="block px-4 py-2 text-[13px] text-[#1A1F2E] hover:bg-[#F5F5F7] border-t border-black/5">
               Admin
             </Link>
           )}

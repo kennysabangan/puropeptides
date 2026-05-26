@@ -33,7 +33,7 @@ export default function AdminOverviewPage() {
     })
   }, [])
 
-  if (!data) return <p className="text-[13px] text-[#86868B]">Loading…</p>
+  if (!data) return <p className="text-[13px] text-[#8B95A5]">Loading…</p>
 
   return (
     <div className="space-y-8">
@@ -50,23 +50,23 @@ export default function AdminOverviewPage() {
 
       <div>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-[15px] font-semibold text-[#1D1D1F]">Recent orders</h2>
-          <Link to="/admin/orders" className="text-[12px] text-[#86868B] hover:text-[#1D1D1F]">View all →</Link>
+          <h2 className="text-[15px] font-semibold text-[#1A1F2E]">Recent orders</h2>
+          <Link to="/admin/orders" className="text-[12px] text-[#8B95A5] hover:text-[#1A1F2E]">View all →</Link>
         </div>
         <ul className="space-y-2">
           {data.recentOrders.map((o) => (
             <li key={o.id}>
               <Link
                 to={`/admin/orders/${o.id}`}
-                className="flex items-center justify-between bg-[#FBFBFD] rounded-2xl px-4 py-3 hover:bg-[#F5F5F7] transition"
+                className="flex items-center justify-between bg-[#FAFAF7] rounded-2xl px-4 py-3 hover:bg-[#F5F5F7] transition"
               >
                 <div>
-                  <p className="text-[13px] font-medium text-[#1D1D1F]">{o.order_number}</p>
-                  <p className="text-[11px] text-[#86868B]">{o.email}</p>
+                  <p className="text-[13px] font-medium text-[#1A1F2E]">{o.order_number}</p>
+                  <p className="text-[11px] text-[#8B95A5]">{o.email}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[13px] font-semibold text-[#1D1D1F]">${Number(o.total).toFixed(2)}</p>
-                  <p className="text-[11px] text-[#86868B] capitalize">{o.status}</p>
+                  <p className="text-[13px] font-semibold text-[#1A1F2E]">${Number(o.total).toFixed(2)}</p>
+                  <p className="text-[11px] text-[#8B95A5] capitalize">{o.status}</p>
                 </div>
               </Link>
             </li>
@@ -79,9 +79,9 @@ export default function AdminOverviewPage() {
 
 function Stat({ label, value, accent }) {
   return (
-    <div className="bg-[#FBFBFD] rounded-2xl p-4">
-      <p className="text-[11px] text-[#86868B] uppercase tracking-wide">{label}</p>
-      <p className={`text-[20px] font-bold mt-1 ${accent === 'warn' ? 'text-[#FF9500]' : 'text-[#1D1D1F]'}`}>{value}</p>
+    <div className="bg-[#FAFAF7] rounded-2xl p-4">
+      <p className="text-[11px] text-[#8B95A5] uppercase tracking-wide">{label}</p>
+      <p className={`text-[20px] font-bold mt-1 ${accent === 'warn' ? 'text-[#FF9500]' : 'text-[#1A1F2E]'}`}>{value}</p>
     </div>
   )
 }

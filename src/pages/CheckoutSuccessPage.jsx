@@ -9,20 +9,20 @@ export default function CheckoutSuccessPage() {
           <path d="M20 6L9 17l-5-5" />
         </svg>
       </div>
-      <h1 className="text-[24px] font-bold text-[#1D1D1F] tracking-tight mb-3">Payment Received</h1>
-      <p className="text-[14px] text-[#86868B] leading-relaxed mb-8 max-w-md mx-auto">
+      <h1 className="text-[24px] font-bold text-[#1A1F2E] tracking-tight mb-3">Payment Received</h1>
+      <p className="text-[14px] text-[#8B95A5] leading-relaxed mb-8 max-w-md mx-auto">
         Your payment is being processed. You'll receive a confirmation email once it settles on-chain.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           to="/account/orders"
-          className="bg-[#1D1D1F] text-white text-[14px] font-medium px-6 py-3 rounded-full hover:opacity-90 transition"
+          className="bg-[#1A1F2E] text-white text-[14px] font-medium px-6 py-3 rounded-full hover:opacity-90 transition"
         >
           View orders
         </Link>
         <Link
           to="/store"
-          className="border border-[#1D1D1F] text-[#1D1D1F] text-[14px] font-medium px-6 py-3 rounded-full hover:bg-[#F5F5F7] transition"
+          className="border border-[#1A1F2E] text-[#1A1F2E] text-[14px] font-medium px-6 py-3 rounded-full hover:bg-[#F5F5F7] transition"
         >
           Continue shopping
         </Link>

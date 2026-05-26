@@ -15,7 +15,7 @@ function bucketByDay(orders) {
 
 function MiniChart({ data, valueKey, format }) {
   if (data.length === 0) {
-    return <p className="text-[12px] text-[#86868B]">No data yet.</p>
+    return <p className="text-[12px] text-[#8B95A5]">No data yet.</p>
   }
   const w = 600
   const h = 160
@@ -26,13 +26,13 @@ function MiniChart({ data, valueKey, format }) {
   const points = ys.map((y, i) => `${xs[i]},${h - pad - (y / max) * (h - pad * 2)}`).join(' ')
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="w-full">
-      <polyline fill="none" stroke="#1D1D1F" strokeWidth="2" points={points} />
+      <polyline fill="none" stroke="#1A1F2E" strokeWidth="2" points={points} />
       {ys.map((y, i) => (
-        <circle key={i} cx={xs[i]} cy={h - pad - (y / max) * (h - pad * 2)} r="3" fill="#1D1D1F" />
+        <circle key={i} cx={xs[i]} cy={h - pad - (y / max) * (h - pad * 2)} r="3" fill="#1A1F2E" />
       ))}
-      <text x={pad} y={h - 4} fontSize="10" fill="#86868B">{data[0]?.day}</text>
-      <text x={w - pad} y={h - 4} fontSize="10" fill="#86868B" textAnchor="end">{data[data.length - 1]?.day}</text>
-      <text x={pad} y={12} fontSize="10" fill="#86868B">max {format ? format(max) : max}</text>
+      <text x={pad} y={h - 4} fontSize="10" fill="#8B95A5">{data[0]?.day}</text>
+      <text x={w - pad} y={h - 4} fontSize="10" fill="#8B95A5" textAnchor="end">{data[data.length - 1]?.day}</text>
+      <text x={pad} y={12} fontSize="10" fill="#8B95A5">max {format ? format(max) : max}</text>
     </svg>
   )
 }
@@ -53,7 +53,7 @@ export default function AdminAnalyticsPage() {
     aov: orders.length ? orders.reduce((s, o) => s + Number(o.total || 0), 0) / orders.length : 0,
   }), [orders])
 
-  if (loading) return <p className="text-[13px] text-[#86868B]">Loading…</p>
+  if (loading) return <p className="text-[13px] text-[#8B95A5]">Loading…</p>
 
   return (
     <div className="space-y-8">
@@ -77,17 +77,17 @@ export default function AdminAnalyticsPage() {
 function Section({ title, children }) {
   return (
     <div>
-      <h2 className="text-[14px] font-semibold text-[#1D1D1F] mb-3">{title}</h2>
-      <div className="bg-[#FBFBFD] rounded-2xl p-5">{children}</div>
+      <h2 className="text-[14px] font-semibold text-[#1A1F2E] mb-3">{title}</h2>
+      <div className="bg-[#FAFAF7] rounded-2xl p-5">{children}</div>
     </div>
   )
 }
 
 function Stat({ label, value }) {
   return (
-    <div className="bg-[#FBFBFD] rounded-2xl p-4">
-      <p className="text-[11px] text-[#86868B] uppercase tracking-wide">{label}</p>
-      <p className="text-[20px] font-bold text-[#1D1D1F] mt-1">{value}</p>
+    <div className="bg-[#FAFAF7] rounded-2xl p-4">
+      <p className="text-[11px] text-[#8B95A5] uppercase tracking-wide">{label}</p>
+      <p className="text-[20px] font-bold text-[#1A1F2E] mt-1">{value}</p>
     </div>
   )
 }

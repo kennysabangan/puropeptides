@@ -34,22 +34,22 @@ export default function AdminCustomersPage() {
 
   return (
     <div>
-      <h2 className="text-[18px] font-semibold text-[#1D1D1F] mb-5">Customers</h2>
+      <h2 className="text-[18px] font-semibold text-[#1A1F2E] mb-5">Customers</h2>
 
       <input
         type="search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search name or email"
-        className="w-full mb-4 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] outline-none focus:border-[#1D1D1F] transition"
+        className="w-full mb-4 rounded-full border border-black/10 bg-white px-4 py-2 text-[13px] outline-none focus:border-[#1A1F2E] transition"
       />
 
       {loading ? (
-        <p className="text-[13px] text-[#86868B]">Loading…</p>
+        <p className="text-[13px] text-[#8B95A5]">Loading…</p>
       ) : (
         <div className="overflow-hidden bg-white border border-black/5 rounded-2xl">
           <table className="w-full text-[13px]">
-            <thead className="bg-[#FBFBFD] text-[#86868B] text-[11px] uppercase tracking-wide">
+            <thead className="bg-[#FAFAF7] text-[#8B95A5] text-[11px] uppercase tracking-wide">
               <tr>
                 <th className="px-4 py-3 text-left">Name</th>
                 <th className="px-4 py-3 text-left">Email</th>
@@ -65,14 +65,14 @@ export default function AdminCustomersPage() {
                 const s = stats[c.id] || { count: 0, spend: 0 }
                 return (
                   <tr key={c.id} className="border-t border-black/5">
-                    <td className="px-4 py-3 font-medium text-[#1D1D1F]">{c.full_name || '—'}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{c.email}</td>
-                    <td className="px-4 py-3 text-[#86868B]">{new Date(c.created_at).toLocaleDateString()}</td>
+                    <td className="px-4 py-3 font-medium text-[#1A1F2E]">{c.full_name || '—'}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{c.email}</td>
+                    <td className="px-4 py-3 text-[#8B95A5]">{new Date(c.created_at).toLocaleDateString()}</td>
                     <td className="px-4 py-3 text-right">{s.count}</td>
-                    <td className="px-4 py-3 text-right font-semibold text-[#1D1D1F]">${s.spend.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right font-semibold text-[#1A1F2E]">${s.spend.toFixed(2)}</td>
                     <td className="px-4 py-3 text-center">{c.is_admin ? '✓' : ''}</td>
                     <td className="px-4 py-3 text-right">
-                      <Link to={`/admin/customers/${c.id}`} className="text-[12px] text-[#1D1D1F] font-medium hover:underline">View</Link>
+                      <Link to={`/admin/customers/${c.id}`} className="text-[12px] text-[#1A1F2E] font-medium hover:underline">View</Link>
                     </td>
                   </tr>
                 )
