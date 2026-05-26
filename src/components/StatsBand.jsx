@@ -8,7 +8,9 @@ const STATS = [
 
 export default function StatsBand() {
   return (
-    <div className="border-t border-white/10">
+    <div className="border-t border-white/10 relative">
+      {/* Lighter gradient at bottom edge */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#1A2235] to-transparent pointer-events-none" />
       {STATS.map((s, i) => (
         <div
           key={s.caption}
