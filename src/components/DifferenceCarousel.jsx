@@ -1,100 +1,121 @@
-import { useRef, useState } from 'react'
-
-const Magnifier = () => (
-  <svg viewBox="0 0 120 120" fill="none" stroke="#2ECC6A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-24 h-24">
-    <circle cx="50" cy="50" r="34" />
-    <line x1="75" y1="75" x2="100" y2="100" />
-    <path d="M38 50l9 9 18-20" />
-  </svg>
-)
-const Microscope = () => (
-  <svg viewBox="0 0 120 120" fill="none" stroke="#2ECC6A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-24 h-24">
-    <path d="M48 30l18 18-12 12-18-18z" />
-    <path d="M57 57l14 14a22 22 0 0 1-28 28" />
-    <line x1="30" y1="100" x2="92" y2="100" />
-    <path d="M40 100a26 26 0 0 0 40-21" />
-    <line x1="60" y1="22" x2="68" y2="30" />
-  </svg>
-)
-const Shield = () => (
-  <svg viewBox="0 0 120 120" fill="none" stroke="#2ECC6A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-24 h-24">
-    <path d="M60 18l34 13v22c0 21-15 38-34 44-19-6-34-23-34-44V31z" />
-    <path d="M44 58l12 12 22-26" />
-  </svg>
-)
+import { useState, useEffect, useCallback } from 'react'
 
 const SLIDES = [
   {
-    title: '3rd-Party Verified COAs and a Proven Track Record',
-    body: 'Every Amino Select compound is verified through rigorous third-party testing by accredited American laboratories. Our Certificates of Analysis confirm purity, identity, and potency — so what is on the label matches what is in the vial.',
-    Icon: Magnifier,
+    title: 'Customer Service Comes First',
+    body: 'We are committed to meeting every customer\'s needs through a responsive support email and a dedicated phone line to a live representative. We stand behind the quality of our products and are here to address any questions or concerns you may have.',
+    image: '/images/homepage/illustration-support.png',
   },
   {
     title: 'Lab Quality, No Markup',
     body: 'Our approach is rooted in precision, discipline, and integrity. We operate with the same mindset used to maintain mission-critical reliability: attention to detail, traceable processes, and continuous improvement.',
-    Icon: Microscope,
+    image: '/images/homepage/illustration-lab-testing.png',
   },
   {
-    title: 'Shipment Protection on Every Order',
-    body: 'Every order ships with free shipment protection. If a package is lost, damaged, or stolen in transit, we make it right — reshipped or refunded, no runaround.',
-    Icon: Shield,
+    title: '3rd-Party Verified COAs and a Proven Track Record',
+    body: 'Every Amino Select compound is verified through rigorous third-party testing by accredited American laboratories. Our Certificates of Analysis confirm purity, identity, and potency — so what is on the label matches what is in the vial.',
+    image: '/images/homepage/illustration-research.png',
   },
 ]
 
+const ChevronLeft = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+)
+
+const ChevronRight = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+)
+
 export default function DifferenceCarousel() {
-  const trackRef = useRef(null)
   const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
 
-  const onScroll = () => {
-    const el = trackRef.current
-    if (!el) return
-    const i = Math.round(el.scrollLeft / el.clientWidth)
-    if (i !== active) setActive(i)
-  }
+  const goTo = useCallback((i) => {
+    setActive(((i % SLIDES.length) + SLIDES.length) % SLIDES.length)
+  }, [])
 
-  const goTo = (i) => {
-    const el = trackRef.current
-    if (!el) return
-    el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' })
-  }
+  const prev = useCallback(() => goTo(active - 1), [active, goTo])
+  const next = useCallback(() => goTo(active + 1), [active, goTo])
+
+  // Auto-play every 5s, pause on hover
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % SLIDES.length)
+    }, 5000)
+    return () => clearInterval(id)
+  }, [paused])
 
   return (
-    <div>
-      <div
-        ref={trackRef}
-        onScroll={onScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0"
-      >
-        {SLIDES.map(({ title, body, Icon }) => (
-          <div key={title} className="snap-center shrink-0 w-full px-1">
-            <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-7 sm:p-10">
-              <h3 className="text-[22px] sm:text-[26px] font-bold text-white tracking-tight leading-snug mb-4 max-w-[460px]">
-                {title}
-              </h3>
-              <p className="text-[14px] sm:text-[15px] text-white/65 leading-relaxed mb-9 max-w-[520px]">
-                {body}
-              </p>
-              <div className="rounded-[20px] border border-white/10 bg-[#0A1A0F]/60 py-10 flex items-center justify-center relative overflow-hidden">
-                <div className="orbit-watermark" />
-                <Icon />
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Track */}
+      <div className="overflow-hidden rounded-[28px] border border-white/10">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${active * 100}%)` }}
+        >
+          {SLIDES.map(({ title, body, image }) => (
+            <div key={title} className="w-full shrink-0">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 items-center p-7 sm:p-10">
+                {/* Text */}
+                <div>
+                  <h3 className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight leading-snug mb-4">
+                    {title}
+                  </h3>
+                  <p className="text-[15px] sm:text-[16px] text-white/65 leading-relaxed">
+                    {body}
+                  </p>
+                </div>
+                {/* Image */}
+                <div className="rounded-2xl overflow-hidden bg-white/[0.03]">
+                  <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-auto object-contain max-h-[280px] sm:max-h-[320px]"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Dots */}
-      <div className="flex items-center justify-center gap-2 mt-7">
-        {SLIDES.map((s, i) => (
-          <button
-            key={s.title}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === active ? 'w-7 bg-[#2ECC6A]' : 'w-1.5 bg-white/25 hover:bg-white/40'
-            }`}
-          />
-        ))}
+      {/* Dots + Arrows */}
+      <div className="flex items-center justify-center gap-4 mt-8">
+        <button
+          onClick={prev}
+          aria-label="Previous slide"
+          className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition"
+        >
+          <ChevronLeft />
+        </button>
+        <div className="flex items-center gap-2">
+          {SLIDES.map((s, i) => (
+            <button
+              key={s.title}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === active ? 'w-7 h-1.5 rounded-full bg-[#C9A96E]' : 'w-1.5 h-1.5 rounded-full bg-white/25 hover:bg-white/40'
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={next}
+          aria-label="Next slide"
+          className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition"
+        >
+          <ChevronRight />
+        </button>
       </div>
     </div>
   )

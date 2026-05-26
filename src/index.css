@@ -4,12 +4,12 @@
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
-  --color-brand-black: #0D1F12;
-  --color-brand-dark: #132A18;
-  --color-brand-primary: #1A5C30;
-  --color-brand-accent: #2ECC6A;
-  --color-brand-muted: #3A7A4E;
-  --color-brand-light: #E8F5EC;
+  --color-brand-black: #0A0E1A;
+  --color-brand-dark: #0F1A30;
+  --color-brand-primary: #1B2A4A;
+  --color-brand-accent: #C9A96E;
+  --color-brand-muted: #6B7A99;
+  --color-brand-light: #1E2D4A;
   --color-apple-black: #1D1D1F;
   --color-apple-gray: #86868B;
   --color-apple-green: #34C759;
@@ -65,11 +65,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Dark hero gradient (Orbitrex-inspired) ─── */
 .hero-dark {
-  background: linear-gradient(150deg, #0D1F12 0%, #132A18 35%, #1A5C30 100%);
+  background: linear-gradient(150deg, #0A0E1A 0%, #0F1A30 35%, #1B2A4A 100%);
 }
 
 .hero-dark-deep {
-  background: linear-gradient(135deg, #070F09 0%, #0D1F12 40%, #132A18 100%);
+  background: linear-gradient(135deg, #070B14 0%, #0A0E1A 40%, #0F1A30 100%);
 }
 
 /* ─── Glass navbars ─── */
@@ -183,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Brand italic accent (Orbitrex-inspired) ─── */
 .brand-italic {
   font-style: italic;
-  color: #2ECC6A;
+  color: #C9A96E;
 }
 
 /* ─── Green accent underline for headings ─── */
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   height: 3px;
-  background: #2ECC6A;
+  background: #C9A96E;
   border-radius: 2px;
   opacity: 0.4;
 }
@@ -214,21 +214,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pill-filter-active {
-  background: #1A5C30;
+  background: #1B2A4A;
   color: white;
-  border-color: #1A5C30;
+  border-color: #1B2A4A;
 }
 
 .pill-filter-inactive {
   background: transparent;
-  color: #3A7A4E;
-  border-color: #1A5C3030;
+  color: #6B7A99;
+  border-color: #1B2A4A30;
 }
 
 .pill-filter-inactive:hover {
-  background: #E8F5EC;
-  border-color: #1A5C3060;
-  color: #1A5C30;
+  background: #1E2D4A;
+  border-color: #1B2A4A60;
+  color: #C9A96E;
 }
 
 /* ─── Nav link accent touches ─── */
@@ -237,7 +237,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: color 0.2s ease;
 }
 .nav-link:hover {
-  color: #1A5C30;
+  color: #C9A96E;
 }
 .nav-link::after {
   content: '';
@@ -246,7 +246,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   height: 2px;
-  background: #1A5C30;
+  background: #C9A96E;
   border-radius: 1px;
   transform: scaleX(0);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -274,7 +274,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Orbitrex-style dark section dividers ─── */
 .brand-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #1A5C3040 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, #C9A96E40 50%, transparent 100%);
 }
 
 /* ─── Orbitrex monospace label system ─── */
@@ -289,19 +289,19 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Orbitrex dark hero — radial forest glow over near-black ─── */
 .hero-orbitrex {
   background:
-    radial-gradient(120% 90% at 15% 0%, #1B4D2E 0%, #103620 35%, #0A1A0F 75%);
+    radial-gradient(120% 90% at 15% 0%, #1A2F50 0%, #0F1A30 35%, #0A0E1A 75%);
 }
 
 /* dark section (carousel / difference) */
 .section-forest {
-  background: linear-gradient(165deg, #0F2A19 0%, #0A1A0F 60%, #0D1F12 100%);
+  background: linear-gradient(165deg, #0F1A30 0%, #0A0E1A 60%, #0F1419 100%);
 }
 
 /* faint orbit watermark behind product images */
 .orbit-watermark {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(closest-side, rgba(46, 204, 106, 0.10), transparent 70%);
+  background-image: radial-gradient(closest-side, rgba(201, 169, 110, 0.10), transparent 70%);
   pointer-events: none;
 }
 
@@ -313,6 +313,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Accent green italic (already used as .brand-italic) ─── */
 .accent-italic {
   font-style: italic;
-  color: #2ECC6A;
+  color: #C9A96E;
   font-weight: 800;
 }

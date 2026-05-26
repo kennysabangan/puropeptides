@@ -53,7 +53,7 @@ function FaqRow({ item, open, onToggle }) {
     <div className="rounded-2xl border border-black/[0.08] bg-white overflow-hidden">
       <button onClick={onToggle} className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left">
         <span className="text-[15px] sm:text-[16px] font-semibold text-[#141B16]">{item.q}</span>
-        <span className="relative w-5 h-5 flex-shrink-0 text-[#2ECC6A]">
+        <span className="relative w-5 h-5 flex-shrink-0 text-[#C9A96E]">
           <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-current rounded-full" />
           <span className={`absolute inset-y-0 left-1/2 -translate-x-1/2 w-[2px] bg-current rounded-full transition-transform duration-300 ${open ? 'rotate-90' : ''}`} />
         </span>
@@ -79,7 +79,7 @@ function ScrollTopFab() {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Back to top"
-      className={`fab-scroll-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-white shadow-lg border border-black/10 flex items-center justify-center text-[#1A5C30] ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fab-scroll-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-white shadow-lg border border-black/10 flex items-center justify-center text-[#C9A96E] ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 15l-6-6-6 6" />
@@ -111,7 +111,7 @@ export default function HomePage() {
             <div className="mt-9 flex flex-col sm:flex-row gap-3">
               <Link
                 to="/store"
-                className="btn-brand inline-flex items-center justify-center gap-2.5 rounded-full bg-[#2ECC6A] text-[#06210F] font-semibold text-[15px] px-7 py-4 hover:bg-[#34D873] transition"
+                className="btn-brand inline-flex items-center justify-center gap-2.5 rounded-full bg-[#C9A96E] text-[#06210F] font-semibold text-[15px] px-7 py-4 hover:bg-[#D4B87A] transition"
               >
                 Shop the Catalog <ArrowUpRight />
               </Link>
@@ -125,7 +125,7 @@ export default function HomePage() {
             <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3">
               {trustDots.map((t) => (
                 <li key={t} className="flex items-center gap-2 label-mono !tracking-[0.12em] text-white/55 !text-[11px]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
                   {t}
                 </li>
               ))}
@@ -175,7 +175,7 @@ export default function HomePage() {
           <div className="divide-y divide-black/[0.08] border-t border-black/[0.08]">
             {standards.map((s) => (
               <div key={s.n} className="grid grid-cols-[auto_1fr] sm:grid-cols-[120px_1fr] gap-x-6 gap-y-2 py-7">
-                <div className="label-mono text-[#2ECC6A] flex items-start gap-2 pt-1">
+                <div className="label-mono text-[#C9A96E] flex items-start gap-2 pt-1">
                   <span className="text-[#5B6660]">→</span> {s.n}
                 </div>
                 <div>
@@ -198,7 +198,7 @@ export default function HomePage() {
             </h2>
             <Link
               to="/store"
-              className="btn-brand inline-flex items-center gap-2.5 rounded-full bg-[#1A5C30] text-white font-semibold text-[14px] px-6 py-3.5 hover:bg-[#15502A] transition self-start sm:self-auto"
+              className="btn-brand inline-flex items-center gap-2.5 rounded-full bg-[#1B2A4A] text-white font-semibold text-[14px] px-6 py-3.5 hover:bg-[#152440] transition self-start sm:self-auto"
             >
               See All Products <ArrowUpRight size={15} />
             </Link>

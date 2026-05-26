@@ -9,10 +9,10 @@ const STATS = [
 export default function StatsBand() {
   return (
     <div className="border-t border-white/10">
-      {STATS.map((s) => (
+      {STATS.map((s, i) => (
         <div
           key={s.caption}
-          className="border-b border-white/10 max-w-[1200px] mx-auto px-6 lg:px-10 py-6 flex items-baseline gap-5"
+          className={`border-b border-white/10 max-w-[1200px] mx-auto px-6 lg:px-10 py-6 flex items-baseline gap-5 ${i === STATS.length - 1 ? 'pb-8' : ''}`}
         >
           <span className="text-white font-extrabold tracking-tight text-[40px] sm:text-[48px] leading-none tabular-nums">
             {s.value}
@@ -20,6 +20,9 @@ export default function StatsBand() {
           <span className="label-mono text-white/45">{s.caption}</span>
         </div>
       ))}
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      </div>
     </div>
   )
 }
