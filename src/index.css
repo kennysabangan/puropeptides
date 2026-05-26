@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
   --color-brand-black: #0D1F12;
   --color-brand-dark: #132A18;
   --color-brand-primary: #1A5C30;
@@ -274,4 +275,44 @@ h1, h2, h3, h4, h5, h6 {
 .brand-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, #1A5C3040 50%, transparent 100%);
+}
+
+/* ─── Orbitrex monospace label system ─── */
+.label-mono {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* ─── Orbitrex dark hero — radial forest glow over near-black ─── */
+.hero-orbitrex {
+  background:
+    radial-gradient(120% 90% at 15% 0%, #1B4D2E 0%, #103620 35%, #0A1A0F 75%);
+}
+
+/* dark section (carousel / difference) */
+.section-forest {
+  background: linear-gradient(165deg, #0F2A19 0%, #0A1A0F 60%, #0D1F12 100%);
+}
+
+/* faint orbit watermark behind product images */
+.orbit-watermark {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(closest-side, rgba(46, 204, 106, 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Scroll-to-top FAB ─── */
+.fab-scroll-top {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ─── Accent green italic (already used as .brand-italic) ─── */
+.accent-italic {
+  font-style: italic;
+  color: #2ECC6A;
+  font-weight: 800;
 }

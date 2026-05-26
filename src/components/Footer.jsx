@@ -1,112 +1,122 @@
 import { Link } from 'react-router-dom'
 
+const quickLinks = [
+  { label: 'Shop', to: '/store' },
+  { label: 'Certificates', to: '/coa' },
+  { label: 'Research', to: '/research' },
+  { label: 'Track Your Order', to: '/account/orders' },
+  { label: 'Contact us', to: '/contact' },
+]
+
+const legalLinks = [
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Shipping & Returns', to: '/shipping' },
+  { label: 'Terms & Conditions', to: '/terms' },
+  { label: 'RUO Disclaimer', to: '/disclaimer' },
+]
+
+const Orbit = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+    <circle cx="20" cy="20" r="8" stroke="#2ECC6A" strokeWidth="2" />
+    <ellipse cx="20" cy="20" rx="18" ry="7" stroke="#2ECC6A" strokeWidth="2" transform="rotate(-30 20 20)" />
+  </svg>
+)
+
+function PaymentTile({ src, alt }) {
+  return (
+    <div className="h-9 w-14 rounded-lg bg-white flex items-center justify-center">
+      <img src={src} alt={alt} className="h-4 w-auto object-contain" />
+    </div>
+  )
+}
+
 export default function Footer() {
   return (
-    <footer className="bg-[#1D1D1F] text-white">
-      {/* Main Footer */}
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-20 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-5">
-              <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-                <circle cx="14" cy="14" r="13" stroke="white" strokeWidth="1.5" />
-                <path d="M10 8v12M18 8v12M10 14h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <span className="font-semibold text-[15px]">Amino Select</span>
+    <footer className="text-white" style={{ background: 'linear-gradient(165deg, #0F2A19 0%, #0A1A0F 100%)' }}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-10 pt-16 pb-10">
+        {/* FDA disclaimer card */}
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 mb-14">
+          <p className="text-[13px] text-white/65 leading-relaxed">
+            <span className="font-bold text-white">FDA Disclaimer:</span> The statements made within
+            this website have not been evaluated by the US Food and Drug Administration. The
+            statements and the products of this company are not intended to diagnose, treat, cure, or
+            prevent any disease. Amino Select is not a compounding pharmacy or chemical compounding
+            facility as defined under 503A of the Federal Food, Drug, and Cosmetic Act. Amino Select
+            is not an outsourcing facility as defined under 503B of the Federal Food, Drug, and
+            Cosmetic Act. All products are sold for research, laboratory, or analytical purposes
+            only, and are not for human consumption.
+          </p>
+        </div>
+
+        {/* Brand + tagline + payment */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-12 lg:gap-10">
+          <div>
+            <Link to="/" className="inline-flex items-center gap-2.5 mb-5">
+              <Orbit />
+              <span className="flex flex-col leading-none">
+                <span className="font-bold text-[20px] tracking-tight">Amino Select</span>
+                <span className="label-mono !text-[9px] !tracking-[0.3em] text-white/50 mt-0.5">peptides</span>
+              </span>
             </Link>
-            <p className="text-[13px] text-[#86868B] mb-8 max-w-xs leading-relaxed">
-              Premium research-grade peptides for optimal controlled studies. Third-party tested with Certificate of Analysis.
+            <p className="text-[13px] text-white/55 leading-relaxed mb-6 max-w-[280px]">
+              Free shipping over $200, rapid customer support, and fast shipping on research-grade
+              peptides.
             </p>
-            <div className="flex gap-3">
-              {[
-                /* Instagram */
-                <svg key="ig" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" />
-                </svg>,
-                /* X */
-                <svg key="x" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>,
-                /* YouTube */
-                <svg key="yt" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-                </svg>,
-              ].map((icon) => (
-                <a key={icon.key} href="#" className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:border-white/60 transition text-white/60 hover:text-white">
-                  {icon}
-                </a>
-              ))}
+            <div className="flex gap-2.5">
+              <PaymentTile src="/images/homepage/payment-amex.svg" alt="American Express" />
+              <PaymentTile src="/images/homepage/payment-visa.svg" alt="Visa" />
+              <PaymentTile src="/images/homepage/payment-discover.svg" alt="Discover" />
             </div>
           </div>
 
-          {/* SHOP */}
+          {/* Quick Links */}
           <div>
-            <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Shop</h4>
+            <h4 className="text-[15px] font-bold mb-5">Quick Links</h4>
             <ul className="space-y-3">
-              <li><Link to="/store" className="text-[13px] text-[#86868B] hover:text-white transition">All Products</Link></li>
-            </ul>
-          </div>
-          {/* RESOURCES */}
-          <div>
-            <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Resources</h4>
-            <ul className="space-y-3">
-              {['Research Library', 'Certificates of Analysis'].map(item => (
-                <li key={item}><a href="#" className="text-[13px] text-[#86868B] hover:text-white transition">{item}</a></li>
+              {quickLinks.map((l) => (
+                <li key={l.label} className="flex items-center gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A] flex-shrink-0" />
+                  <Link to={l.to} className="text-[13px] text-white/65 hover:text-white transition">{l.label}</Link>
+                </li>
               ))}
             </ul>
           </div>
-          {/* SUPPORT */}
-          <div>
-            <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Support</h4>
-            <ul className="space-y-3">
-              {['Contact Us', 'FAQ', 'Shipping Info', 'Returns'].map(item => (
-                <li key={item}><a href="#" className="text-[13px] text-[#86868B] hover:text-white transition">{item}</a></li>
-              ))}
-            </ul>
-          </div>
-          {/* LEGAL */}
-          <div>
-            <h4 className="text-[11px] font-semibold tracking-wider uppercase text-[#86868B] mb-5">Legal</h4>
-            <ul className="space-y-3">
-              {['Privacy Policy', 'Terms of Service', 'Disclaimer', 'Research Use Only'].map(item => (
-                <li key={item}><a href="#" className="text-[13px] text-[#86868B] hover:text-white transition">{item}</a></li>
-              ))}
-            </ul>
-          </div>
-        </div>
 
-        {/* FDA Disclaimer — yellow-bordered callout */}
-        <div className="mt-12 rounded-2xl border border-[#F5C842]/40 bg-[#F5C842]/[0.04] p-5 flex gap-4">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5C842" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 mt-0.5">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-            <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
-          </svg>
+          {/* Legal Pages */}
           <div>
-            <h5 className="text-[12px] font-bold tracking-wider uppercase text-[#F5C842] mb-2">FDA Disclaimer</h5>
-            <p className="text-[12px] text-white/65 leading-relaxed">
-              Statements made regarding our products have <strong className="text-white/90">not been evaluated by the U.S. Food and Drug Administration</strong>. The efficacy of these products has not been confirmed by FDA-approved research. Products are <strong className="text-white/90">not intended to diagnose, treat, cure, or prevent any disease</strong>. Information presented on this website is not a substitute for, or alternative to, information from a qualified health care practitioner. Please consult a licensed health care professional regarding any potential interactions or complications before using any product. This notice is required under the Federal Food, Drug, and Cosmetic Act.{' '}
-              <a href="#" className="text-[#F5C842] font-semibold hover:underline">Read the full disclaimer →</a>
-            </p>
+            <h4 className="text-[15px] font-bold mb-5">Legal Pages</h4>
+            <ul className="space-y-3">
+              {legalLinks.map((l) => (
+                <li key={l.label} className="flex items-center gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A] flex-shrink-0" />
+                  <Link to={l.to} className="text-[13px] text-white/65 hover:text-white transition">{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Get In Touch */}
+          <div>
+            <h4 className="text-[15px] font-bold mb-5">Get In Touch</h4>
+            <div className="space-y-4 text-[13px]">
+              <div>
+                <p className="text-white/55 mb-1">For general questions or more information:</p>
+                <a href="mailto:inquiry@aminoselect.com" className="text-[#2ECC6A] hover:underline">inquiry@aminoselect.com</a>
+              </div>
+              <div>
+                <p className="text-white/55 mb-1">For orders, shipping, or product/quality concerns:</p>
+                <a href="mailto:support@aminoselect.com" className="text-[#2ECC6A] hover:underline">support@aminoselect.com</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Payment & Badges */}
       <div className="border-t border-white/10">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <img src="/images/homepage/payment-visa.svg" alt="Visa" className="h-5 w-auto object-contain opacity-60" />
-              <img src="/images/homepage/payment-amex.svg" alt="American Express" className="h-5 w-auto object-contain opacity-60" />
-              <img src="/images/homepage/payment-discover.svg" alt="Discover" className="h-5 w-auto object-contain opacity-60" />
-              <img src="/images/homepage/payment-applepay.svg" alt="Apple Pay" className="h-5 w-auto object-contain opacity-60" />
-            </div>
-            <p className="text-[11px] text-[#86868B]/50">© 2026 Amino Select. All rights reserved.</p>
-            <div className="flex items-center gap-5">
-              {['SSL Secured', '99%+ Purity', 'Shipment Protection'].map(b => (
-                <span key={b} className="text-[10px] text-[#86868B]/40">{b}</span>
-              ))}
-            </div>
-          </div>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-center">
+          <p className="text-[12px] text-white/45">
+            © 2026 Amino Select. For Research Use Only. All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>

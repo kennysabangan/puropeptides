@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { getProducts } from '../lib/supabase'
 import ProductCard from '../components/ProductCard'
 import Select from '../components/Select'
+import SectionEyebrow from '../components/SectionEyebrow'
 
 const SortIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -96,8 +97,9 @@ export default function StorePage() {
     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-14 md:py-20">
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#1D1D1F] tracking-[-0.03em] mb-3">Shop our <em className="not-italic text-[#1a5c3a]">research collection</em></h1>
-        <p className="text-[#86868B] text-[15px]">USA-manufactured research peptides with 99%+ purity. Domestic shipping, no customs.</p>
+        <SectionEyebrow>Research catalog</SectionEyebrow>
+        <h1 className="mt-5 text-[clamp(2rem,4vw,3rem)] font-extrabold text-[#141B16] tracking-[-0.03em] mb-3">Shop our research <span className="accent-italic">collection</span></h1>
+        <p className="text-[#5B6660] text-[15px]">USA-manufactured research peptides with 99%+ purity. Domestic shipping, no customs.</p>
       </div>
 
       {/* Search & Sort */}

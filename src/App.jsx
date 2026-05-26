@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import AnnouncementBar from './components/AnnouncementBar'
 import ResearcherGate from './components/ResearcherGate'
 import CartDrawer from './components/CartDrawer'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -48,6 +49,7 @@ function GatedApp() {
     <AuthProvider>
       <CartProvider>
         <div className="min-h-screen flex flex-col bg-white">
+          <AnnouncementBar />
           <Header />
           <main className="flex-1">
             <Routes>
