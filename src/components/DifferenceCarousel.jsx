@@ -4,17 +4,17 @@ const SLIDES = [
   {
     title: 'Customer Service Comes First',
     body: 'We are committed to meeting every customer\'s needs through a responsive support email and a dedicated phone line to a live representative. We stand behind the quality of our products and are here to address any questions or concerns you may have.',
-    image: '/images/homepage/illustration-support.png',
+    image: '/images/homepage/featured-dsip.png',
   },
   {
     title: 'Lab Quality, No Markup',
     body: 'Our approach is rooted in precision, discipline, and integrity. We operate with the same mindset used to maintain mission-critical reliability: attention to detail, traceable processes, and continuous improvement.',
-    image: '/images/homepage/illustration-lab-testing.png',
+    image: '/images/homepage/hero-amino-h2o-bottle.png',
   },
   {
     title: '3rd-Party Verified COAs and a Proven Track Record',
     body: 'Every Amino Select compound is verified through rigorous third-party testing by accredited American laboratories. Our Certificates of Analysis confirm purity, identity, and potency — so what is on the label matches what is in the vial.',
-    image: '/images/homepage/illustration-research.png',
+    image: '/images/homepage/featured-nad-plus.png',
   },
 ]
 

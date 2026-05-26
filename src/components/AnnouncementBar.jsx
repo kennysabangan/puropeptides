@@ -2,7 +2,7 @@
 export default function AnnouncementBar() {
   return (
     <div className="relative z-[60]">
-      <div className="bg-[#0D3320] text-white text-center px-4 py-2.5">
+      <div className="bg-[#0F1419] text-white text-center px-4 py-2.5">
         <p className="text-[12px] sm:text-[13px] font-medium leading-snug">
           Free UPS 2nd Day Air on orders over $200 — select the option at checkout
         </p>
