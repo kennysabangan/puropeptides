@@ -13,11 +13,10 @@ export default function Header() {
   return (
     <header className="bg-[#E6E8EA] border-b border-black/5">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-        <div className="flex items-center justify-between h-16 md:h-18">
-          {/* Wordmark */}
-          <Link to="/" className="flex flex-col leading-none">
-            <span className="font-bold text-[26px] tracking-tight text-[#1D1D1F] lowercase">amino</span>
-            <span className="text-[11px] tracking-[0.2em] text-[#1D1D1F]/70 uppercase font-semibold -mt-0.5 self-end">select</span>
+        <div className="flex items-center justify-between h-20 md:h-24">
+          {/* Logo */}
+          <Link to="/">
+            <img src="/images/logo.png" alt="Amino Select" className="h-20 w-auto" />
           </Link>
 
           {/* Center Nav */}

@@ -51,12 +51,8 @@ export default function ResearcherGate() {
       {/* Foreground */}
       <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-10">
         {/* Logo */}
-        <div className="flex items-center gap-2 mb-8">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="#1D1D1F" strokeWidth="1.5" />
-            <path d="M10 8v12M18 8v12M10 14h8" stroke="#1D1D1F" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-          <span className="font-semibold text-[20px] tracking-tight text-[#1D1D1F]">Amino Select</span>
+        <div className="mb-8">
+          <img src="/images/logo.png" alt="Amino Select" className="h-20 w-auto" />
         </div>
 
         {/* Card */}

@@ -51,12 +51,8 @@ export default function Footer() {
         {/* Brand + tagline + payment */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-12 lg:gap-10">
           <div>
-            <Link to="/" className="inline-flex items-center gap-2.5 mb-5">
-              <Orbit />
-              <span className="flex flex-col leading-none">
-                <span className="font-bold text-[20px] tracking-tight">Amino Select</span>
-                <span className="label-mono !text-[9px] !tracking-[0.3em] text-white/50 mt-0.5">peptides</span>
-              </span>
+            <Link to="/" className="mb-5 block">
+              <img src="/images/logo.png" alt="Amino Select" className="h-20 w-auto" />
             </Link>
             <p className="text-[13px] text-white/55 leading-relaxed mb-6 max-w-[280px]">
               Free shipping over $200, rapid customer support, and fast shipping on research-grade
