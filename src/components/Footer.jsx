@@ -24,8 +24,8 @@ const Orbit = () => (
 
 function PaymentTile({ src, alt }) {
   return (
-    <div className="h-9 w-14 rounded-lg bg-white/[0.08] border border-white/10 flex items-center justify-center">
-      <img src={src} alt={alt} className="h-4 w-auto object-contain brightness-0 invert" style={{ filter: 'brightness(0) invert(0.7)' }} />
+    <div className="h-11 w-[72px] rounded-lg bg-white/[0.08] border border-white/10 flex items-center justify-center">
+      <img src={src} alt={alt} className="h-6 w-auto object-contain" style={{ filter: 'brightness(0) invert(0.7)' }} />
     </div>
   )
 }
