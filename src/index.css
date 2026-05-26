@@ -286,10 +286,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-/* ─── Orbitrex dark hero — radial forest glow over near-black ─── */
+/* ─── Orbitrex dark hero — light → dark → slightly lighter at bottom ─── */
 .hero-orbitrex {
   background:
-    radial-gradient(120% 90% at 15% 0%, #1A2F50 0%, #0F1A30 35%, #0A0E1A 75%);
+    radial-gradient(120% 90% at 15% 0%, rgba(26, 47, 80, 0.6) 0%, transparent 60%),
+    linear-gradient(180deg, #1A2F50 0%, #0F1A30 30%, #0A0E1A 70%, #111825 100%);
 }
 
 /* dark section (carousel / difference) */
