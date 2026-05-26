@@ -52,3 +52,25 @@ reintroduce old names.
 - Signed-in users get server-synced carts (table `carts`). Anonymous
   carts stay in localStorage. Sign-in additively merges local cart →
   server cart.
+
+## gstack
+
+[gstack](https://github.com/garrytan/gstack) provides browser + workflow
+skills for agents working in this repo.
+
+- **Use the `/browse` skill from gstack for all web browsing** — testing
+  the deployed site, dogfooding flows, screenshots, verifying deploys.
+- **Never use `mcp__claude-in-chrome__*` tools.** Route all browsing
+  through gstack's `/browse` instead.
+
+### Available gstack skills
+
+`/office-hours`, `/plan-ceo-review`, `/plan-eng-review`,
+`/plan-design-review`, `/design-consultation`, `/design-shotgun`,
+`/design-html`, `/review`, `/ship`, `/land-and-deploy`, `/canary`,
+`/benchmark`, `/browse`, `/connect-chrome`, `/qa`, `/qa-only`,
+`/design-review`, `/setup-browser-cookies`, `/setup-deploy`,
+`/setup-gbrain`, `/retro`, `/investigate`, `/document-release`,
+`/document-generate`, `/codex`, `/cso`, `/autoplan`,
+`/plan-devex-review`, `/devex-review`, `/careful`, `/freeze`, `/guard`,
+`/unfreeze`, `/gstack-upgrade`, `/learn`
