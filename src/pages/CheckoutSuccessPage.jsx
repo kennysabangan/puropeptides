@@ -4,8 +4,8 @@ import { useCart } from '../context/CartContext'
 export default function CheckoutSuccessPage() {
   return (
     <div className="max-w-lg mx-auto px-4 sm:px-6 py-20 text-center">
-      <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <div className="w-16 h-16 rounded-full bg-[#C9A96E]/15 flex items-center justify-center mx-auto mb-6">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20 6L9 17l-5-5" />
         </svg>
       </div>

@@ -58,7 +58,7 @@ export default function ProductPage() {
     return (
       <div className="max-w-[1200px] mx-auto px-6 py-24 text-center">
         <h2 className="text-2xl font-bold text-[#141B16] mb-4">Product not found</h2>
-        <Link to="/store" className="text-[14px] text-[#5B6660] hover:text-[#1A5C30] transition inline-flex items-center gap-1 justify-center">
+        <Link to="/store" className="text-[14px] text-[#5B6660] hover:text-[#1B2A4A] transition inline-flex items-center gap-1 justify-center">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
           Back to store
         </Link>
@@ -96,16 +96,16 @@ export default function ProductPage() {
     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-8 md:py-12">
       {/* Breadcrumb */}
       <nav className="mb-8 label-mono !text-[11px] text-[#5B6660] flex items-center gap-2 flex-wrap">
-        <Link to="/" className="hover:text-[#1A5C30] transition">Home</Link>
+        <Link to="/" className="hover:text-[#1B2A4A] transition">Home</Link>
         <Chevron />
-        <Link to="/store" className="hover:text-[#1A5C30] transition">Shop</Link>
+        <Link to="/store" className="hover:text-[#1B2A4A] transition">Shop</Link>
         <Chevron />
         <span className="text-[#141B16]">{product.name}</span>
       </nav>
 
       <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
         {/* Gallery */}
-        <div className="relative rounded-[28px] overflow-hidden border border-[#1a5c3a]/[0.08] flex items-center justify-center min-h-[420px] md:min-h-[560px]"
+        <div className="relative rounded-[28px] overflow-hidden border border-[#1B2A4A]/[0.08] flex items-center justify-center min-h-[420px] md:min-h-[560px]"
           style={{ background: 'linear-gradient(160deg, #F2F4F2 0%, #FFFFFF 70%)' }}>
           <div className="orbit-watermark" />
           <img src={getPrimaryImage(product)} alt={product.name} className="relative w-[68%] max-w-[360px] h-auto object-contain" style={{ maxHeight: '460px' }} />
@@ -114,10 +114,10 @@ export default function ProductPage() {
         {/* Buy box */}
         <div className="py-1">
           <h1 className="text-[clamp(1.9rem,4vw,2.6rem)] font-extrabold text-[#141B16] tracking-[-0.03em] mb-3">{product.name}</h1>
-          <div className="text-[clamp(1.6rem,3vw,2rem)] font-extrabold text-[#2ECC6A] mb-4">${totalPrice.toFixed(2)}</div>
+          <div className="text-[clamp(1.6rem,3vw,2rem)] font-extrabold text-[#C9A96E] mb-4">${totalPrice.toFixed(2)}</div>
 
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#2ECC6A]/40 px-3.5 py-1.5 label-mono !text-[11px] text-[#1a5c3a] mb-7">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A]" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#C9A96E]/40 px-3.5 py-1.5 label-mono !text-[11px] text-[#1B2A4A] mb-7">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
             Bundle &amp; save up to 7.5%
           </span>
 
@@ -139,18 +139,18 @@ export default function ProductPage() {
                   key={b.qty}
                   onClick={() => setSelectedBundle(b.qty)}
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-[14px] border transition text-left ${
-                    selectedBundle === b.qty ? 'border-[#1A5C30] bg-[#1A5C30]/[0.04]' : 'border-[#E3E6E3] hover:border-[#C9D0C9]'
+                    selectedBundle === b.qty ? 'border-[#1B2A4A] bg-[#1B2A4A]/[0.04]' : 'border-[#E3E6E3] hover:border-[#C9D0C9]'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedBundle === b.qty ? 'border-[#1A5C30]' : 'border-[#C9D0C9]'}`}>
-                      {selectedBundle === b.qty && <span className="w-2 h-2 rounded-full bg-[#1A5C30]" />}
+                    <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedBundle === b.qty ? 'border-[#1B2A4A]' : 'border-[#C9D0C9]'}`}>
+                      {selectedBundle === b.qty && <span className="w-2 h-2 rounded-full bg-[#1B2A4A]" />}
                     </span>
                     <span className="text-[14px] text-[#141B16] font-medium">{b.label}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     {b.discount && <span className="text-[12px] text-[#5B6660]">{b.discount}</span>}
-                    {b.badge && <span className="label-mono !text-[9px] bg-[#2ECC6A] text-[#06210F] px-2 py-1 rounded-full">{b.badge}</span>}
+                    {b.badge && <span className="label-mono !text-[9px] bg-[#C9A96E] text-[#06210F] px-2 py-1 rounded-full">{b.badge}</span>}
                   </div>
                 </button>
               ))}
@@ -165,13 +165,13 @@ export default function ProductPage() {
               <span className="w-12 text-center text-[14px] font-medium text-[#141B16]">{quantity}</span>
               <button onClick={() => setQuantity(quantity + 1)} className="w-11 h-11 flex items-center justify-center text-[#141B16] hover:bg-[#F2F4F2] rounded-r-full transition">+</button>
             </div>
-            {saved > 0 && <span className="ml-3 text-[13px] text-[#2ECC6A] font-semibold">You save ${saved.toFixed(2)}</span>}
+            {saved > 0 && <span className="ml-3 text-[13px] text-[#C9A96E] font-semibold">You save ${saved.toFixed(2)}</span>}
           </div>
 
           {/* Add to cart */}
           <button
             onClick={handleAddToCart}
-            className={`btn-brand w-full text-[15px] font-semibold py-4 rounded-[14px] transition ${added ? 'bg-[#2ECC6A] text-[#06210F]' : 'bg-[#1A5C30] text-white hover:bg-[#15502A]'}`}
+            className={`btn-brand w-full text-[15px] font-semibold py-4 rounded-[14px] transition ${added ? 'bg-[#C9A96E] text-[#06210F]' : 'bg-[#1B2A4A] text-white hover:bg-[#152440]'}`}
           >
             {added ? '✓ Added to cart' : 'Add to Cart'}
           </button>
@@ -184,7 +184,7 @@ export default function ProductPage() {
             </div>
             <div className="flex items-center gap-4">
               <dt className="label-mono !text-[11px] text-[#5B6660] w-24">Category</dt>
-              <dd className="text-[13px]"><Link to="/store" className="text-[#1A5C30] font-medium hover:underline">{category}</Link></dd>
+              <dd className="text-[13px]"><Link to="/store" className="text-[#1B2A4A] font-medium hover:underline">{category}</Link></dd>
             </div>
           </dl>
         </div>
@@ -222,8 +222,8 @@ export default function ProductPage() {
           </p>
         </section>
 
-        <div className="rounded-2xl border-l-4 border-[#2ECC6A] bg-[#F2F4F2] px-5 py-5">
-          <p className="label-mono !text-[11px] text-[#1a5c3a] mb-2">For Research Use Only</p>
+        <div className="rounded-2xl border-l-4 border-[#C9A96E] bg-[#F2F4F2] px-5 py-5">
+          <p className="label-mono !text-[11px] text-[#1B2A4A] mb-2">For Research Use Only</p>
           <p className="text-[14px] text-[#5B6660] leading-relaxed">This product is intended solely for in vitro laboratory research and is not for human or animal consumption.</p>
         </div>
 
@@ -245,7 +245,7 @@ export default function ProductPage() {
                   {certificates.map((row) => (
                     <tr key={row.lot_number} className="border-b border-black/[0.05] last:border-0">
                       <td className="py-3.5 px-4 font-mono text-[13px] text-[#141B16]">{row.lot_number}</td>
-                      <td className="py-3.5 px-4 text-[#2ECC6A] font-semibold">{row.purity}%</td>
+                      <td className="py-3.5 px-4 text-[#C9A96E] font-semibold">{row.purity}%</td>
                       <td className="py-3.5 px-4 text-[#5B6660]">{row.labeled_amount}</td>
                       <td className="py-3.5 px-4 text-[#141B16] font-medium">{row.actual_amount}</td>
                       <td className="py-3.5 px-4 text-[#5B6660]">{row.tested_date}</td>

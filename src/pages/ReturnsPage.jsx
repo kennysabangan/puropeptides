@@ -37,7 +37,7 @@ export default function ReturnsPage() {
       <FadeSection className="py-20 md:py-28" style={{ backgroundColor: '#FAFAF7' }}>
         <div className="max-w-[700px] mx-auto px-6 lg:px-8 text-center">
           <div className="w-16 h-16 bg-[#F7F5F0] rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4CAF7D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               <polyline points="9 12 11 14 15 10" />
             </svg>
@@ -79,7 +79,7 @@ export default function ReturnsPage() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-[20px] p-8 apple-shadow">
               <div className="flex items-center gap-2 mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4CAF7D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 <h3 className="font-semibold text-[16px] text-[#1A1F2E]">Eligible for Replacement</h3>
@@ -87,7 +87,7 @@ export default function ReturnsPage() {
               <ul className="space-y-3">
                 {eligible.map(item => (
                   <li key={item} className="flex items-start gap-3 text-[14px] text-[#8B95A5]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#4CAF7D] mt-2 flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] mt-2 flex-shrink-0" />
                     {item}
                   </li>
                 ))}

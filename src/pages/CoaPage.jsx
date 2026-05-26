@@ -68,7 +68,7 @@ export default function CoaPage() {
             {testsPerformed.map((test, i) => (
               <div key={test} className="flex items-center gap-4 py-4 border-b border-[#E8E8ED] last:border-0">
                 <div className="w-8 h-8 rounded-full bg-[#F7F5F0] flex items-center justify-center flex-shrink-0">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4CAF7D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>

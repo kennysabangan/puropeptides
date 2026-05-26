@@ -5,7 +5,7 @@ function Cell({ label, value, accent = false, align = 'left' }) {
   return (
     <div className={align === 'right' ? 'text-right' : ''}>
       <p className="label-mono text-white/40 mb-1.5">{label}</p>
-      <p className={`text-[15px] sm:text-[17px] font-bold ${accent ? 'text-[#2ECC6A]' : 'text-white'}`}>
+      <p className={`text-[15px] sm:text-[17px] font-bold ${accent ? 'text-[#C9A96E]' : 'text-white'}`}>
         {value}
       </p>
     </div>
@@ -31,11 +31,11 @@ export default function SpecCard({ name, dosage, price, sku, purity = '≥ 99%',
 
       {/* Footer row */}
       <div className="flex items-center justify-between border-t border-white/10 mt-4 px-2 pt-4">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#2ECC6A]/40 px-3 py-1.5 label-mono text-[#2ECC6A] !text-[11px]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A]" />
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#C9A96E]/40 px-3 py-1.5 label-mono text-[#C9A96E] !text-[11px]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
           COA Verified
         </span>
-        <Link to={href} className="label-mono !text-[11px] text-white hover:text-[#2ECC6A] transition inline-flex items-center gap-1.5">
+        <Link to={href} className="label-mono !text-[11px] text-white hover:text-[#C9A96E] transition inline-flex items-center gap-1.5">
           View
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M13 5l7 7-7 7" />

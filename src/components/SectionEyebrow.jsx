@@ -4,11 +4,11 @@ export default function SectionEyebrow({ number, children, dark = false, classNa
   return (
     <div className={`label-mono flex items-center gap-2.5 ${className}`}>
       {number != null ? (
-        <span className={muted}>{number}</span>
+        <span className={`${muted} text-[15px] sm:text-[16px]`}>{number}</span>
       ) : (
-        <span className="text-[#2ECC6A]">—</span>
+        <span className="text-[#C9A96E]">—</span>
       )}
-      <span className="text-[#2ECC6A]">{children}</span>
+      <span className="text-[#C9A96E]">{children}</span>
     </div>
   )
 }

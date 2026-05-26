@@ -60,10 +60,10 @@ export default function OrderDetailPage() {
               const done = i <= stepIndex
               return (
                 <div key={step} className="flex-1 flex items-center gap-2">
-                  <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${done ? 'bg-[#4CAF7D]' : 'bg-black/10'}`} />
+                  <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${done ? 'bg-[#C9A96E]' : 'bg-black/10'}`} />
                   <span className={`text-[11px] capitalize ${done ? 'text-[#1A1F2E] font-medium' : 'text-[#8B95A5]'}`}>{step}</span>
                   {i < STATUS_STEPS.length - 1 && (
-                    <div className={`flex-1 h-px ${i < stepIndex ? 'bg-[#4CAF7D]' : 'bg-black/10'}`} />
+                    <div className={`flex-1 h-px ${i < stepIndex ? 'bg-[#C9A96E]' : 'bg-black/10'}`} />
                   )}
                 </div>
               )

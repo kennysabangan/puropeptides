@@ -60,7 +60,7 @@ function FaqRow({ item, open, onToggle }) {
       </button>
       <div className={`grid transition-[grid-template-rows] duration-300 ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
         <div className="overflow-hidden">
-          <p className="text-[14px] text-[#5B6660] leading-relaxed px-5 sm:px-6 pb-5">{item.a}</p>
+          <p className="text-[15px] text-[#5B6660] leading-relaxed px-5 sm:px-6 pb-5">{item.a}</p>
         </div>
       </div>
     </div>
@@ -175,12 +175,12 @@ export default function HomePage() {
           <div className="divide-y divide-black/[0.08] border-t border-black/[0.08]">
             {standards.map((s) => (
               <div key={s.n} className="grid grid-cols-[auto_1fr] sm:grid-cols-[120px_1fr] gap-x-6 gap-y-2 py-7">
-                <div className="label-mono text-[#C9A96E] flex items-start gap-2 pt-1">
+                <div className="text-[16px] sm:text-[18px] font-semibold text-[#C9A96E] flex items-start gap-2 pt-1">
                   <span className="text-[#5B6660]">→</span> {s.n}
                 </div>
                 <div>
                   <h3 className="text-[19px] sm:text-[21px] font-bold text-[#141B16] mb-2">{s.title}</h3>
-                  <p className="text-[14px] sm:text-[15px] text-[#5B6660] leading-relaxed max-w-[620px]">{s.body}</p>
+                  <p className="text-[15px] sm:text-[16px] text-[#5B6660] leading-relaxed max-w-[620px]">{s.body}</p>
                 </div>
               </div>
             ))}

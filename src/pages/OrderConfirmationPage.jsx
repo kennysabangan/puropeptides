@@ -9,7 +9,7 @@ export default function OrderConfirmationPage() {
   return (
     <div className="max-w-[600px] mx-auto px-6 lg:px-8 py-20 text-center">
       {/* Checkmark */}
-      <div className="w-20 h-20 bg-[#4CAF7D] rounded-full flex items-center justify-center mx-auto mb-8">
+      <div className="w-20 h-20 bg-[#C9A96E] rounded-full flex items-center justify-center mx-auto mb-8">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 13l4 4L19 7" />
         </svg>

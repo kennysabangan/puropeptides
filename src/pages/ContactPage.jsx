@@ -52,7 +52,7 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="bg-white rounded-[20px] p-8 apple-shadow text-center">
                   <div className="w-14 h-14 bg-[#F7F5F0] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4CAF7D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>

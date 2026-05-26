@@ -86,7 +86,7 @@ function Toggle({ on, disabled, onClick }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`relative inline-flex h-5 w-9 rounded-full transition ${on ? 'bg-[#4CAF7D]' : 'bg-black/15'} ${disabled ? 'opacity-50' : ''}`}
+      className={`relative inline-flex h-5 w-9 rounded-full transition ${on ? 'bg-[#C9A96E]' : 'bg-black/15'} ${disabled ? 'opacity-50' : ''}`}
     >
       <span className={`absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-white shadow transition ${on ? 'translate-x-4' : ''}`} />
     </button>

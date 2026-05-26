@@ -17,8 +17,8 @@ const legalLinks = [
 
 const Orbit = () => (
   <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
-    <circle cx="20" cy="20" r="8" stroke="#2ECC6A" strokeWidth="2" />
-    <ellipse cx="20" cy="20" rx="18" ry="7" stroke="#2ECC6A" strokeWidth="2" transform="rotate(-30 20 20)" />
+    <circle cx="20" cy="20" r="8" stroke="#C9A96E" strokeWidth="2" />
+    <ellipse cx="20" cy="20" rx="18" ry="7" stroke="#C9A96E" strokeWidth="2" transform="rotate(-30 20 20)" />
   </svg>
 )
 
@@ -32,7 +32,7 @@ function PaymentTile({ src, alt }) {
 
 export default function Footer() {
   return (
-    <footer className="text-white" style={{ background: 'linear-gradient(165deg, #0F2A19 0%, #0A1A0F 100%)' }}>
+    <footer className="text-white" style={{ background: 'linear-gradient(165deg, #0F1A30 0%, #0A0E1A 100%)' }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-10 pt-16 pb-10">
         {/* FDA disclaimer card */}
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 mb-14">
@@ -71,7 +71,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((l) => (
                 <li key={l.label} className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] flex-shrink-0" />
                   <Link to={l.to} className="text-[13px] text-white/65 hover:text-white transition">{l.label}</Link>
                 </li>
               ))}
@@ -84,7 +84,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {legalLinks.map((l) => (
                 <li key={l.label} className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] flex-shrink-0" />
                   <Link to={l.to} className="text-[13px] text-white/65 hover:text-white transition">{l.label}</Link>
                 </li>
               ))}
@@ -97,11 +97,11 @@ export default function Footer() {
             <div className="space-y-4 text-[13px]">
               <div>
                 <p className="text-white/55 mb-1">For general questions or more information:</p>
-                <a href="mailto:inquiry@aminoselect.com" className="text-[#2ECC6A] hover:underline">inquiry@aminoselect.com</a>
+                <a href="mailto:inquiry@aminoselect.com" className="text-[#C9A96E] hover:underline">inquiry@aminoselect.com</a>
               </div>
               <div>
                 <p className="text-white/55 mb-1">For orders, shipping, or product/quality concerns:</p>
-                <a href="mailto:support@aminoselect.com" className="text-[#2ECC6A] hover:underline">support@aminoselect.com</a>
+                <a href="mailto:support@aminoselect.com" className="text-[#C9A96E] hover:underline">support@aminoselect.com</a>
               </div>
             </div>
           </div>

@@ -12,7 +12,7 @@
   --color-brand-light: #1E2D4A;
   --color-apple-black: #1D1D1F;
   --color-apple-gray: #86868B;
-  --color-apple-green: #34C759;
+  --color-apple-green: #C9A96E;
   --color-apple-bg: #FBFBFD;
 }
 
@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Dark Hero (Orbitrex-inspired) ─── */
 .hero-dark-gradient {
-  background: linear-gradient(135deg, #0f3d24 0%, #132a18 40%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #0F1A30 0%, #0A0E1A 40%, #1a1a1a 100%);
 }
 
 .hero-headline {

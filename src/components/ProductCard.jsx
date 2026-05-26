@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
       <Link
         to={href}
         aria-label={`${product.name} — $${product.price.toFixed(2)}`}
-        className="h-full flex flex-col rounded-[20px] overflow-hidden bg-white border border-[#1a5c3a]/[0.08] product-card-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5c3a]/30 focus-visible:ring-offset-2"
+        className="h-full flex flex-col rounded-[20px] overflow-hidden bg-white border border-[#1B2A4A]/[0.08] product-card-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B2A4A]/30 focus-visible:ring-offset-2"
       >
         {/* Image with COA pill + orbit watermark */}
         <div
@@ -20,8 +20,8 @@ export default function ProductCard({ product }) {
           style={{ background: `linear-gradient(160deg, ${bgColor} 0%, #FFFFFF 100%)` }}
         >
           <div className="orbit-watermark" />
-          <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur px-2.5 py-1 label-mono !text-[10px] text-[#1a5c3a] border border-[#1a5c3a]/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC6A]" />
+          <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur px-2.5 py-1 label-mono !text-[10px] text-[#1B2A4A] border border-[#1B2A4A]/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E]" />
             COA
           </span>
           <img
@@ -40,7 +40,7 @@ export default function ProductCard({ product }) {
           </h3>
           <div className="flex items-center justify-between mt-auto pt-1">
             {detail && <span className="label-mono !text-[11px] text-[#5B6660] truncate pr-2">{detail}</span>}
-            <span className="font-bold text-[18px] lg:text-[20px] text-[#2ECC6A] ml-auto">
+            <span className="font-bold text-[18px] lg:text-[20px] text-[#C9A96E] ml-auto">
               ${product.price.toFixed(2)}
             </span>
           </div>
